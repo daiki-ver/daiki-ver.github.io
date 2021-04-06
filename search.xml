@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Phone Store 移动端手机商城</title>
+    <url>/2021/04/06/Phone-Store-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%8B%E6%9C%BA%E5%95%86%E5%9F%8E/</url>
+    <content><![CDATA[<p><strong><em>一个基于 SpringBoot+Vue 开发的移动端手机商城</em></strong></p>
+<span id="more"></span>
+
+<h2 id="Phone-Store"><a href="#Phone-Store" class="headerlink" title="Phone Store"></a>Phone Store</h2><p>基于移动端的手机商城</p>
+<p>基于 Spring Boot + Vue 的前后端分离开发架构</p>
+<h3 id="前端技术栈"><a href="#前端技术栈" class="headerlink" title="前端技术栈"></a>前端技术栈</h3><p>Vue + Vant UI + less</p>
+<h3 id="后端技术栈"><a href="#后端技术栈" class="headerlink" title="后端技术栈"></a>后端技术栈</h3><p>Spring Boot + Spring Data JPA</p>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>MySQL</p>
+]]></content>
+      <categories>
+        <category>项目实战</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>Spring Boot+Vue</tag>
+        <tag>前后端分离</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于Hexo初次搭建个人博客</title>
     <url>/2021/04/04/%E5%9F%BA%E4%BA%8EHexo%E5%88%9D%E6%AC%A1%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h6 id="初次搭建博客，基于-hexo-搭建的静态博客。"><a href="#初次搭建博客，基于-hexo-搭建的静态博客。" class="headerlink" title="初次搭建博客，基于 hexo 搭建的静态博客。"></a>初次搭建博客，基于 hexo 搭建的静态博客。</h6><span id="more"></span>
