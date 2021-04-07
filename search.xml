@@ -1,6 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>01-关键字-标识符-数据类型</title>
+    <url>/2021/04/07/01-%E5%85%B3%E9%94%AE%E5%AD%97-%E6%A0%87%E8%AF%86%E7%AC%A6-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<p>今日类容：关键字、标识符、数据类型、常亮、变量</p>
+<span id="more"></span>
+
+<h1 id="第一章、关键字"><a href="#第一章、关键字" class="headerlink" title="第一章、关键字"></a>第一章、关键字</h1><h2 id="1-1、什么是关键字"><a href="#1-1、什么是关键字" class="headerlink" title="1.1、什么是关键字"></a>1.1、什么是关键字</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">关键字：被Java语言赋予了特殊含义的单词称为关键字</span><br><span class="line">保留字：暂时还没有赋予特殊含义对的单词，goto、<span class="keyword">const</span>等</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2、常见的关键字"><a href="#1-2、常见的关键字" class="headerlink" title="1.2、常见的关键字"></a>1.2、常见的关键字</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">HelloWorld 案例中，出现的关键字有 <span class="keyword">public</span> 、<span class="class"><span class="keyword">class</span> 、 <span class="title">static</span> 、 <span class="title">void</span> 等，这些单词已经被 <span class="title">Java</span> 赋予了特殊含义，全都是小写字母，<span class="title">notepad</span>++ 中颜色特殊高亮。</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="第二章、标识符"><a href="#第二章、标识符" class="headerlink" title="第二章、标识符"></a>第二章、标识符</h1><h2 id="2-1、什么是标识符"><a href="#2-1、什么是标识符" class="headerlink" title="2.1、什么是标识符"></a>2.1、什么是标识符</h2><p>标识符：是指在程序中，我们自己定义内容。比如类的名字、方法的名字和变量的名字等等，都是标识符。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// HelloWorld案例中，出现的标识符有类名：HelloWorld </span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2、标识符的命名规则"><a href="#2-2、标识符的命名规则" class="headerlink" title="2.2、标识符的命名规则"></a>2.2、标识符的命名规则</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>）标识符由大小写字母、阿拉伯数字、下划线“_”、美元符号“$”组成，不能以数字开头</span><br><span class="line"><span class="number">2</span>）不能把java关键字和保留字作为标识符</span><br><span class="line"><span class="number">3</span>）标识符对大小写敏感（大小写意义不一样）</span><br><span class="line"><span class="number">4</span>）标识符没有长度限制（不能瞎定义）   见名知义</span><br><span class="line">⚠️注意：坚决不能用拼音或汉字或者中英结合的命名方法</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3、命名规范"><a href="#2-3、命名规范" class="headerlink" title="2.3、命名规范"></a>2.3、命名规范</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>）类名、接口名：单词首字母大写（如果多个单词组合，每个单词首字母大写，其余小写）</span><br><span class="line">  Demo 、HelloWorld</span><br><span class="line"><span class="number">2</span>）方法名、变量名：单词全部小写（如果多个单词组合，从第二个单词开始，首字母全部大写，其余小写）</span><br><span class="line">  add、findAllUser name、myName</span><br><span class="line"><span class="number">3</span>）常量名：全部大写（如果多个单词组合，每个单词用下划线_隔开）</span><br><span class="line">  MAX TOTAL_COUNT</span><br></pre></td></tr></table></figure>
+
+<h1 id="第三章、数据类型"><a href="#第三章、数据类型" class="headerlink" title="第三章、数据类型"></a>第三章、数据类型</h1><h2 id="3-1、什么是数据类型"><a href="#3-1、什么是数据类型" class="headerlink" title="3.1、什么是数据类型"></a>3.1、什么是数据类型</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">我们人类可以很容易的分清数字与字符的区别，但是计算机并不能呀，计算机虽然很强大，但从某种角度上看又很傻，除非你明确的告诉它，<span class="number">1</span>是数字，“汉”是文字，否则它是分不清<span class="number">1</span>和‘汉’的区别的，因此，在每个编程语言里都会有一个叫数据类型的东西，其实就是对常用的各种数据类型进行了明确的划分，你想让计算机进行数值运算，你就传数字给它，你想让他处理文字，就传字符串类型给它</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2、数据类型分类"><a href="#3-2、数据类型分类" class="headerlink" title="3.2、数据类型分类"></a>3.2、数据类型分类</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">数据类型分为两大类：</span><br><span class="line">  基本类型：<span class="keyword">byte</span>、<span class="keyword">short</span>、<span class="keyword">int</span>、<span class="keyword">long</span>、<span class="keyword">float</span>、<span class="keyword">double</span>、<span class="keyword">char</span>、<span class="keyword">boolean</span></span><br><span class="line">  引用类型：数组、字符串、类、接口</span><br><span class="line">基本数据类型又分为四大类：</span><br><span class="line">	整数、浮点型、字符、布尔</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">关键字</th>
+<th align="center">内存大小</th>
+<th align="center">取值范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">字节型</td>
+<td align="center">byte</td>
+<td align="center">1个字节（8位）</td>
+<td align="center">-2^7～2^7-1</td>
+</tr>
+<tr>
+<td align="center">短整型</td>
+<td align="center">short</td>
+<td align="center">2个字节（16位）</td>
+<td align="center">-2^15～2^15-1</td>
+</tr>
+<tr>
+<td align="center">整型</td>
+<td align="center">int（默认）</td>
+<td align="center">4个字节（32位）</td>
+<td align="center">-2^31～2^31-1</td>
+</tr>
+<tr>
+<td align="center">长整型</td>
+<td align="center">long</td>
+<td align="center">8个字节（64位）</td>
+<td align="center">-2^63～2^63-1</td>
+</tr>
+<tr>
+<td align="center">单精度浮点</td>
+<td align="center">float</td>
+<td align="center">4个字节（32位）</td>
+<td align="center">默认值：0.0f</td>
+</tr>
+<tr>
+<td align="center">双精度浮点</td>
+<td align="center">double（默认）</td>
+<td align="center">8个字节（64位）</td>
+<td align="center">默认值：0.0d</td>
+</tr>
+<tr>
+<td align="center">字符</td>
+<td align="center">char</td>
+<td align="center">2个字节（16位）</td>
+<td align="center">0～65535</td>
+</tr>
+<tr>
+<td align="center">布尔类</td>
+<td align="center">boolean</td>
+<td align="center">1个字节（8位）</td>
+<td align="center">true、false</td>
+</tr>
+</tbody></table>
+<h1 id="第四章、常量"><a href="#第四章、常量" class="headerlink" title="第四章、常量"></a>第四章、常量</h1><h2 id="4-1、什么是常量"><a href="#4-1、什么是常量" class="headerlink" title="4.1、什么是常量"></a>4.1、什么是常量</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">常量；指在Java程序中不变的量</span><br><span class="line">当使用常量的时候，前缀 <span class="number">0</span> 表示 <span class="number">8</span>进制，而前缀 0x 代表<span class="number">16</span>进制</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">01</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">0x12</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-2、常量的分类"><a href="#4-2、常量的分类" class="headerlink" title="4.2、常量的分类"></a>4.2、常量的分类</h2><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">含义</th>
+<th align="center">举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">整数常量</td>
+<td align="center">所有的整数</td>
+<td align="center">-20、-1、0、24、101</td>
+</tr>
+<tr>
+<td align="center">小数常量</td>
+<td align="center">所有的小数</td>
+<td align="center">0.1、-2.7、6.66</td>
+</tr>
+<tr>
+<td align="center">字符常量</td>
+<td align="center">单引号引起来,只能写一个字符，也可以不写</td>
+<td align="center">‘a’、’’、’牛’</td>
+</tr>
+<tr>
+<td align="center">字符串常量</td>
+<td align="center">双引号引起来,可以写多个字符,也可以不写</td>
+<td align="center">“a”、”666”、”你好吗？”、””</td>
+</tr>
+<tr>
+<td align="center">布尔常量</td>
+<td align="center">只有两个值：true、false（流程控制中讲解）</td>
+<td align="center">true、false</td>
+</tr>
+<tr>
+<td align="center">空常量</td>
+<td align="center">只有一个值（引用数据类型中讲解）</td>
+<td align="center">null</td>
+</tr>
+</tbody></table>
+<h2 id="4-3、练习"><a href="#4-3、练习" class="headerlink" title="4.3、练习"></a>4.3、练习</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 需求：输出各种类型的常量	</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstantDemo</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    <span class="comment">//输出整数常量</span></span><br><span class="line">    System.out.println(<span class="number">123</span>);</span><br><span class="line">    <span class="comment">//输出小数常量</span></span><br><span class="line">    System.out.println(<span class="number">0.125</span>);</span><br><span class="line">    <span class="comment">//输出字符常量</span></span><br><span class="line">    System.out.println(<span class="string">&#x27;A&#x27;</span>);</span><br><span class="line">    <span class="comment">//输出布尔常量</span></span><br><span class="line">    System.out.println(<span class="keyword">true</span>);</span><br><span class="line">    <span class="comment">//输出字符串常量</span></span><br><span class="line">    System.out.println(<span class="string">&quot;你好Java&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第五章、变量"><a href="#第五章、变量" class="headerlink" title="第五章、变量"></a>第五章、变量</h1><h2 id="5-1、什么是变量"><a href="#5-1、什么是变量" class="headerlink" title="5.1、什么是变量"></a>5.1、什么是变量</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">在程序运行过程中会发生改变的量被称为变量</span><br><span class="line">一个变量每次只能保存一个数据，必须要明确保存的数据类型</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2、变量的定义"><a href="#5-2、变量的定义" class="headerlink" title="5.2、变量的定义"></a>5.2、变量的定义</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>）定义变量的格式：</span><br><span class="line">  数据类型 变量名 = 变量值;</span><br><span class="line"><span class="number">2</span>）注意	</span><br><span class="line">  <span class="keyword">long</span>类型：建议数据后加L表示。</span><br><span class="line">  <span class="keyword">float</span>类型：建议数据后加F表示。</span><br><span class="line"><span class="number">3</span>）注意⚠️</span><br><span class="line">  变量名称：在同一个大括号范围内，变量的名字不可以相同。</span><br><span class="line">  变量赋值：定义的变量，不赋值不能使用</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-3、练习"><a href="#5-3、练习" class="headerlink" title="5.3、练习"></a>5.3、练习</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Variable</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    <span class="comment">//定义字节型变量</span></span><br><span class="line">    <span class="keyword">byte</span> b = <span class="number">100</span>;</span><br><span class="line">    System.out.println(b);</span><br><span class="line">    <span class="comment">//定义短整型变量</span></span><br><span class="line">    <span class="keyword">short</span> s = <span class="number">1000</span>;</span><br><span class="line">    System.out.println(s);</span><br><span class="line">    <span class="comment">//定义整型变量</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">123456</span>;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">    <span class="comment">//定义长整型变量</span></span><br><span class="line">    <span class="keyword">long</span> l = <span class="number">12345678900L</span>;</span><br><span class="line">    System.out.println(l);</span><br><span class="line">    <span class="comment">//定义单精度浮点型变量</span></span><br><span class="line">    <span class="keyword">float</span> f = <span class="number">5.5F</span>;</span><br><span class="line">    System.out.println(f);</span><br><span class="line">    <span class="comment">//定义双精度浮点型变量</span></span><br><span class="line">    <span class="keyword">double</span> d = <span class="number">8.5</span>;</span><br><span class="line">    System.out.println(d);</span><br><span class="line">    <span class="comment">//定义布尔型变量</span></span><br><span class="line">    <span class="keyword">boolean</span> bool = <span class="keyword">false</span>;</span><br><span class="line">    System.out.println(bool);</span><br><span class="line">    <span class="comment">//定义字符型变量</span></span><br><span class="line">    <span class="keyword">char</span> c = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">    System.out.println(c);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>培训学习</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Phone Store 移动端手机商城</title>
     <url>/2021/04/06/Phone-Store-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%8B%E6%9C%BA%E5%95%86%E5%9F%8E/</url>
     <content><![CDATA[<p><strong><em>一个基于 SpringBoot+Vue 开发的移动端手机商城</em></strong></p>
