@@ -149,7 +149,8 @@
 <h4 id="前端技术栈"><a href="#前端技术栈" class="headerlink" title="前端技术栈"></a>前端技术栈</h4><p>Vue + Vant UI + less</p>
 <h4 id="后端技术栈"><a href="#后端技术栈" class="headerlink" title="后端技术栈"></a>后端技术栈</h4><p>Spring Boot + Spring Data JPA</p>
 <h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><p>MySQL</p>
-<h3 id="1-创建-Vue-项目"><a href="#1-创建-Vue-项目" class="headerlink" title="1. 创建 Vue 项目"></a>1. 创建 Vue 项目</h3><h4 id="1-1插件安装"><a href="#1-1插件安装" class="headerlink" title="1.1插件安装"></a>1.1插件安装</h4><blockquote>
+<h3 id="1-创建-Vue-项目"><a href="#1-创建-Vue-项目" class="headerlink" title="1. 创建 Vue 项目"></a>1. 创建 Vue 项目</h3><p>首先创建一个基础的vue项目，创建过程不做过多赘述。创建好了之后直接打开，进行插件安装。</p>
+<h4 id="1-1插件安装"><a href="#1-1插件安装" class="headerlink" title="1.1插件安装"></a>1.1插件安装</h4><blockquote>
 <p>Vant UI 安装命令</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cnpm i vant -S</span><br></pre></td></tr></table></figure>
@@ -161,6 +162,21 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cnpm install less less-loader --save</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2021/04/06/Phone-Store-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%8B%E6%9C%BA%E5%95%86%E5%9F%8E/less%E5%AE%89%E8%A3%85.png" alt="less安装"></p>
+<h4 id="1-2-导入并启用插件"><a href="#1-2-导入并启用插件" class="headerlink" title="1.2 导入并启用插件"></a>1.2 导入并启用插件</h4><blockquote>
+<p>导入 vant 插件</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vant <span class="keyword">from</span> <span class="string">&#x27;vant&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>导入 css 插件</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;vant/lib/index.css&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>启用 Vant UI 插件</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.use(Vant);</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>项目实战</category>
