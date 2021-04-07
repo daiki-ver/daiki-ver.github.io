@@ -238,7 +238,28 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Toast &#125; <span class="keyword">from</span> <span class="string">&#x27;vant&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      areaList,</span><br><span class="line">      searchResult: [],</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="function"><span class="title">onSave</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      Toast(<span class="string">&#x27;save&#x27;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">onDelete</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">      Toast(<span class="string">&#x27;delete&#x27;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">onChangeDetail</span>(<span class="params">val</span>)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (val) &#123;</span><br><span class="line">        <span class="built_in">this</span>.searchResult = [</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">&#x27;黄龙万科中心&#x27;</span>,</span><br><span class="line">            address: <span class="string">&#x27;杭州市西湖区&#x27;</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        ];</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.searchResult = [];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>预览图：</p>
-<img src="/2021/04/06/Phone-Store-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%8B%E6%9C%BA%E5%95%86%E5%9F%8E/演示5.png" width="50%">]]></content>
+<img src="/2021/04/06/Phone-Store-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%8B%E6%9C%BA%E5%95%86%E5%9F%8E/演示5.png" width="50%">
+
+<h4 id="2-4-AddressEdit界面实现"><a href="#2-4-AddressEdit界面实现" class="headerlink" title="2.4 AddressEdit界面实现"></a>2.4 AddressEdit界面实现</h4><p>AddressEdit 界面的实现和前面的 AddressNew 的界面相差无几，只需用同样的组件稍作修改就可以了。</p>
+<p><strong>需要注意的是，</strong>在之前的 AddressList 页面中，需要对修改按钮绑定一个名为<code> onEdit()</code>的点击事件，方法为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">onEdit</span>(<span class="params">item</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> data = <span class="built_in">JSON</span>.stringify(item)</span><br><span class="line">    <span class="built_in">this</span>.$router.push(&#123;<span class="attr">path</span>:<span class="string">&#x27;/addressEdit&#x27;</span>,<span class="attr">query</span>:&#123;<span class="attr">item</span>:data&#125;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个方法的作用就是将地址列表里的地址对象传递给 AddressEdit 界面，从而实现对地址的编辑。</p>
+<p>于是，对应的，在 AddressEdit 中的<code> created()</code>中需要取出数据：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">created</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//取出item对象</span></span><br><span class="line">    <span class="keyword">let</span> data = <span class="built_in">JSON</span>.parse(<span class="built_in">this</span>.$route.query.item)</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-Detail-界面实现"><a href="#2-5-Detail-界面实现" class="headerlink" title="2.5 Detail 界面实现"></a>2.5 Detail 界面实现</h4><p>该界面是订单详情界面，布局比较简单，我们采用 Vant UI 中的 Cell 单元格 的布局。</p>
+<p>文档链接：<a href="https://vant-contrib.gitee.io/vant/#/zh-CN/cell">https://vant-contrib.gitee.io/vant/#/zh-CN/cell</a></p>
+<p>适当使用 <code> span</code>来调整单元格大小使布局看起来更合理。</p>
+<p><strong>另外，值得注意的是，在 Vant UI 中，对于金额的计数单位是 ‘分’ 而不是 ‘元’，所以在处理付款金额时，需要再乘以100：</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;van-submit-bar</span><br><span class="line">    :price=<span class="string">&quot;data.amount*100&quot;</span></span><br><span class="line">    button-text=<span class="string">&quot;确认付款&quot;</span></span><br><span class="line">    @submit=<span class="string">&quot;onSubmit&quot;</span></span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>界面预览：</p>
+<img src="/2021/04/06/Phone-Store-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%8B%E6%9C%BA%E5%95%86%E5%9F%8E/演示6.png" width="50%">
+
+<h5 id="2-5-1-Success-界面实现"><a href="#2-5-1-Success-界面实现" class="headerlink" title="2.5.1 Success 界面实现"></a>2.5.1 Success 界面实现</h5><p>该界面最为简单，所以不做过多说明，所需数据仅仅只有付款金额。</p>
+<p>界面预览：</p>
+<img src="/2021/04/06/Phone-Store-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%8B%E6%9C%BA%E5%95%86%E5%9F%8E/演示7.png" width="50%">]]></content>
       <categories>
         <category>项目实战</category>
       </categories>
