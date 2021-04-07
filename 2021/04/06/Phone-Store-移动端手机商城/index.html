@@ -108,6 +108,17 @@
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.use(Vant);</span><br></pre></td></tr></table></figure>
 
+<h4 id="1-3界面实现"><a href="#1-3界面实现" class="headerlink" title="1.3界面实现"></a>1.3界面实现</h4><blockquote>
+<p>导航代码:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;van-tab v-for&#x3D;&quot;index in categories.length&quot; :title&#x3D;&quot;categories[index-1].name&quot; class&#x3D;&quot;tab&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>利用 <code> v-for</code> 从<code> categories</code> 中遍历元素。</p>
+<p>categories:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      categories: [</span><br><span class="line">        &#123;</span><br><span class="line">          name: <span class="string">&#x27;魅焰红&#x27;</span>,</span><br><span class="line">          type: <span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          name: <span class="string">&#x27;极光蓝&#x27;</span>,</span><br><span class="line">          type: <span class="number">2</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          name: <span class="string">&#x27;铂光金&#x27;</span>,</span><br><span class="line">          type: <span class="number">3</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          name: <span class="string">&#x27;幻夜黑&#x27;</span>,</span><br><span class="line">          type: <span class="number">4</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>预览图：</strong></p>
+<p><video src="Phone-Store-移动端手机商城\演示1.mp4"></video></p>
 
       
     </div>
