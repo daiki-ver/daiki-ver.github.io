@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-08T16:08:34.975Z</updated>
+  <updated>2021-04-08T16:20:24.012Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2021/04/08/day02-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-%E8%BF%90%E7%AE%97%E7%AC%A6-%E7%A0%81%E8%A1%A8-%E6%96%B9%E6%B3%95-%E6%B5%81%E7%A8%8B%E7%BB%93%E6%9E%84/"/>
     <id>http://example.com/2021/04/08/day02-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-%E8%BF%90%E7%AE%97%E7%AC%A6-%E7%A0%81%E8%A1%A8-%E6%96%B9%E6%B3%95-%E6%B5%81%E7%A8%8B%E7%BB%93%E6%9E%84/</id>
     <published>2021-04-08T14:46:44.000Z</published>
-    <updated>2021-04-08T16:08:34.975Z</updated>
+    <updated>2021-04-08T16:20:24.012Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;今日学习内容：数据类型转换、算数运算符、比较运算符、逻辑运算符、三元运算符、码表、方法的定义及调用、流程控制结构。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</summary>
