@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    day03-循环-方法进阶-数组 |
+    
+    Daiki&#39;s Blog</title>
+  
+  <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Daiki's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-day03-循环-方法进阶-数组" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h1 class="article-title" itemprop="name">
+  day03-循环-方法进阶-数组
+</h1>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/" class="article-date">
+  <time datetime="2021-04-11T09:48:38.000Z" itemprop="datePublished">2021-04-11</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/Java/">Java</a> / <a class="article-category-link" href="/categories/Java/%E5%9F%B9%E8%AE%AD%E5%AD%A6%E4%B9%A0/">培训学习</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+      <p><strong><em>今日学习内容：循环语句、方法进阶、数组</em></strong></p>
+<span id="more"></span>
+
+<h1 id="第一章、循环语句"><a href="#第一章、循环语句" class="headerlink" title="第一章、循环语句"></a>第一章、循环语句</h1><h2 id="1-1、循环语句概述"><a href="#1-1、循环语句概述" class="headerlink" title="1.1、循环语句概述"></a>1.1、循环语句概述</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">循环语句可以在满足循环条件的情况下，反复执行某一段代码，这段被重复执行的代码被称为循环体语句，当反复执行这个循环体时，需要在合适的时候把循环判断条件修改为<span class="keyword">false</span>，从而结束循环，否则循环将一直执行下去，形成死循环</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2、循环语句1—for"><a href="#1-2、循环语句1—for" class="headerlink" title="1.2、循环语句1—for"></a>1.2、循环语句1—for</h2><h3 id="1-2-1、格式"><a href="#1-2-1、格式" class="headerlink" title="1.2.1、格式"></a>1.2.1、格式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(初始化语句; 判断条件语句; 条件控制语句)&#123;</span><br><span class="line">		循环体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-2、执行流程"><a href="#1-2-2、执行流程" class="headerlink" title="1.2.2、执行流程"></a>1.2.2、执行流程</h3><img src="/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/教学大纲\04-JavaSE\img\2019-12-14_14-56-11.jpg" alt="2019-12-14_14-56-11" style="zoom:33%;">
+
+<h2 id="1-3、循环语句2—while"><a href="#1-3、循环语句2—while" class="headerlink" title="1.3、循环语句2—while"></a>1.3、循环语句2—while</h2><h3 id="1-3-1、格式"><a href="#1-3-1、格式" class="headerlink" title="1.3.1、格式"></a>1.3.1、格式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">初始化表达式；</span><br><span class="line"><span class="keyword">while</span>(判断条件语句)&#123;</span><br><span class="line">	循环体</span><br><span class="line">	控制条件语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-2、执行流程"><a href="#1-3-2、执行流程" class="headerlink" title="1.3.2、执行流程"></a>1.3.2、执行流程</h3><img src="/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/教学大纲\04-JavaSE\img\2019-12-14_15-07-23.jpg" alt="2019-12-14_15-07-23" style="zoom:33%;">
+
+<h2 id="1-4、循环语句3—do…while"><a href="#1-4、循环语句3—do…while" class="headerlink" title="1.4、循环语句3—do…while"></a>1.4、循环语句3—do…while</h2><h3 id="1-4-1、格式"><a href="#1-4-1、格式" class="headerlink" title="1.4.1、格式"></a>1.4.1、格式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">初始化语句</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">  循环体</span><br><span class="line">  条件控制语句</span><br><span class="line">&#125;<span class="keyword">while</span>(条件判断语句);</span><br><span class="line">⚠️注意：<span class="keyword">do</span>...<span class="keyword">while</span>循环的特点：无条件执行一次循环体，即使我们将循环条件直接写成<span class="keyword">false</span>，也依然会循环一次。这样的</span><br><span class="line">循环具有一定的风险性，因此初学者不建议使用<span class="keyword">do</span>...<span class="keyword">while</span>循环。</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;无条件执行一次&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">while</span>(<span class="keyword">false</span>);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-2、执行流程"><a href="#1-4-2、执行流程" class="headerlink" title="1.4.2、执行流程"></a>1.4.2、执行流程</h3><img src="/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/教学大纲\04-JavaSE\img\2019-12-14_15-15-01.jpg" alt="2019-12-14_15-15-01" style="zoom:33%;">
+
+<h2 id="1-5、循环语句的区别"><a href="#1-5、循环语句的区别" class="headerlink" title="1.5、循环语句的区别"></a>1.5、循环语句的区别</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> 和 <span class="keyword">while</span> 的小区别：</span><br><span class="line"><span class="number">1</span>）控制条件语句所控制的那个变量，在<span class="keyword">for</span>循环结束后，就不能再被访问到了，而<span class="keyword">while</span>循环结束还可以继续使用，如果你想继续		</span><br><span class="line">    使用，就用<span class="keyword">while</span>，否则推荐使用<span class="keyword">for</span>。原因是<span class="keyword">for</span>循环结束，该变量就从内存中消失，能够提高内存的使用效率。</span><br><span class="line"><span class="number">2</span>）在已知循环次数的时候使用推荐使用<span class="keyword">for</span>，循环次数未知的时推荐使用<span class="keyword">while</span>。</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-6、跳出语句"><a href="#1-6、跳出语句" class="headerlink" title="1.6、跳出语句"></a>1.6、跳出语句</h2><h3 id="1-6-1、break"><a href="#1-6-1、break" class="headerlink" title="1.6.1、break"></a>1.6.1、break</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">使用场景：终止<span class="keyword">switch</span>、循环</span><br><span class="line">	<span class="number">2</span>）在选择结构<span class="keyword">switch</span>语句中</span><br><span class="line">  	<span class="number">3</span>）在循环语句中</span><br><span class="line">	<span class="number">4</span>）离开使用场景的存在是没有意义的</span><br><span class="line"><span class="comment">// 示例：</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;=<span class="number">10</span>; i++) &#123;</span><br><span class="line">      <span class="comment">//需求:打印完两次HelloWorld之后结束循环</span></span><br><span class="line">      <span class="keyword">if</span>(i == <span class="number">3</span>)&#123;</span><br><span class="line">      	<span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    	System.out.println(<span class="string">&quot;HelloWorld&quot;</span>+i);</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-6-2、continue"><a href="#1-6-2、continue" class="headerlink" title="1.6.2、continue"></a>1.6.2、continue</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">使用场景：结束本次循环，继续下一次的循环</span><br><span class="line"><span class="comment">// 示例：</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">      <span class="comment">//需求:不打印第三次HelloWorld</span></span><br><span class="line">      <span class="keyword">if</span>(i == <span class="number">3</span>)&#123;</span><br><span class="line">      	<span class="keyword">continue</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    	System.out.println(<span class="string">&quot;HelloWorld&quot;</span>+i);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第二章、扩展知识点"><a href="#第二章、扩展知识点" class="headerlink" title="第二章、扩展知识点"></a>第二章、扩展知识点</h1><h2 id="2-1、死循环"><a href="#2-1、死循环" class="headerlink" title="2.1、死循环"></a>2.1、死循环</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">定义：循环中的条件永远为<span class="keyword">true</span>，死循环的是永不结束的循环。例如：<span class="keyword">while</span>(<span class="keyword">true</span>)&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2、嵌套循环"><a href="#2-2、嵌套循环" class="headerlink" title="2.2、嵌套循环"></a>2.2、嵌套循环</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">所谓嵌套循环：是指一个循环的循环体是另一个循环。比如<span class="keyword">for</span>循环里面还有一个<span class="keyword">for</span>循环，就是嵌套循环。总共的循环次数=外循环次数*内循环次数。</span><br><span class="line">其中<span class="keyword">for</span>和<span class="keyword">while</span>、<span class="keyword">while</span>和<span class="keyword">while</span>、<span class="keyword">for</span>和<span class="keyword">for</span>等都可以相互嵌套。</span><br><span class="line">  </span><br><span class="line"><span class="comment">// 格式：</span></span><br><span class="line">  <span class="keyword">for</span>(初始化语句<span class="number">1</span>; 判断条件语句<span class="number">1</span>; 控制条件语句<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span>(初始化语句<span class="number">2</span>; 判断条件语句<span class="number">2</span>; 控制条件语句<span class="number">2</span>) &#123;</span><br><span class="line">    		循环体 </span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">// 练习：使用嵌套循环，打印5*8的矩形</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  <span class="comment">//5*8的矩形，打印5行*号，每行8个</span></span><br><span class="line">  <span class="comment">//外循环5次，内循环8次</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">8</span>; j++)&#123;</span><br><span class="line">      <span class="comment">//不换行打印星号</span></span><br><span class="line">      System.out.print(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//内循环打印8个星号后，需要一次换行</span></span><br><span class="line">    System.out.println();</span><br><span class="line">  &#125;</span><br><span class="line">｝</span><br><span class="line"><span class="comment">// 思考题：打印99乘法表</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="第三章、方法进阶"><a href="#第三章、方法进阶" class="headerlink" title="第三章、方法进阶"></a>第三章、方法进阶</h1><h2 id="1、方法定义的格式详解"><a href="#1、方法定义的格式详解" class="headerlink" title="1、方法定义的格式详解"></a>1、方法定义的格式详解</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">修饰符 返回值类型 方法名(参数列表)&#123;</span><br><span class="line">  <span class="comment">//代码省略...</span></span><br><span class="line">  <span class="keyword">return</span> 结果;</span><br><span class="line">&#125;	</span><br><span class="line"><span class="number">1</span>）修饰符： <span class="keyword">public</span> <span class="keyword">static</span> 固定写法</span><br><span class="line"><span class="number">2</span>）返回值类型： 表示方法运行的结果的数据类型，方法执行后将结果返回到调用者</span><br><span class="line"><span class="number">3</span>）参数列表：方法在运算过程中的未知数据，调用者调用方法时传递</span><br><span class="line"><span class="number">4</span>）<span class="keyword">return</span>：将方法执行后的结果带给调用者，方法执行到 <span class="keyword">return</span> ，整个方法运行结束</span><br><span class="line"><span class="number">5</span>）<span class="keyword">return</span> 结果; 这里的<span class="string">&quot;结果&quot;</span>在开发中，我们正确的叫法成为方法的返回值</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、定义方法的两个明确"><a href="#2、定义方法的两个明确" class="headerlink" title="2、定义方法的两个明确"></a>2、定义方法的两个明确</h2><p>1）明确返回值类型：方法计算的是整数的求和，结果也必然是个整数，返回值类型定义为 int 类型。<br>2）明确参数列表：计算哪两个整数的和，并不清楚，但可以确定是整数，参数列表可以定义两个 int 类型的变量，由调用者调用方法时传递</p>
+<h2 id="3、方法调用流程图解"><a href="#3、方法调用流程图解" class="headerlink" title="3、方法调用流程图解"></a>3、方法调用流程图解</h2><img src="/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/教学大纲\04-JavaSE\img\2019-12-14_15-58-45.jpg" alt="2019-12-14_15-58-45" style="zoom:33%;">
+
+<h2 id="3、定义方法练习"><a href="#3、定义方法练习" class="headerlink" title="3、定义方法练习"></a>3、定义方法练习</h2><h3 id="3-1、练习一"><a href="#3-1、练习一" class="headerlink" title="3.1、练习一"></a>3.1、练习一</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 比较两个整数是否相同</span></span><br><span class="line">分析：定义方法实现功能，需要有两个明确，即 返回值 和 参数列表 </span><br><span class="line">	<span class="number">1</span>）明确返回值：比较整数，比较的结果只有两种可能，相同或不同，因此结果是布尔类型，比较的结果相同为<span class="keyword">true</span></span><br><span class="line">	<span class="number">2</span>）明确参数列表：比较的两个整数不确定，所以默认定义两个<span class="keyword">int</span>类型的参数</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2、练习二"><a href="#3-2、练习二" class="headerlink" title="3.2、练习二"></a>3.2、练习二</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 计算1+2+3...+100的和</span></span><br><span class="line">分析：定义方法实现功能，需要有两个明确，即 返回值 和 参数 </span><br><span class="line">	<span class="number">1</span>）明确返回值：<span class="number">1</span>~<span class="number">100</span>的求和，计算后必然还是整数，返回值类型是<span class="keyword">int</span></span><br><span class="line">	<span class="number">2</span>）明确参数：需求中已知到计算的数据，没有未知的数据，不定义参数</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3、练习三"><a href="#3-3、练习三" class="headerlink" title="3.3、练习三"></a>3.3、练习三</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现不定次数打印</span></span><br><span class="line">分析：定义方法实现功能，需要有两个明确，即 返回值 和 参数 </span><br><span class="line">	<span class="number">1</span>）明确返回值：方法中打印出 HelloWorld 即可，没有计算结果，返回值类型 <span class="keyword">void</span> </span><br><span class="line">	<span class="number">2</span>）明确参数：打印几次不清楚，参数定义一个整型参数</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、定义方法的注意事项"><a href="#4、定义方法的注意事项" class="headerlink" title="4、定义方法的注意事项"></a>4、定义方法的注意事项</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>）定义位置，类中方法外面。</span><br><span class="line"><span class="number">2</span>）返回值类型，必须要和 <span class="keyword">return</span> 语句返回的类型相同，否则编译失败 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="5、方法调用的三种形式"><a href="#5、方法调用的三种形式" class="headerlink" title="5、方法调用的三种形式"></a>5、方法调用的三种形式</h2><h3 id="5-1、直接调用"><a href="#5-1、直接调用" class="headerlink" title="5.1、直接调用"></a>5.1、直接调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接写方法名调用</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		print();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;方法被调用&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2、赋值调用"><a href="#5-2、赋值调用" class="headerlink" title="5.2、赋值调用"></a>5.2、赋值调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用方法，在方法前面定义变量，接收方法返回值</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = getSum(<span class="number">5</span>,<span class="number">6</span>);</span><br><span class="line">    System.out.println(sum);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3、输出语句调用"><a href="#5-3、输出语句调用" class="headerlink" title="5.3、输出语句调用"></a>5.3、输出语句调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在输出语句中调用方法， System.out.println(方法名());</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.println(getSum(<span class="number">5</span>,<span class="number">6</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 不能用输出语句调用 void 类型的方法。因为方法执行后没有结果，也就打印不出任何内容</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.println(printHello());<span class="comment">// 错误，不能输出语句调用void类型方法</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、方法重载（overload）"><a href="#6、方法重载（overload）" class="headerlink" title="6、方法重载（overload）"></a>6、方法重载（overload）</h2><h3 id="6-1、什么是方法重载"><a href="#6-1、什么是方法重载" class="headerlink" title="6.1、什么是方法重载"></a>6.1、什么是方法重载</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法重载：指在同一个类中，允许存在一个以上的同名方法，只要它们的参数列表不同即可，与修饰符和返回值类型无关</span></span><br><span class="line"><span class="comment">// 特点：</span></span><br><span class="line">    <span class="number">1</span>）参数列表：个数不同 、数据类型不同 、顺序不同 </span><br><span class="line">    <span class="number">2</span>）重载方法调用：JVM通过方法的参数列表，调用不同的方法</span><br></pre></td></tr></table></figure>
+
+<h1 id="第四章、数组的定义和访问"><a href="#第四章、数组的定义和访问" class="headerlink" title="第四章、数组的定义和访问"></a>第四章、数组的定义和访问</h1><h2 id="4-1、容器概述"><a href="#4-1、容器概述" class="headerlink" title="4.1、容器概述"></a>4.1、容器概述</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 案例分析：</span></span><br><span class="line">	现在需要统计某公司员工的工资情况，例如计算平均工资、找到最高工资等。假设该公司有<span class="number">50</span>名员工，用前面所学的知识，程序首先需要声明<span class="number">50</span>个变量来分别记住每位员工的工资，然后在进行操作，这样做会显得很麻烦，而且错误率也会很高。因此我们可以使用容器进行操作。将所有的数据全部存储到一个容器中，统一操作</span><br><span class="line"><span class="comment">// 容器概念</span></span><br><span class="line">	容器：是将多个数据存储到一起，每个数据称为该容器的元素</span><br><span class="line">  生活中的容器：水杯，衣柜，教室</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-2、数组的概念"><a href="#4-2、数组的概念" class="headerlink" title="4.2、数组的概念"></a>4.2、数组的概念</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组：就是存储固定长度数据的容器，保证多个数据的数据类型要一致</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-3、数组的定义"><a href="#4-3、数组的定义" class="headerlink" title="4.3、数组的定义"></a>4.3、数组的定义</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">数组定义格式详解：</span><br><span class="line">  <span class="number">1</span>）数组存储的数据类型： 创建的数组容器可以存储什么数据类型。</span><br><span class="line">  <span class="number">2</span>）[] : 表示数组。</span><br><span class="line">  <span class="number">3</span>）数组名字：为定义的数组起个变量名，满足标识符规范，可以使用名字操作数组。</span><br><span class="line">  <span class="number">4</span>）<span class="keyword">new</span>：关键字，创建数组使用的关键字。</span><br><span class="line">  <span class="number">5</span>）数组存储的数据类型： 创建的数组容器可以存储什么数据类型。</span><br><span class="line">  <span class="number">6</span>）[长度]：数组的长度，表示数组容器中可以存储多少个元素。</span><br><span class="line">  <span class="number">7</span>）注意：</span><br><span class="line">  		数组有定长特性，长度一旦指定，不可更改，和水杯道理相同，买了一个<span class="number">2</span>升的水杯，总容量就是<span class="number">2</span>升，不能多也不能少</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-1、方式一"><a href="#4-3-1、方式一" class="headerlink" title="4.3.1、方式一"></a>4.3.1、方式一</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 格式：</span></span><br><span class="line">	数组存储的数据类型[] 数组名字 = <span class="keyword">new</span> 数组存储的数据类型[长度];</span><br><span class="line"><span class="comment">// 示例：定义一个可以存储3个整数的数组容器</span></span><br><span class="line">	<span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-2、方式二"><a href="#4-3-2、方式二" class="headerlink" title="4.3.2、方式二"></a>4.3.2、方式二</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">	数据类型[] 数组名 = <span class="keyword">new</span> 数据类型[]&#123;元素<span class="number">1</span>,元素<span class="number">2</span>,元素<span class="number">3.</span>..&#125;;</span><br><span class="line"><span class="comment">// 示例：定义一个存储1，2，3，4，5整数的数组容器</span></span><br><span class="line">	<span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-3、方式三"><a href="#4-3-3、方式三" class="headerlink" title="4.3.3、方式三"></a>4.3.3、方式三</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 格式</span></span><br><span class="line">	数据类型[] 数组名 = &#123;元素<span class="number">1</span>,元素<span class="number">2</span>,元素<span class="number">3.</span>..&#125;;</span><br><span class="line"><span class="comment">// 示例：定义一个存储1，2，3，4，5整数的数组容器</span></span><br><span class="line">	<span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-4、数组的访问（重点）"><a href="#4-4、数组的访问（重点）" class="headerlink" title="4.4、数组的访问（重点）"></a>4.4、数组的访问（重点）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 索引： 每一个存储到数组的元素，都会自动的拥有一个编号，从0开始，这个自动编号称为数组索引 (index)，可以通过数组的索引访问到数组中的元素</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 格式：数组名[索引]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 索引访问数组中的元素：</span></span><br><span class="line">	<span class="number">1</span>）数组名[索引]=数值		为数组中的元素赋值</span><br><span class="line">	<span class="number">2</span>）变量=数组名[索引]		获取出数组中的元素</span><br><span class="line"><span class="comment">// 示例：</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//定义存储int类型数组，赋值元素1，2，3，4，5</span></span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">        <span class="comment">//为0索引元素赋值为6</span></span><br><span class="line">        arr[<span class="number">0</span>] = <span class="number">6</span>;</span><br><span class="line">        <span class="comment">//获取数组0索引上的元素</span></span><br><span class="line">        <span class="keyword">int</span> i = arr[<span class="number">0</span>];</span><br><span class="line">        System.out.println(i);</span><br><span class="line">        <span class="comment">//直接输出数组0索引元素</span></span><br><span class="line">        System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第五章、数组原理内存图"><a href="#第五章、数组原理内存图" class="headerlink" title="第五章、数组原理内存图"></a>第五章、数组原理内存图</h1><h2 id="5-1、内存概述"><a href="#5-1、内存概述" class="headerlink" title="5.1、内存概述"></a>5.1、内存概述</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>）内存是计算机中的重要原件，临时存储区域，作用是运行程序。我们编写的程序是存放在硬盘中的，在硬盘中的程序是不会运行的，必须放进内存中才能运行，运行完毕后会清空内存。</span><br><span class="line"><span class="number">2</span>）Java虚拟机要运行程序，必须要对内存进行空间的分配和管理</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2、Java虚拟机内存划分"><a href="#5-2、Java虚拟机内存划分" class="headerlink" title="5.2、Java虚拟机内存划分"></a>5.2、Java虚拟机内存划分</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为了提高运算效率，就对空间进行了不同区域的划分，因为每一片区域都有特定的处理数据方式和内存管理方式</span></span><br><span class="line">JVM内存划分：</span><br><span class="line">  	寄存器       给CPU使用，和我们开发无关。</span><br><span class="line">	本地方法栈   JVM在使用操作系统功能的时候使用，和我们开发无关。</span><br><span class="line">	方法区 	 存储可以运行的<span class="class"><span class="keyword">class</span>文件。</span></span><br><span class="line"><span class="class">	堆内存 	 存储对象或者数组，<span class="title">new</span>来创建的，都存储在堆内存。</span></span><br><span class="line"><span class="class">	方法栈      方法运行时使用的内存，比如<span class="title">main</span>方法运行，进入方法栈中执行</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/教学大纲\04-JavaSE\img\2019-12-14_16-40-54.jpg" alt="2019-12-14_16-40-54" style="zoom: 50%;">
+
+<h2 id="5-3、数组在内存中的存储"><a href="#5-3、数组在内存中的存储" class="headerlink" title="5.3、数组在内存中的存储"></a>5.3、数组在内存中的存储</h2><h3 id="5-3-1、一个数组内存图"><a href="#5-3-1、一个数组内存图" class="headerlink" title="5.3.1、一个数组内存图"></a>5.3.1、一个数组内存图</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">    System.out.println(arr);<span class="comment">//[I@5f150435</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1</span>）以上方法执行，输出的结果是[I@5f150435，这个是什么呢？是数组在内存中的地址。</span><br><span class="line"><span class="number">2</span>）<span class="keyword">new</span>出来的内容，都是在堆内存中存储的，而方法中的变量arr保存的是数组的地址</span><br><span class="line"><span class="number">3</span>）输出arr[<span class="number">0</span>]，就会输出arr保存的内存地址中数组中<span class="number">0</span>索引上的元素</span><br></pre></td></tr></table></figure>
+
+<img src="/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/教学大纲\04-JavaSE\img\2019-12-14_16-44-38.jpg" alt="2019-12-14_16-44-38" style="zoom:50%;">
+
+<h3 id="5-3-2、两个数组内存图"><a href="#5-3-2、两个数组内存图" class="headerlink" title="5.3.2、两个数组内存图"></a>5.3.2、两个数组内存图</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">int</span>[] arr2 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    System.out.println(arr);</span><br><span class="line">    System.out.println(arr2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/教学大纲\04-JavaSE\img\2019-12-14_16-46-48.jpg" alt="2019-12-14_16-46-48" style="zoom:50%;">
+
+<h3 id="5-3-3、两个变量指向一个数组"><a href="#5-3-3、两个变量指向一个数组" class="headerlink" title="5.3.3、两个变量指向一个数组"></a>5.3.3、两个变量指向一个数组</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 定义数组，存储3个元素</span></span><br><span class="line">    <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">    <span class="comment">//数组索引进行赋值</span></span><br><span class="line">    arr[<span class="number">0</span>] = <span class="number">5</span>;</span><br><span class="line">    arr[<span class="number">1</span>] = <span class="number">6</span>;</span><br><span class="line">    arr[<span class="number">2</span>] = <span class="number">7</span>;</span><br><span class="line">    <span class="comment">//输出3个索引上的元素值</span></span><br><span class="line">    System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line">    System.out.println(arr[<span class="number">1</span>]);</span><br><span class="line">    System.out.println(arr[<span class="number">2</span>]);</span><br><span class="line">    <span class="comment">//定义数组变量arr2，将arr的地址赋值给arr2</span></span><br><span class="line">    <span class="keyword">int</span>[] arr2 = arr;</span><br><span class="line">    arr2[<span class="number">1</span>] = <span class="number">9</span>; </span><br><span class="line">    System.out.println(arr[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/教学大纲\04-JavaSE\img\2019-12-14_16-48-00.jpg" alt="2019-12-14_16-48-00" style="zoom:50%;">
+
+<h1 id="第六章、数组的常见操作"><a href="#第六章、数组的常见操作" class="headerlink" title="第六章、数组的常见操作"></a>第六章、数组的常见操作</h1><h2 id="6-1、数组越界异常"><a href="#6-1、数组越界异常" class="headerlink" title="6.1、数组越界异常"></a>6.1、数组越界异常</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 观察代码：运行后会出现什么结果</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;; <span class="comment">// 0 1 2</span></span><br><span class="line">    System.out.println(arr[<span class="number">3</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 分析：创建数组，赋值3个元素，数组的索引就是0，1，2，没有3索引，因此我们不能访问数组中不存在的索引，程序运行后，将会抛出 ArrayIndexOutOfBoundsException 数组越界异常。在开发中，数组的越界异常是不能出现的，一旦出现了，就必须要修改我们编写的代码</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-2、数组空指针异常"><a href="#6-2、数组空指针异常" class="headerlink" title="6.2、数组空指针异常"></a>6.2、数组空指针异常</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 观察代码：运行后会出现什么结果</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">    arr = <span class="keyword">null</span>;</span><br><span class="line">    System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line">｝</span><br><span class="line"><span class="comment">// 分析：arr = null 这行代码，意味着变量arr将不会在保存数组的内存地址，也就不允许再操作数组了，因此运行的时候会抛出 NullPointerException 空指针异常。在开发中，数组的空指针异常是不能出现的，一旦出现了，就必须要修改我们编写的代码</span></span><br><span class="line"><span class="comment">// 分析内存图</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-3、数组的遍历（重点）"><a href="#6-3、数组的遍历（重点）" class="headerlink" title="6.3、数组的遍历（重点）"></a>6.3、数组的遍历（重点）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组遍历： 就是将数组中的每个元素分别获取出来，就是遍历。遍历也是数组操作中的基础</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">    System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line">    System.out.println(arr[<span class="number">1</span>]);</span><br><span class="line">    System.out.println(arr[<span class="number">2</span>]);</span><br><span class="line">    System.out.println(arr[<span class="number">3</span>]);</span><br><span class="line">    System.out.println(arr[<span class="number">4</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 优化：以上代码是可以将数组中每个元素全部遍历出来，但是如果数组元素非常多，这种写法肯定不行，因此我们需要改造成循环的写法。数组的索引是 0 到 lenght-1 ，可以作为循环的条件出现</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    		System.out.println(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-4、数组获取最大值元素"><a href="#6-4、数组获取最大值元素" class="headerlink" title="6.4、数组获取最大值元素"></a>6.4、数组获取最大值元素</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 最大值获取：从数组的所有元素中找出最大值</span></span><br><span class="line"><span class="comment">// 实现思路：</span></span><br><span class="line">      <span class="number">1</span>）定义变量，保存数组<span class="number">0</span>索引上的元素</span><br><span class="line">      <span class="number">2</span>）遍历数组，获取出数组中的每个元素</span><br><span class="line">      <span class="number">3</span>）将遍历到的元素和保存数组<span class="number">0</span>索引上值的变量进行比较</span><br><span class="line">      <span class="number">4</span>）如果数组元素的值大于了变量的值，变量记录住新的值</span><br><span class="line">      <span class="number">5</span>）数组循环遍历结束，变量保存的就是数组中的最大值</span><br><span class="line"><span class="comment">// 示例：</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span>[] arr = &#123; <span class="number">5</span>, <span class="number">15</span>, <span class="number">2000</span>, <span class="number">10000</span>, <span class="number">100</span>, <span class="number">4000</span> &#125;;</span><br><span class="line">            <span class="comment">//定义变量，保存数组中0索引的元素</span></span><br><span class="line">            <span class="keyword">int</span> max = arr[<span class="number">0</span>];</span><br><span class="line">            <span class="comment">//遍历数组，取出每个元素</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">                <span class="comment">//遍历到的元素和变量max比较</span></span><br><span class="line">                <span class="comment">//如果数组元素大于max</span></span><br><span class="line">                <span class="keyword">if</span> (arr[i] &gt; max) &#123;</span><br><span class="line">                    <span class="comment">//max记录住大值</span></span><br><span class="line">                    max = arr[i];</span><br><span class="line">            	&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;数组最大值是： &quot;</span> + max);</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-5、数组反转"><a href="#6-5、数组反转" class="headerlink" title="6.5、数组反转"></a>6.5、数组反转</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组的反转： 数组中的元素颠倒顺序，例如原始数组为1,2,3,4,5，反转后的数组为5,4,3,2,1</span></span><br><span class="line"><span class="comment">// 实现思想：数组最远端的元素互换位置。实现反转，就需要将数组最远端元素位置交换</span></span><br><span class="line">      <span class="number">1</span>）定义两个变量，保存数组的最小索引和最大索引</span><br><span class="line">      <span class="number">2</span>）两个索引上的元素交换位置</span><br><span class="line">      <span class="number">3</span>）最小索引++，最大索引--，再次交换位置</span><br><span class="line">      <span class="number">4</span>）最小索引超过了最大索引，数组反转操作结束</span><br><span class="line"><span class="comment">// 示例：</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span>[] arr = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            循环中定义变量min=0最小索引</span></span><br><span class="line"><span class="comment">            max=arr.length‐1最大索引</span></span><br><span class="line"><span class="comment">            min++,max‐‐</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> min = <span class="number">0</span>, max = arr.length ‐ <span class="number">1</span>; min &lt;= max; min++, max‐‐) &#123;</span><br><span class="line">                <span class="comment">//利用第三方变量完成数组中的元素交换</span></span><br><span class="line">                <span class="keyword">int</span> temp = arr[min];</span><br><span class="line">                arr[min] = arr[max];</span><br><span class="line">                arr[max] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 遍历输出反转后的数组</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            		System.out.println(arr[i]);</span><br><span class="line">            &#125;</span><br><span class="line">				&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第七章、数组作为方法参数或返回值"><a href="#第七章、数组作为方法参数或返回值" class="headerlink" title="第七章、数组作为方法参数或返回值"></a>第七章、数组作为方法参数或返回值</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">以前的方法中我们学习了方法的参数和返回值，但是使用的都是基本数据类型。那么作为引用类型的数组能否作为</span><br><span class="line">方法的参数进行传递呢，当然是可以的</span><br><span class="line">⚠️注意：</span><br><span class="line">  <span class="number">1</span>）数组是引用数据类型，引用数据类型作为方法参数或返回值，传递的都是内存地址</span><br><span class="line">  <span class="number">2</span>）方法的参数为基本类型时,传递的是数据值. 方法的参数为引用类型时,传递的是地址值</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-1、数组作为方法参数"><a href="#7-1、数组作为方法参数" class="headerlink" title="7.1、数组作为方法参数"></a>7.1、数组作为方法参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组作为方法参数传递，传递的参数是数组内存的地址</span></span><br><span class="line"><span class="comment">// 示例：</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span>[] arr = &#123; <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span> &#125;;</span><br><span class="line">  <span class="comment">//调用方法，传递数组</span></span><br><span class="line">  printArray(arr);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">创建方法，方法接收数组类型的参数</span></span><br><span class="line"><span class="comment">进行数组的遍历</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">  		System.out.println(arr[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/教学大纲\04-JavaSE\img\2019-12-14_17-09-25.jpg" alt="2019-12-14_17-09-25" style="zoom: 50%;">
+
+<h2 id="7-2、数组作为方法返回值"><a href="#7-2、数组作为方法返回值" class="headerlink" title="7.2、数组作为方法返回值"></a>7.2、数组作为方法返回值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组作为方法的返回值，返回的是数组的内存地址</span></span><br><span class="line"><span class="comment">// 示例：</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//调用方法，接收数组的返回值</span></span><br><span class="line">    <span class="comment">//接收到的是数组的内存地址</span></span><br><span class="line">    <span class="keyword">int</span>[] arr = getArray();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    		System.out.println(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">创建方法，返回值是数组类型</span></span><br><span class="line"><span class="comment">return返回数组的地址</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] getArray() &#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123; <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span> &#125;;</span><br><span class="line">    <span class="comment">//返回数组的地址，返回到调用者</span></span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/教学大纲\04-JavaSE\img\2019-12-14_17-12-28.jpg" alt="2019-12-14_17-12-28" style="zoom:50%;">
+
+<h2 id="7-3、方法的参数类型区别"><a href="#7-3、方法的参数类型区别" class="headerlink" title="7.3、方法的参数类型区别"></a>7.3、方法的参数类型区别</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码分析</span></span><br><span class="line"><span class="number">1</span>）分析下列程序代码，计算输出结果。</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line">    System.out.println(a);</span><br><span class="line">    System.out.println(b);</span><br><span class="line">    change(a, b); <span class="comment">// 基本数据类型作为参数，是值传递</span></span><br><span class="line">    System.out.println(a); <span class="comment">// a = 1</span></span><br><span class="line">    System.out.println(b); <span class="comment">// b = 2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    a = a + b; <span class="comment">// 3</span></span><br><span class="line">    b = b + a; <span class="comment">// 5</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>）分析下列程序代码，计算输出结果。</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    System.out.println(arr[<span class="number">0</span>]); <span class="comment">// 1</span></span><br><span class="line">    change(arr); <span class="comment">// 引用类型作为参数，是引用传递</span></span><br><span class="line">    System.out.println(arr[<span class="number">0</span>]); <span class="comment">// 200</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    arr[<span class="number">0</span>] = <span class="number">200</span>;</span><br><span class="line">&#125;</span><br><span class="line">⚠️总结：方法的参数为基本类型时,传递的是数据值. 方法的参数为引用类型时,传递的是地址值</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/" data-id="cknd30p1n0000t4tiftwubfgt" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  
+  <a href="/2021/04/08/day02-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-%E8%BF%90%E7%AE%97%E7%AC%A6-%E7%A0%81%E8%A1%A8-%E6%96%B9%E6%B3%95-%E6%B5%81%E7%A8%8B%E7%BB%93%E6%9E%84/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title">day02-类型转换-运算符-码表-方法-流程结构</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>Daiki&#39;s Blog &copy; 2021</li>
+      
+        <li>京ICP备17054916号-2</li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="Daiki&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">Home</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">Archives</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/gallery">Gallery</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">Categories</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">Tag</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">About</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/copybtn.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>
