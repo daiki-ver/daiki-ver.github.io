@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-12T13:42:36.761Z</updated>
+  <updated>2021-04-12T13:43:31.261Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2021/04/12/day04-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%B1%BB-%E5%AF%B9%E8%B1%A1/"/>
     <id>http://example.com/2021/04/12/day04-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%B1%BB-%E5%AF%B9%E8%B1%A1/</id>
     <published>2021-04-12T13:16:58.000Z</published>
-    <updated>2021-04-12T13:42:36.761Z</updated>
+    <updated>2021-04-12T13:43:31.261Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;今日内容：面向对象、类、对象。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</summary>
