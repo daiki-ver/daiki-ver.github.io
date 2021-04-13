@@ -63,7 +63,7 @@
     <h1 class="page-type-title"></h1>
     
     
-    <article id="post-day05-封装-常用类" class="article article-type-post" itemscope
+    <article id="post-day05-封装-构造方法" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -72,7 +72,7 @@
       
 
 <h2 itemprop="name">
-  <a class="article-title" href="/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E5%B8%B8%E7%94%A8%E7%B1%BB/">day05-封装-常用类</a>
+  <a class="article-title" href="/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/">day05-封装-常用类</a>
 </h2>
 
 
@@ -82,7 +82,7 @@
 
     
     <div class="article-meta">
-      <a href="/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E5%B8%B8%E7%94%A8%E7%B1%BB/" class="article-date">
+      <a href="/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/" class="article-date">
   <time datetime="2021-04-13T11:12:35.000Z" itemprop="datePublished">2021-04-13</time>
 </a>
       
@@ -101,16 +101,16 @@
       
       <span id="more"></span>
 
-<h2 id="1-6、对象内存图"><a href="#1-6、对象内存图" class="headerlink" title="1.6、对象内存图"></a>1.6、对象内存图</h2><img src="/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E5%B8%B8%E7%94%A8%E7%B1%BB/2019-12-14_18-36-39.jpg" alt="2019-12-14_18-36-39" style="zoom:50%;">
+<h2 id="1-6、对象内存图"><a href="#1-6、对象内存图" class="headerlink" title="1.6、对象内存图"></a>1.6、对象内存图</h2><img src="/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/2019-12-14_18-36-39.jpg" alt="2019-12-14_18-36-39" style="zoom:50%;">
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过上图，我们可以理解，在栈内存中运行的方法，遵循<span class="string">&quot;先进后出，后进先出&quot;</span>的原则。变量p指向堆内存中的空间，寻找方法信息，去执行该方法。但是，这里依然有问题存在。创建多个对象时，如果每个对象内部都保存一份方法信息，这就非常浪费内存了，因为所有对象的方法信息都是一样的。那么如何解决这个问题呢？请看如下图解</span><br></pre></td></tr></table></figure>
 
-<img src="/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E5%B8%B8%E7%94%A8%E7%B1%BB/2019-12-14_18-37-21.jpg" alt="2019-12-14_18-37-21" style="zoom:50%;">
+<img src="/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/2019-12-14_18-37-21.jpg" alt="2019-12-14_18-37-21" style="zoom:50%;">
 
-<img src="/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E5%B8%B8%E7%94%A8%E7%B1%BB/2019-12-14_18-38-09.jpg" alt="2019-12-14_18-38-09" style="zoom:50%;">
+<img src="/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/2019-12-14_18-38-09.jpg" alt="2019-12-14_18-38-09" style="zoom:50%;">
 
 <h2 id="1-7、成员变量和局部变量的区别"><a href="#1-7、成员变量和局部变量的区别" class="headerlink" title="1.7、成员变量和局部变量的区别"></a>1.7、成员变量和局部变量的区别</h2><p>// 变量根据定义位置的不同，我们给变量起了不同的名字<br><strong style="color:red">1）在类中的位置不同（重点）</strong><br>    <strong>成员变量：类中，方法外</strong><br>    <strong>局部变量：方法中或者方法声明上（形式参数）</strong><br><strong style="color:red">2）作用范围不一样（重点）</strong><br>    <strong>成员变量：类中</strong><br>    <strong>局部变量：方法中</strong><br><strong style="color:red">3）初始化值的不同（重点）</strong><br>    <strong>成员变量：有默认值</strong><br>    <strong>局部变量：没有默认值。必须先定义，赋值，最后使用</strong><br><strong style="color:red">4）在内存中的位置不同（了解）</strong><br>    <strong>成员变量：堆内存</strong><br>    <strong>局部变量：栈内存</strong><br><strong style="color:red">5）生命周期不同（了解）</strong><br>    <strong>成员变量：随着对象的创建而存在，随着对象的消失而消失</strong><br>    <strong>局部变量：随着方法的调用而存在，随着方法的调用完毕而消失</strong></p>
-<img src="/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E5%B8%B8%E7%94%A8%E7%B1%BB/2019-12-14_18-39-30.jpg" alt="2019-12-14_18-39-30" style="zoom:50%;">
+<img src="/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/2019-12-14_18-39-30.jpg" alt="2019-12-14_18-39-30" style="zoom:50%;">
 
 <blockquote>
 <p><strong>简单涉及垃圾回收机制：</strong></p>
@@ -140,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E5%B8%B8%E7%94%A8%E7%B1%BB/" data-id="ckng0aqkd0000xcti9hgd0y1x" class="article-share-link">
+      <a data-url="http://example.com/2021/04/13/day05-%E5%B0%81%E8%A3%85-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/" data-id="ckng0my2q000in0ti96a2eqpi" class="article-share-link">
         分享
       </a>
       
@@ -201,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/12/day04-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%B1%BB-%E5%AF%B9%E8%B1%A1/" data-id="cknenbcru0000qktie95maney" class="article-share-link">
+      <a data-url="http://example.com/2021/04/12/day04-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%B1%BB-%E5%AF%B9%E8%B1%A1/" data-id="ckng0my2o000en0tibmohbk1r" class="article-share-link">
         分享
       </a>
       
@@ -262,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/" data-id="cknd30p1n0000t4tiftwubfgt" class="article-share-link">
+      <a data-url="http://example.com/2021/04/11/day03-%E5%BE%AA%E7%8E%AF-%E6%96%B9%E6%B3%95%E8%BF%9B%E9%98%B6-%E6%95%B0%E7%BB%84/" data-id="ckng0my2v0014n0ti5lta88v0" class="article-share-link">
         分享
       </a>
       
@@ -323,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/08/day02-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-%E8%BF%90%E7%AE%97%E7%AC%A6-%E7%A0%81%E8%A1%A8-%E6%96%B9%E6%B3%95-%E6%B5%81%E7%A8%8B%E7%BB%93%E6%9E%84/" data-id="ckn91kicc0001h0ti8l37h2ou" class="article-share-link">
+      <a data-url="http://example.com/2021/04/08/day02-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-%E8%BF%90%E7%AE%97%E7%AC%A6-%E7%A0%81%E8%A1%A8-%E6%96%B9%E6%B3%95-%E6%B5%81%E7%A8%8B%E7%BB%93%E6%9E%84/" data-id="ckng0my2n000dn0tie8bj1twd" class="article-share-link">
         分享
       </a>
       
@@ -384,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/07/day01-%E5%85%B3%E9%94%AE%E5%AD%97-%E6%A0%87%E8%AF%86%E7%AC%A6-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="ckn91kic30000h0ti2jyk1wkx" class="article-share-link">
+      <a data-url="http://example.com/2021/04/07/day01-%E5%85%B3%E9%94%AE%E5%AD%97-%E6%A0%87%E8%AF%86%E7%AC%A6-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="ckng0my2c0001n0ticwt7an79" class="article-share-link">
         分享
       </a>
       
@@ -445,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/06/Phone-Store-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%8B%E6%9C%BA%E5%95%86%E5%9F%8E/" data-id="ckn6s6vg90003w0tif3gdcwvs" class="article-share-link">
+      <a data-url="http://example.com/2021/04/06/Phone-Store-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%8B%E6%9C%BA%E5%95%86%E5%9F%8E/" data-id="ckng0my2r000mn0ti8h1i5wdu" class="article-share-link">
         分享
       </a>
       
@@ -496,7 +496,7 @@
   <div class="article-gallery-photos">
     
     
-    <a class="article-gallery-img" href="/2021/04/04/%E5%9F%BA%E4%BA%8EHexo%E5%88%9D%E6%AC%A1%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="gallery_ckn6s6vgd0007w0ti74v0he72">
+    <a class="article-gallery-img" href="/2021/04/04/%E5%9F%BA%E4%BA%8EHexo%E5%88%9D%E6%AC%A1%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="gallery_ckng0my2p000gn0tigr282z4v">
       <img src="/2021/04/04/%E5%9F%BA%E4%BA%8EHexo%E5%88%9D%E6%AC%A1%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/fengmian.png" itemprop="image">
     </a>
     
@@ -514,7 +514,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/04/%E5%9F%BA%E4%BA%8EHexo%E5%88%9D%E6%AC%A1%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="ckn6s6vgd0007w0ti74v0he72" class="article-share-link">
+      <a data-url="http://example.com/2021/04/04/%E5%9F%BA%E4%BA%8EHexo%E5%88%9D%E6%AC%A1%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="ckng0my2p000gn0tigr282z4v" class="article-share-link">
         分享
       </a>
       
