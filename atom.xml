@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-16T03:09:58.612Z</updated>
+  <updated>2021-04-16T03:20:02.390Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2021/04/15/day06-%E5%85%B3%E9%94%AE%E5%AD%97-static-Math-ArrayList/"/>
     <id>http://example.com/2021/04/15/day06-%E5%85%B3%E9%94%AE%E5%AD%97-static-Math-ArrayList/</id>
     <published>2021-04-15T12:56:57.000Z</published>
-    <updated>2021-04-16T03:09:58.612Z</updated>
+    <updated>2021-04-16T03:20:02.390Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;今日内容：常用 static 关键字、Math、ArrayList&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</summary>
