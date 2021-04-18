@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-18T14:11:11.472Z</updated>
+  <updated>2021-04-18T14:38:25.750Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2021/04/18/day07-String/"/>
     <id>http://example.com/2021/04/18/day07-String/</id>
     <published>2021-04-18T13:33:35.000Z</published>
-    <updated>2021-04-18T14:11:11.472Z</updated>
+    <updated>2021-04-18T14:38:25.750Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;今日内容：String&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</summary>
