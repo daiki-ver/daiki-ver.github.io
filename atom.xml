@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-19T12:08:54.799Z</updated>
+  <updated>2021-04-22T12:03:56.887Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>day09-继承-重写-super-抽象类</title>
+    <link href="http://example.com/2021/04/22/day09-%E7%BB%A7%E6%89%BF-%E9%87%8D%E5%86%99-super-%E6%8A%BD%E8%B1%A1%E7%B1%BB/"/>
+    <id>http://example.com/2021/04/22/day09-%E7%BB%A7%E6%89%BF-%E9%87%8D%E5%86%99-super-%E6%8A%BD%E8%B1%A1%E7%B1%BB/</id>
+    <published>2021-04-22T11:57:04.000Z</published>
+    <updated>2021-04-22T12:03:56.887Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;今日内容：继承、重写、抽象类&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    <category term="培训学习" scheme="http://example.com/categories/Java/%E5%9F%B9%E8%AE%AD%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    
+    <category term="学习" scheme="http://example.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>day08-命令行实现简单的用户管理系统</title>
