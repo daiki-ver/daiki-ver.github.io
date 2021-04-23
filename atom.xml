@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-22T15:18:41.625Z</updated>
+  <updated>2021-04-23T01:46:21.042Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>day10-接口-多态</title>
+    <link href="http://example.com/2021/04/23/day10-%E6%8E%A5%E5%8F%A3-%E5%A4%9A%E6%80%81/"/>
+    <id>http://example.com/2021/04/23/day10-%E6%8E%A5%E5%8F%A3-%E5%A4%9A%E6%80%81/</id>
+    <published>2021-04-23T01:31:39.000Z</published>
+    <updated>2021-04-23T01:46:21.042Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;今日内容：接口、多态&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    <category term="培训学习" scheme="http://example.com/categories/Java/%E5%9F%B9%E8%AE%AD%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    
+    <category term="学习" scheme="http://example.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>day09-继承-重写-super-抽象类</title>
