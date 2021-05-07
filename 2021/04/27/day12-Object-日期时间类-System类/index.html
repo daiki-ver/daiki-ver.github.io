@@ -105,12 +105,14 @@
 <blockquote>
 <p>tips：Object类当中的hashCode等其他方法，今后学习。</p>
 </blockquote>
-<h2 id="1-4-Objects类"><a href="#1-4-Objects类" class="headerlink" title="1.4 Objects类"></a>1.4 Objects类</h2><p>在<strong>JDK7</strong>添加了一个Objects工具类，它提供了一些方法来操作对象，它由一些静态的实用方法组成，这些方法是null-save（空指针安全的）或null-tolerant（容忍空指针的），用于计算对象的hashcode、返回对象的字符串表示形式、比较两个对象。</p>
+<h2 id="1-4-Objects类"><a href="#1-4-Objects类" class="headerlink" title="1.4 Objects类"></a>1.4 Objects类</h2><p>在<strong>JDK7</strong>添加了一个Objects工具类，它提供了一些方法来操作对象，它由一些静态的实用方法组成，这些方法是<strong style="color:red">null-save（空指针安全的）</strong>或<strong style="color:red">null-tolerant（容忍空指针的）</strong>，用于计算对象的hashcode、返回对象的字符串表示形式、比较两个对象。</p>
 <p>在比较两个对象的时候，Object的equals方法容易抛出空指针异常，而Objects类中的equals方法就优化了这个问题。方法如下：</p>
 <ul>
 <li><code>public static boolean equals(Object a, Object b)</code>:判断两个对象是否相等。</li>
 </ul>
-<p>我们可以查看一下源码，学习一下：</p>
+<blockquote>
+<p> 我们可以查看一下源码，学习一下：</p>
+</blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object a, Object b)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">return</span> (a == b) || (a != <span class="keyword">null</span> &amp;&amp; a.equals(b));  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="第二章-日期时间类"><a href="#第二章-日期时间类" class="headerlink" title="第二章 日期时间类"></a>第二章 日期时间类</h1><h2 id="2-1-Date类"><a href="#2-1-Date类" class="headerlink" title="2.1 Date类"></a>2.1 Date类</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><code> java.util.Date</code>类 表示特定的瞬间，精确到毫秒。</p>
@@ -349,6 +351,15 @@
   
   
 <nav class="article-nav">
+  
+  <a href="/2021/05/07/day13-StringBuilder-%E5%8C%85%E8%A3%85%E7%B1%BB-%E6%B3%9B%E5%9E%8B/" class="article-nav-link">
+    <strong class="article-nav-caption">前一篇</strong>
+    <div class="article-nav-title">
+      
+      day13-StringBuilder-包装类-泛型
+      
+    </div>
+  </a>
   
   
   <a href="/2021/04/26/day11-final-%E6%9D%83%E9%99%90-%E5%86%85%E9%83%A8%E7%B1%BB-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/" class="article-nav-link">
