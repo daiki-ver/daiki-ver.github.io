@@ -1,6 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>day15-List-Set-Collections</title>
+    <url>/2021/05/09/day15-List-Set-Collections/</url>
+    <content><![CDATA[<p><strong><em>今日内容：List集合、Set接口、Collections工具类</em></strong></p>
+<span id="more"></span>
+
+<h1 id="第一章、数据结构"><a href="#第一章、数据结构" class="headerlink" title="第一章、数据结构"></a>第一章、数据结构</h1><h2 id="2-2-常见的数据结构"><a href="#2-2-常见的数据结构" class="headerlink" title="2.2 常见的数据结构"></a>2.2 常见的数据结构</h2><p>数据存储的常用结构有：栈、队列、数组、链表和红黑树。我们分别来了解一下：</p>
+<h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><ul>
+<li><strong>栈</strong>：<strong>stack</strong>,又称堆栈，它是运算受限的线性表，其限制是仅允许在标的一端进行插入和删除操作，不允许在其他任何位置进行添加、查找、删除等操作。</li>
+</ul>
+<p>简单的说：采用该结构的集合，对元素的存取有如下的<font style="color:red"><strong>特点</strong></font></p>
+<ul>
+<li><p><strong><font style="color:red">先进后出</font>（即，存进去的元素，要在后它后面的元素依次取出后，才能取出该元素）。例如，子弹压进弹夹，先压进去的子弹在下面，后压进去的子弹在上面，当开枪时，先弹出上面的子弹，然后才能弹出下面的子弹。</strong></p>
+</li>
+<li><p><strong><font style="color:red">栈的入口、出口的都是栈的顶端位置。</font></strong></p>
+<p><img src="/2021/05/09/day15-List-Set-Collections/%E5%A0%86%E6%A0%88.png"></p>
+</li>
+</ul>
+<p>这里两个名词需要注意：</p>
+<ul>
+<li><strong>压栈</strong>：就是<strong style="color:red">存</strong>元素。即，把元素存储到栈的顶端位置，栈中已有元素依次向栈底方向移动一个位置。</li>
+<li><strong>弹栈</strong>：就是<strong style="color:red">取</strong>元素。即，把栈的顶端位置元素取出，栈中已有元素依次向栈顶方向移动一个位置。</li>
+</ul>
+<h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><ul>
+<li><strong>队列</strong>：<strong>queue</strong>,简称队，它同堆栈一样，也是一种运算受限的线性表，其限制是仅允许在表的一端进行插入，而在表的另一端进行删除。</li>
+</ul>
+<p>简单的说，采用该结构的集合，对元素的存取有如下的特点：</p>
+<ul>
+<li><strong><strong style="color:red">先进先出</strong>（即，存进去的元素，要在后它前面的元素依次取出后，才能取出该元素）。例如，小火车过山洞，车头先进去，车尾后进去；车头先出来，车尾后出来。</strong></li>
+<li><strong><strong style="color:red">队列的入口、出口各占一侧。例如，下图中的左侧为入口，右侧为出口。</strong></strong></li>
+</ul>
+<p><img src="/2021/05/09/day15-List-Set-Collections/%E9%98%9F%E5%88%97%E5%9B%BE.bmp"></p>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><ul>
+<li><strong>数组</strong>:<strong>Array</strong>,是有序的元素序列，数组是在内存中开辟一段连续的空间，并在此空间存放元素。就像是一排出租屋，有100个房间，从001到100每个房间都有固定编号，通过编号就可以快速找到租房子的人。</li>
+</ul>
+<p>简单的说,采用该结构的集合，对元素的存取有如下的特点：</p>
+<ul>
+<li><p><strong>查找元素快：通过索引，可以快速访问指定位置的元素</strong></p>
+<p><img src="/2021/05/09/day15-List-Set-Collections/%E6%95%B0%E7%BB%84%E6%9F%A5%E8%AF%A2%E5%BF%AB.png"></p>
+</li>
+<li><p><strong>增删元素慢</strong></p>
+<ul>
+<li><strong>指定索引位置增加元素</strong>：需要创建一个新数组，将指定新元素存储在指定索引位置，再把原数组元素根据索引，复制到新数组对应索引的位置。如下图<img src="/2021/05/09/day15-List-Set-Collections/%E6%95%B0%E7%BB%84%E6%B7%BB%E5%8A%A0.png"></li>
+<li><strong>指定索引位置删除元素：</strong>需要创建一个新数组，把原数组元素根据索引，复制到新数组对应索引的位置，原数组中指定索引位置元素不复制到新数组中。如下图<img src="/2021/05/09/day15-List-Set-Collections/%E6%95%B0%E7%BB%84%E5%88%A0%E9%99%A4.png"></li>
+</ul>
+</li>
+</ul>
+<h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><ul>
+<li><p><strong>链表</strong>:<strong>linked list</strong>,由一系列结点node（链表中每一个元素称为结点）组成，结点可以在运行时i动态生成。每个结点包括两个部分：一个是存储数据元素的数据域，另一个是存储下一个结点地址的指针域。我们常说的链表结构有单向链表与双向链表，那么这里给大家介绍的是<strong>单向链表</strong>。</p>
+<p><img src="/2021/05/09/day15-List-Set-Collections/%E5%8D%95%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84%E7%89%B9%E7%82%B9.png"></p>
+</li>
+</ul>
+<p>简单的说，采用该结构的集合，对元素的存取有如下的特点：</p>
+<ul>
+<li><p><strong>多个结点之间，通过地址进行连接。例如，多个人手拉手，每个人使用自己的右手拉住下个人的左手，依次类推，这样多个人就连在一起了。</strong></p>
+<p><img src="/2021/05/09/day15-List-Set-Collections/%E5%8D%95%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84.png"></p>
+</li>
+<li><p><strong>查找元素慢：想查找某个元素，需要通过连接的节点，依次向后查找指定元素</strong></p>
+</li>
+<li><p><strong>增删元素快：</strong></p>
+<ul>
+<li><p>增加元素：只需要修改连接下个元素的地址即可。</p>
+<p><img src="/2021/05/09/day15-List-Set-Collections/%E5%A2%9E%E5%8A%A0%E7%BB%93%E7%82%B9.png"></p>
+</li>
+<li><p>删除元素：只需要修改连接下个元素的地址即可。</p>
+<p><img src="/2021/05/09/day15-List-Set-Collections/%E5%88%A0%E9%99%A4%E7%BB%93%E7%82%B9.bmp"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h4><ul>
+<li><strong>二叉树</strong>：<strong>binary tree</strong> ,是每个结点不超过2的有序<strong>树（tree）</strong> 。</li>
+</ul>
+<p>简单的理解，就是一种类似于我们生活中树的结构，只不过每个结点上都最多只能有两个子结点。</p>
+<p>二叉树是每个节点最多有两个子树的树结构。顶上的叫根结点，两边被称作“左子树”和“右子树”。</p>
+<p>如图：</p>
+<p><img src="/2021/05/09/day15-List-Set-Collections/%E4%BA%8C%E5%8F%89%E6%A0%91.jpg"></p>
+<p>我们要说的是二叉树的一种比较有意思的叫做<strong>红黑树</strong>，红黑树本身就是一颗二叉查找树，将节点插入后，该树仍然是一颗二叉查找树。也就意味着，树的键值仍然是有序的。</p>
+<p>​    <strong><strong style="color:red">速度特别快,趋近平衡树,查找叶子元素最少和最多次数不多于二倍</strong></strong></p>
+<h1 id="第二章、List集合"><a href="#第二章、List集合" class="headerlink" title="第二章、List集合"></a>第二章、List集合</h1><h2 id="1-1-List接口介绍"><a href="#1-1-List接口介绍" class="headerlink" title="1.1 List接口介绍"></a>1.1 List接口介绍</h2><p><code>java.util.List</code>接口继承自<code>Collection</code>接口，是单列集合的一个重要分支，习惯性地会将实现了<code>List</code>接口的对象称为List集合。**<strong style="color:red">在List集合中允许出现重复的元素</strong>**，所有的元素是以一种线性方式进行存储的，在程序中可以通过索引来访问集合中的指定元素。另外，<strong style="color:red">List集合还有一个特点就是元素有序，即元素的存入顺序和取出顺序一致。</strong></p>
+<p>看完API，我们总结一下：</p>
+<p>List接口特点：</p>
+<ol>
+<li>它是一个元素存取有序的集合。例如，存元素的顺序是11、22、33。那么集合中，元素的存储就是按照11、22、33的顺序完成的）。</li>
+<li>它是一个带有索引的集合，通过索引就可以精确的操作集合中的元素（与数组的索引是一个道理）。</li>
+<li>集合中可以有重复的元素，通过元素的equals方法，来比较是否为重复的元素。</li>
+</ol>
+<blockquote>
+<p>tips:我们学习过List接口的子类java.util.ArrayList类，该类中的方法都是来自List中定义。</p>
+</blockquote>
+<h2 id="1-2-List接口中常用方法"><a href="#1-2-List接口中常用方法" class="headerlink" title="1.2 List接口中常用方法"></a>1.2 List接口中常用方法</h2><p>List作为Collection集合的子接口，不但继承了Collection接口中的全部方法，而且还增加了一些根据元素索引来操作集合的特有方法，如下：</p>
+<ul>
+<li><code>public void add(int index, E element)</code>: 将指定的元素，添加到该集合中的指定位置上。</li>
+<li><code>public E get(int index)</code>:返回集合中指定位置的元素。</li>
+<li><code>public E remove(int index)</code>: 移除列表中指定位置的元素, 返回的是被移除的元素。</li>
+<li><code>public E set(int index, E element)</code>:用指定元素替换集合中指定位置的元素,返回值的更新前的元素。</li>
+</ul>
+<p>List集合特有的方法都是跟索引相关，我们都学习过，那么我们再来复习一遍吧：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 创建List集合对象</span></span><br><span class="line">    	List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    	</span><br><span class="line">    	<span class="comment">// 往 尾部添加 指定元素</span></span><br><span class="line">    	list.add(<span class="string">&quot;图图&quot;</span>);</span><br><span class="line">    	list.add(<span class="string">&quot;小美&quot;</span>);</span><br><span class="line">    	list.add(<span class="string">&quot;不高兴&quot;</span>);</span><br><span class="line">    	</span><br><span class="line">    	System.out.println(list);</span><br><span class="line">    	<span class="comment">// add(int index,String s) 往指定位置添加</span></span><br><span class="line">    	list.add(<span class="number">1</span>,<span class="string">&quot;没头脑&quot;</span>);</span><br><span class="line">    	</span><br><span class="line">    	System.out.println(list);</span><br><span class="line">    	<span class="comment">// String remove(int index) 删除指定位置元素  返回被删除元素</span></span><br><span class="line">    	<span class="comment">// 删除索引位置为2的元素 </span></span><br><span class="line">    	System.out.println(<span class="string">&quot;删除索引位置为2的元素&quot;</span>);</span><br><span class="line">    	System.out.println(list.remove(<span class="number">2</span>));</span><br><span class="line">    	</span><br><span class="line">    	System.out.println(list);</span><br><span class="line">    	</span><br><span class="line">    	<span class="comment">// String set(int index,String s)</span></span><br><span class="line">    	<span class="comment">// 在指定位置 进行 元素替代（改） </span></span><br><span class="line">    	<span class="comment">// 修改指定位置元素</span></span><br><span class="line">    	list.set(<span class="number">0</span>, <span class="string">&quot;三毛&quot;</span>);</span><br><span class="line">    	System.out.println(list);</span><br><span class="line">    	</span><br><span class="line">    	<span class="comment">// String get(int index)  获取指定位置元素</span></span><br><span class="line">    	</span><br><span class="line">    	<span class="comment">// 跟size() 方法一起用  来 遍历的 </span></span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;list.size();i++)&#123;</span><br><span class="line">    		System.out.println(list.get(i));</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="comment">//还可以使用增强for</span></span><br><span class="line">    	<span class="keyword">for</span> (String string : list) &#123;</span><br><span class="line">			System.out.println(string);</span><br><span class="line">		&#125;  	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第三章、List的子类"><a href="#第三章、List的子类" class="headerlink" title="第三章、List的子类"></a>第三章、List的子类</h1><h2 id="3-1-ArrayList集合"><a href="#3-1-ArrayList集合" class="headerlink" title="3.1 ArrayList集合"></a>3.1 ArrayList集合</h2><p><code>java.util.ArrayList</code>集合数据存储的结构是数组结构。元素增删慢，查找快，由于日常开发中使用最多的功能为查询数据、遍历数据，所以<code>ArrayList</code>是最常用的集合。</p>
+<p>许多程序员开发时非常随意地使用ArrayList完成任何需求，并不严谨，这种用法是不提倡的。</p>
+<h2 id="3-2-LinkedList集合"><a href="#3-2-LinkedList集合" class="headerlink" title="3.2 LinkedList集合"></a>3.2 LinkedList集合</h2><p><code>java.util.LinkedList</code>集合数据存储的结构是链表结构。方便元素添加、删除的集合。</p>
+<blockquote>
+<p>LinkedList是一个双向链表，那么双向链表是什么样子的呢，我们用个图了解下</p>
+</blockquote>
+<p><img src="/2021/05/09/day15-List-Set-Collections/%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8.png"></p>
+<p>实际开发中对一个集合元素的添加与删除经常涉及到首尾操作，而LinkedList提供了大量首尾操作的方法。这些方法我们作为了解即可：</p>
+<ul>
+<li><code>public void addFirst(E e)</code>:将指定元素插入此列表的开头。</li>
+<li><code>public void addLast(E e)</code>:将指定元素添加到此列表的结尾。</li>
+<li><code>public E getFirst()</code>:返回此列表的第一个元素。</li>
+<li><code>public E getLast()</code>:返回此列表的最后一个元素。</li>
+<li><code>public E removeFirst()</code>:移除并返回此列表的第一个元素。</li>
+<li><code>public E removeLast()</code>:移除并返回此列表的最后一个元素。</li>
+<li><code>public E pop()</code>:从此列表所表示的堆栈处弹出一个元素。</li>
+<li><code>public void push(E e)</code>:将元素推入此列表所表示的堆栈。</li>
+<li><code>public boolean isEmpty()</code>：如果列表不包含元素，则返回true。</li>
+</ul>
+<p>LinkedList是List的子类，List中的方法LinkedList都是可以使用，这里就不做详细介绍，我们只需要了解LinkedList的特有方法即可。在开发时，LinkedList集合也可以作为堆栈，队列的结构使用。（了解即可）</p>
+<p>方法演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedListDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        LinkedList&lt;String&gt; link = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line">        <span class="comment">//添加元素</span></span><br><span class="line">        link.addFirst(<span class="string">&quot;abc1&quot;</span>);</span><br><span class="line">        link.addFirst(<span class="string">&quot;abc2&quot;</span>);</span><br><span class="line">        link.addFirst(<span class="string">&quot;abc3&quot;</span>);</span><br><span class="line">        System.out.println(link);</span><br><span class="line">        <span class="comment">// 获取元素</span></span><br><span class="line">        System.out.println(link.getFirst());</span><br><span class="line">        System.out.println(link.getLast());</span><br><span class="line">        <span class="comment">// 删除元素</span></span><br><span class="line">        System.out.println(link.removeFirst());</span><br><span class="line">        System.out.println(link.removeLast());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!link.isEmpty()) &#123; <span class="comment">//判断集合是否为空</span></span><br><span class="line">            System.out.println(link.pop()); <span class="comment">//弹出集合中的栈顶元素</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(link);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第四章、Set接口"><a href="#第四章、Set接口" class="headerlink" title="第四章、Set接口"></a>第四章、Set接口</h1><p><code>java.util.Set</code>接口和<code>java.util.List</code>接口一样，同样继承自<code>Collection</code>接口，它与<code>Collection</code>接口中的方法基本一致，并没有对<code>Collection</code>接口进行功能上的扩充，只是比<code>Collection</code>接口更加严格了。与<code>List</code>接口不同的是，<code>Set</code>接口中元素无序，并且都会以某种规则保证存入的元素不出现重复。</p>
+<p><code>Set</code>集合有多个子类，这里我们介绍其中的<code>java.util.HashSet</code>、<code>java.util.LinkedHashSet</code>这两个集合。</p>
+<blockquote>
+<p>tips:Set集合取出元素的方式可以采用：迭代器、增强for。</p>
+</blockquote>
+<h2 id="3-1-HashSet集合介绍"><a href="#3-1-HashSet集合介绍" class="headerlink" title="3.1 HashSet集合介绍"></a>3.1 HashSet集合介绍</h2><p><code>java.util.HashSet</code>是<code>Set</code>接口的一个实现类，它所存储的元素是不可重复的，并且元素都是无序的(即存取顺序不一致)。<code>java.util.HashSet</code>底层的实现其实是一个<code>java.util.HashMap</code>支持，由于我们暂时还未学习，先做了解。</p>
+<p><strong><strong style="color:red"><code>HashSet</code>是根据对象的哈希值来确定元素在集合中的存储位置，因此具有良好的存取和查找性能。保证元素唯一性的方式依赖于：<code>hashCode</code>与<code>equals</code>方法。</strong></strong></p>
+<p>我们先来使用一下Set集合存储，看下现象，再进行原理的讲解:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashSetDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建 Set集合</span></span><br><span class="line">        HashSet&lt;String&gt;  set = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//添加元素</span></span><br><span class="line">        set.add(<span class="keyword">new</span> String(<span class="string">&quot;cba&quot;</span>));</span><br><span class="line">        set.add(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        set.add(<span class="string">&quot;bac&quot;</span>); </span><br><span class="line">        set.add(<span class="string">&quot;cba&quot;</span>);  </span><br><span class="line">        <span class="comment">//遍历</span></span><br><span class="line">        <span class="keyword">for</span> (String name : set) &#123;</span><br><span class="line">            System.out.println(name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下，说明集合中不能存储重复元素：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cba</span><br><span class="line">abc</span><br><span class="line">bac</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tips:根据结果我们发现字符串”cba”只存储了一个，也就是说重复的元素set集合不存储。</p>
+</blockquote>
+<h2 id="2-2-HashSet集合存储数据的结构（哈希表）"><a href="#2-2-HashSet集合存储数据的结构（哈希表）" class="headerlink" title="2.2  HashSet集合存储数据的结构（哈希表）"></a>2.2  HashSet集合存储数据的结构（哈希表）</h2><p>什么是哈希表呢？</p>
+<p>在<strong>JDK1.8</strong>之前，哈希表底层采用数组+链表实现，即使用链表处理冲突，同一hash值的链表都存储在一个链表里。但是当位于一个桶中的元素较多，即hash值相等的元素较多时，通过key值依次查找的效率较低。而JDK1.8中，哈希表存储采用数组+链表+红黑树实现，当链表长度超过阈值（8）时，将链表转换为红黑树，这样大大减少了查找时间。</p>
+<p>简单的来说，哈希表是由数组+链表+红黑树（JDK1.8增加了红黑树部分）实现的，如下图所示。<img src="/2021/05/09/day15-List-Set-Collections/%E5%93%88%E5%B8%8C%E8%A1%A8.png"></p>
+<p>看到这张图就有人要问了，这个是怎么存储的呢？</p>
+<p>为了方便大家的理解我们结合一个存储流程图来说明一下：</p>
+<p><img src="/2021/05/09/day15-List-Set-Collections/%E5%93%88%E5%B8%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png"></p>
+<p>总而言之，<strong>JDK1.8</strong>引入红黑树大程度优化了HashMap的性能，那么对于我们来讲保证HashSet集合元素的唯一，其实就是根据对象的hashCode和equals方法来决定的。如果我们往集合中存放自定义的对象，那么保证其唯一，就必须复写hashCode和equals方法建立属于当前对象的比较方式。</p>
+<h2 id="2-3-HashSet存储自定义类型元素"><a href="#2-3-HashSet存储自定义类型元素" class="headerlink" title="2.3  HashSet存储自定义类型元素"></a>2.3  HashSet存储自定义类型元素</h2><p><strong><strong style="color:red">给HashSet中存放自定义类型元素时，需要重写对象中的hashCode和equals方法，建立自己的比较方式，才能保证HashSet集合中的对象唯一</strong></strong></p>
+<p>创建自定义Student类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == o)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass())</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        Student student = (Student) o;</span><br><span class="line">        <span class="keyword">return</span> age == student.age &amp;&amp;</span><br><span class="line">               Objects.equals(name, student.name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Objects.hash(name, age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashSetDemo2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建集合对象   该集合中存储 Student类型对象</span></span><br><span class="line">        HashSet&lt;Student&gt; stuSet = <span class="keyword">new</span> HashSet&lt;Student&gt;();</span><br><span class="line">        <span class="comment">//存储 </span></span><br><span class="line">        Student stu = <span class="keyword">new</span> Student(<span class="string">&quot;于谦&quot;</span>, <span class="number">43</span>);</span><br><span class="line">        stuSet.add(stu);</span><br><span class="line">        stuSet.add(<span class="keyword">new</span> Student(<span class="string">&quot;郭德纲&quot;</span>, <span class="number">44</span>));</span><br><span class="line">        stuSet.add(<span class="keyword">new</span> Student(<span class="string">&quot;于谦&quot;</span>, <span class="number">43</span>));</span><br><span class="line">        stuSet.add(<span class="keyword">new</span> Student(<span class="string">&quot;郭麒麟&quot;</span>, <span class="number">23</span>));</span><br><span class="line">        stuSet.add(stu);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Student stu2 : stuSet) &#123;</span><br><span class="line">            System.out.println(stu2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">执行结果：</span><br><span class="line">Student [name=郭德纲, age=<span class="number">44</span>]</span><br><span class="line">Student [name=于谦, age=<span class="number">43</span>]</span><br><span class="line">Student [name=郭麒麟, age=<span class="number">23</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-LinkedHashSet"><a href="#2-3-LinkedHashSet" class="headerlink" title="2.3 LinkedHashSet"></a>2.3 LinkedHashSet</h2><p>我们知道HashSet保证元素唯一，可是元素存放进去是没有顺序的，那么我们要保证有序，怎么办呢？</p>
+<p>在HashSet下面有一个子类<code>java.util.LinkedHashSet</code>，它是链表和哈希表组合的一个数据存储结构。</p>
+<p>演示代码如下:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashSetDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Set&lt;String&gt; set = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;();</span><br><span class="line">		set.add(<span class="string">&quot;bbb&quot;</span>);</span><br><span class="line">		set.add(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">		set.add(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">		set.add(<span class="string">&quot;bbc&quot;</span>);</span><br><span class="line">    Iterator&lt;String&gt; it = set.iterator();</span><br><span class="line">		<span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">			System.out.println(it.next());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">结果：</span><br><span class="line">  bbb</span><br><span class="line">  aaa</span><br><span class="line">  abc</span><br><span class="line">  bbc</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-9-可变参数"><a href="#1-9-可变参数" class="headerlink" title="1.9  可变参数"></a>1.9  可变参数</h2><p>在<strong>JDK1.5</strong>之后，如果我们定义一个方法需要接受多个参数，并且多个参数类型一致，我们可以对其简化成如下格式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">修饰符 返回值类型 方法名(参数类型... 形参名)&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其实这个书写完全等价与</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">修饰符 返回值类型 方法名(参数类型[] 形参名)&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只是后面这种定义，在调用时必须传递数组，而前者可以直接传递数据即可。</p>
+<p><strong>JDK1.5</strong>以后。出现了简化操作。**…** 用在参数上，称之为可变参数。</p>
+<p>同样是代表数组，但是在调用这个带有可变参数的方法时，不用创建数组(这就是简单之处)，直接将数组中的元素作为实际参数进行传递，其实编译成的class文件，将这些元素先封装到一个数组中，在进行传递。这些动作都在编译.class文件时，自动完成了。</p>
+<p>代码演示：    </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChangeArgs</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123; <span class="number">1</span>, <span class="number">4</span>, <span class="number">62</span>, <span class="number">431</span>, <span class="number">2</span> &#125;;</span><br><span class="line">        <span class="keyword">int</span> sum = getSum(arr);</span><br><span class="line">        System.out.println(sum);</span><br><span class="line">        <span class="comment">//  6  7  2 12 2121</span></span><br><span class="line">        <span class="comment">// 求 这几个元素和 6  7  2 12 2121</span></span><br><span class="line">        <span class="keyword">int</span> sum2 = getSum(<span class="number">6</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">12</span>, <span class="number">2121</span>);</span><br><span class="line">        System.out.println(sum2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 完成数组  所有元素的求和 原始写法</span></span><br><span class="line"><span class="comment">     </span></span><br><span class="line"><span class="comment">      public static int getSum(int[] arr)&#123;</span></span><br><span class="line"><span class="comment">        int sum = 0;</span></span><br><span class="line"><span class="comment">        for(int a : arr)&#123;</span></span><br><span class="line"><span class="comment">            sum += a;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">        return sum;</span></span><br><span class="line"><span class="comment">      &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">//可变参数写法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span>... arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> a : arr) &#123;</span><br><span class="line">            sum += a;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tips: 上述add方法在同一个类中，只能存在一个。因为会发生调用的不确定性</p>
+<p>注意：如果在方法书写时，这个方法拥有多参数，参数中包含可变参数，可变参数一定要写在参数列表的末尾位置。</p>
+</blockquote>
+<h1 id="第五章、Collections"><a href="#第五章、Collections" class="headerlink" title="第五章、Collections"></a>第五章、Collections</h1><h2 id="2-1-常用功能"><a href="#2-1-常用功能" class="headerlink" title="2.1 常用功能"></a>2.1 常用功能</h2><ul>
+<li><code>java.utils.Collections</code>是集合工具类，用来对集合进行操作。部分方法如下：</li>
+</ul>
+<ul>
+<li><code>public static &lt;T&gt; boolean addAll(Collection&lt;T&gt; c, T... elements)  </code>:往集合中添加一些元素。</li>
+<li><code>public static void shuffle(List&lt;?&gt; list) 打乱顺序</code>:打乱集合顺序。</li>
+<li><code>public static &lt;T&gt; void sort(List&lt;T&gt; list)</code>:将集合中元素按照默认规则排序。</li>
+<li><code>public static &lt;T&gt; void sort(List&lt;T&gt; list，Comparator&lt;? super T&gt; )</code>:将集合中元素按照指定规则排序。</li>
+</ul>
+<p>代码演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CollectionsDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        <span class="comment">//原来写法</span></span><br><span class="line">        <span class="comment">//list.add(12);</span></span><br><span class="line">        <span class="comment">//list.add(14);</span></span><br><span class="line">        <span class="comment">//list.add(15);</span></span><br><span class="line">        <span class="comment">//list.add(1000);</span></span><br><span class="line">        <span class="comment">//采用工具类 完成 往集合中添加元素  </span></span><br><span class="line">        Collections.addAll(list, <span class="number">5</span>, <span class="number">222</span>, <span class="number">1</span>，<span class="number">2</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">        <span class="comment">//排序方法 </span></span><br><span class="line">        Collections.sort(list);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">结果：</span><br><span class="line">[<span class="number">5</span>, <span class="number">222</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">222</span>]</span><br></pre></td></tr></table></figure>
+
+<p>代码演示之后 ，发现我们的集合按照顺序进行了排列，可是这样的顺序是采用默认的顺序，如果想要指定顺序那该怎么办呢？</p>
+<p>我们发现还有个方法没有讲，<code>public static &lt;T&gt; void sort(List&lt;T&gt; list，Comparator&lt;? super T&gt; )</code>:将集合中元素按照指定规则排序。接下来讲解一下指定规则的排列。</p>
+<h2 id="2-2-Comparator比较器"><a href="#2-2-Comparator比较器" class="headerlink" title="2.2 Comparator比较器"></a>2.2 Comparator比较器</h2><p>我们还是先研究这个方法</p>
+<p><code>public static &lt;T&gt; void sort(List&lt;T&gt; list)</code>:将集合中元素按照默认规则排序。</p>
+<p>不过这次存储的是字符串类型。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CollectionsDemo2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt;  list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;cba&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;aba&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;sba&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;nba&quot;</span>);</span><br><span class="line">        <span class="comment">//排序方法</span></span><br><span class="line">        Collections.sort(list);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[aba, cba, nba, sba]</span><br></pre></td></tr></table></figure>
+
+<p>我们使用的是默认的规则完成字符串的排序，那么默认规则是怎么定义出来的呢？</p>
+<p>说到排序了，简单的说就是两个对象之间比较大小，那么在JAVA中提供了两种比较实现的方式，一种是比较死板的采用<code>java.lang.Comparable</code>接口去实现，一种是灵活的当我需要做排序的时候在去选择的<code>java.util.Comparator</code>接口完成。</p>
+<p>那么我们采用的<code>public static &lt;T&gt; void sort(List&lt;T&gt; list)</code>这个方法完成的排序，实际上要求了被排序的类型需要实现Comparable接口完成比较的功能，在String类型上如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
+<p>String类实现了这个接口，并完成了比较规则的定义，但是这样就把这种规则写死了，那比如我想要字符串按照第一个字符降序排列，那么这样就要修改String的源代码，这是不可能的了，那么这个时候我们可以使用</p>
+<p><code>public static &lt;T&gt; void sort(List&lt;T&gt; list，Comparator&lt;? super T&gt; )</code>方法灵活的完成，这个里面就涉及到了Comparator这个接口，位于位于java.util包下，排序是comparator能实现的功能之一,该接口代表一个比较器，比较器具有可比性！顾名思义就是做排序的，通俗地讲需要比较两个对象谁排在前谁排在后，那么比较的方法就是：</p>
+<ul>
+<li><p><code> public int compare(String o1, String o2)</code>：比较其两个参数的顺序。</p>
+<blockquote>
+<p>两个对象比较的结果有三种：大于，等于，小于。</p>
+<p>如果要按照升序排序，<br>则o1 小于o2，返回（负数），相等返回0，01大于02返回（正数）<br>如果要按照降序排序<br>则o1 小于o2，返回（正数），相等返回0，01大于02返回（负数）</p>
+</blockquote>
+</li>
+</ul>
+<p>操作如下:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CollectionsDemo3</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;cba&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;aba&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;sba&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;nba&quot;</span>);</span><br><span class="line">        <span class="comment">//排序方法  按照第一个单词的降序</span></span><br><span class="line">        Collections.sort(list, <span class="keyword">new</span> Comparator&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String o1, String o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> o2.charAt(<span class="number">0</span>) - o1.charAt(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[sba, nba, cba, aba]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-简述Comparable和Comparator两个接口的区别。"><a href="#2-3-简述Comparable和Comparator两个接口的区别。" class="headerlink" title="2.3 简述Comparable和Comparator两个接口的区别。"></a>2.3 简述Comparable和Comparator两个接口的区别。</h2><p><strong>Comparable</strong>：<strong style="color:red">强行对实现它的每个类的对象进行整体排序。</strong>这种排序被称为类的自然排序，类的compareTo方法被称为它的自然比较方法。只能在类中实现compareTo()一次，不能经常修改类的代码实现自己想要的排序。实现此接口的对象列表（和数组）可以通过Collections.sort（和Arrays.sort）进行自动排序，对象可以用作有序映射中的键或有序集合中的元素，无需指定比较器。</p>
+<p><strong>Comparator</strong><strong style="color:red">强行对某个对象进行整体排序。</strong>可以将Comparator 传递给sort方法（如Collections.sort或 Arrays.sort），从而允许在排序顺序上实现精确控制。还可以使用Comparator来控制某些数据结构（如有序set或有序映射）的顺序，或者为那些没有自然顺序的对象collection提供排序。</p>
+<h2 id="2-4-练习"><a href="#2-4-练习" class="headerlink" title="2.4  练习"></a>2.4  练习</h2><p>创建一个学生类，存储到ArrayList集合中完成指定排序操作。</p>
+<p>Student 初始类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Student&#123;&quot;</span> +</span><br><span class="line">               <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">               <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">               <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建四个学生对象 存储到集合中</span></span><br><span class="line">        ArrayList&lt;Student&gt; list = <span class="keyword">new</span> ArrayList&lt;Student&gt;();</span><br><span class="line"></span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">&quot;rose&quot;</span>,<span class="number">18</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">&quot;jack&quot;</span>,<span class="number">16</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">&quot;abc&quot;</span>,<span class="number">16</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">&quot;ace&quot;</span>,<span class="number">17</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">&quot;mark&quot;</span>,<span class="number">16</span>));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">          让学生 按照年龄排序 升序</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"><span class="comment">//        Collections.sort(list);//要求 该list中元素类型  必须实现比较器Comparable接口</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Student student : list) &#123;</span><br><span class="line">            System.out.println(student);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发现，当我们调用Collections.sort()方法的时候 程序报错了。</p>
+<p>原因：如果想要集合中的元素完成排序，那么必须要实现比较器Comparable接口。</p>
+<p>于是我们就完成了Student类的一个实现，如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Student</span>&gt;</span>&#123;</span><br><span class="line">    ....</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Student o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age-o.age;<span class="comment">//升序</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再次测试，代码就OK 了效果如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Student&#123;name=<span class="string">&#x27;jack&#x27;</span>, age=<span class="number">16</span>&#125;</span><br><span class="line">Student&#123;name=<span class="string">&#x27;abc&#x27;</span>, age=<span class="number">16</span>&#125;</span><br><span class="line">Student&#123;name=<span class="string">&#x27;mark&#x27;</span>, age=<span class="number">16</span>&#125;</span><br><span class="line">Student&#123;name=<span class="string">&#x27;ace&#x27;</span>, age=<span class="number">17</span>&#125;</span><br><span class="line">Student&#123;name=<span class="string">&#x27;rose&#x27;</span>, age=<span class="number">18</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-扩展"><a href="#2-5-扩展" class="headerlink" title="2.5 扩展"></a>2.5 扩展</h2><p>如果在使用的时候，想要独立的定义规则去使用 可以采用Collections.sort(List list,Comparetor<T> c)方式，自己定义规则：</T></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Collections.sort(list, <span class="keyword">new</span> Comparator&lt;Student&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student o1, Student o2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o2.getAge()-o1.getAge();<span class="comment">//以学生的年龄降序</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>效果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Student&#123;name&#x3D;&#39;rose&#39;, age&#x3D;18&#125;</span><br><span class="line">Student&#123;name&#x3D;&#39;ace&#39;, age&#x3D;17&#125;</span><br><span class="line">Student&#123;name&#x3D;&#39;jack&#39;, age&#x3D;16&#125;</span><br><span class="line">Student&#123;name&#x3D;&#39;abc&#39;, age&#x3D;16&#125;</span><br><span class="line">Student&#123;name&#x3D;&#39;mark&#39;, age&#x3D;16&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>如果想要规则更多一些，可以参考下面代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Collections.sort(list, <span class="keyword">new</span> Comparator&lt;Student&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student o1, Student o2)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// 年龄降序</span></span><br><span class="line">                <span class="keyword">int</span> result = o2.getAge()-o1.getAge();<span class="comment">//年龄降序</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(result==<span class="number">0</span>)&#123;<span class="comment">//第一个规则判断完了 下一个规则 姓名的首字母 升序</span></span><br><span class="line">                    result = o1.getName().charAt(<span class="number">0</span>)-o2.getName().charAt(<span class="number">0</span>);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Student&#123;name&#x3D;&#39;rose&#39;, age&#x3D;18&#125;</span><br><span class="line">Student&#123;name&#x3D;&#39;ace&#39;, age&#x3D;17&#125;</span><br><span class="line">Student&#123;name&#x3D;&#39;abc&#39;, age&#x3D;16&#125;</span><br><span class="line">Student&#123;name&#x3D;&#39;jack&#39;, age&#x3D;16&#125;</span><br><span class="line">Student&#123;name&#x3D;&#39;mark&#39;, age&#x3D;16&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>培训学习</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>day14-Collection集合-Iterator迭代器</title>
     <url>/2021/05/07/day14-Collection%E9%9B%86%E5%90%88-Iterator%E8%BF%AD%E4%BB%A3%E5%99%A8/</url>
     <content><![CDATA[<p><strong><em>今日内容：Collection集合、Iterator迭代器</em></strong></p>
