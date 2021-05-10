@@ -1,6 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>day016-Map</title>
+    <url>/2021/05/10/day016-Map/</url>
+    <content><![CDATA[<p><strong><em>今日内容：Map集合。</em></strong></p>
+<span id="more"></span>
+
+<h1 id="第一章、Map集合"><a href="#第一章、Map集合" class="headerlink" title="第一章、Map集合"></a>第一章、Map集合</h1><h2 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h2><p>现实生活中，我们常会看到这样的一种集合：IP地址与主机名，身份证号与个人，系统用户名与系统用户对象等，这种一一对应的关系，就叫做映射。Java提供了专门的集合类用来存放这种对象关系的对象，即<code>java.util.Map</code>接口。</p>
+<p>我们通过查看<code>Map</code>接口描述，发现<code>Map</code>接口下的集合与<code>Collection</code>接口下的集合，它们存储数据的形式不同，如下图。</p>
+<p><img src="/2021/05/10/day016-Map/Collection%E4%B8%8EMap.bmp"></p>
+<ul>
+<li><code>Collection</code>中的集合，元素是孤立存在的（理解为单身），向集合中存储元素采用一个个元素的方式存储。</li>
+<li><code>Map</code>中的集合，元素是成对存在的(理解为夫妻)。每个元素由键与值两部分组成，通过键可以找对所对应的值。</li>
+<li><code>Collection</code>中的集合称为单列集合，<code>Map</code>中的集合称为双列集合。</li>
+<li>需要注意的是，<code>Map</code>中的集合不能包含重复的键，值可以重复；每个键只能对应一个值。</li>
+</ul>
+<h2 id="1-2-Map常用子类"><a href="#1-2-Map常用子类" class="headerlink" title="1.2  Map常用子类"></a>1.2  Map常用子类</h2><p>通过查看Map接口描述，看到Map有多个子类，这里我们主要讲解常用的HashMap集合、LinkedHashMap集合。</p>
+<ul>
+<li>**HashMap&lt;K,V&gt;**：存储数据采用的哈希表结构，元素的存取顺序不能保证一致。由于要保证键的唯一、不重复，需要重写键的hashCode()方法、equals()方法。</li>
+<li>**LinkedHashMap&lt;K,V&gt;**：HashMap下有个子类LinkedHashMap，存储数据采用的哈希表结构+链表结构。通过链表结构可以保证元素的存取顺序一致；通过哈希表结构可以保证的键的唯一、不重复，需要重写键的hashCode()方法、equals()方法。</li>
+</ul>
+<blockquote>
+<p>tips：Map接口中的集合都有两个泛型变量&lt;K,V&gt;,在使用时，要为两个泛型变量赋予数据类型。两个泛型变量&lt;K,V&gt;的数据类型可以相同，也可以不同。</p>
+</blockquote>
+<h2 id="1-3-Map接口中的常用方法"><a href="#1-3-Map接口中的常用方法" class="headerlink" title="1.3  Map接口中的常用方法"></a>1.3  Map接口中的常用方法</h2><p>Map接口中定义了很多方法，常用的如下：</p>
+<ul>
+<li><code>public V put(K key, V value)</code>:  把指定的键与指定的值添加到Map集合中。</li>
+<li><code>public V remove(Object key)</code>: 把指定的键 所对应的键值对元素 在Map集合中删除，返回被删除元素的值。</li>
+<li><code>public V get(Object key)</code> 根据指定的键，在Map集合中获取对应的值。</li>
+<li><code>boolean containsKey(Object key)  </code> 判断集合中是否包含指定的键。</li>
+<li><code>public Set&lt;K&gt; keySet()</code>: 获取Map集合中所有的键，存储到Set集合中。</li>
+<li><code>public Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet()</code>: 获取到Map集合中所有的键值对对象的集合(Set集合)。</li>
+</ul>
+<p>Map接口的方法演示</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建 map对象</span></span><br><span class="line">        HashMap&lt;String, String&gt;  map = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//添加元素到集合</span></span><br><span class="line">        map.put(<span class="string">&quot;黄晓明&quot;</span>, <span class="string">&quot;杨颖&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;文章&quot;</span>, <span class="string">&quot;马伊琍&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;邓超&quot;</span>, <span class="string">&quot;孙俪&quot;</span>);</span><br><span class="line">        System.out.println(map);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//String remove(String key)</span></span><br><span class="line">        System.out.println(map.remove(<span class="string">&quot;邓超&quot;</span>));</span><br><span class="line">        System.out.println(map);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 想要查看 黄晓明的媳妇 是谁</span></span><br><span class="line">        System.out.println(map.get(<span class="string">&quot;黄晓明&quot;</span>));</span><br><span class="line">        System.out.println(map.get(<span class="string">&quot;邓超&quot;</span>));    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tips:</p>
+<p>使用put方法时，若指定的键(key)在集合中没有，则没有这个键对应的值，返回null，并把指定的键值添加到集合中； </p>
+<p>若指定的键(key)在集合中存在，则返回值为集合中键对应的值（该值为替换前的值），并把指定键所对应的值，替换成指定的新值。 </p>
+</blockquote>
+<h2 id="1-4-Map集合遍历键找值方式"><a href="#1-4-Map集合遍历键找值方式" class="headerlink" title="1.4   Map集合遍历键找值方式"></a>1.4   Map集合遍历键找值方式</h2><p>键找值方式：即通过元素中的键，获取键所对应的值</p>
+<p>分析步骤：</p>
+<ol>
+<li>获取Map中所有的键，由于键是唯一的，所以返回一个Set集合存储所有的键。方法提示:<code>keyset()</code></li>
+<li>遍历键的Set集合，得到每一个键。</li>
+<li>根据键，获取键所对应的值。方法提示:<code>get(K key)</code></li>
+</ol>
+<p>代码演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建Map集合对象 </span></span><br><span class="line">        HashMap&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String,String&gt;();</span><br><span class="line">        <span class="comment">//添加元素到集合 </span></span><br><span class="line">        map.put(<span class="string">&quot;胡歌&quot;</span>, <span class="string">&quot;霍建华&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;郭德纲&quot;</span>, <span class="string">&quot;于谦&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;薛之谦&quot;</span>, <span class="string">&quot;大张伟&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取所有的键  获取键集</span></span><br><span class="line">        Set&lt;String&gt; keys = map.keySet();</span><br><span class="line">        <span class="comment">// 遍历键集 得到 每一个键</span></span><br><span class="line">        <span class="keyword">for</span> (String key : keys) &#123;</span><br><span class="line">          	<span class="comment">//key  就是键</span></span><br><span class="line">            <span class="comment">//获取对应值</span></span><br><span class="line">            String value = map.get(key);</span><br><span class="line">            System.out.println(key+<span class="string">&quot;的CP是：&quot;</span>+value);</span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>遍历图解：</p>
+<p><img src="/2021/05/10/day016-Map/Map%E9%9B%86%E5%90%88%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E4%B8%80.bmp"></p>
+<h2 id="1-5-Entry键值对对象"><a href="#1-5-Entry键值对对象" class="headerlink" title="1.5  Entry键值对对象"></a>1.5  Entry键值对对象</h2><p>我们已经知道，<code>Map</code>中存放的是两种对象，一种称为<strong>key</strong>(键)，一种称为<strong>value</strong>(值)，它们在在<code>Map</code>中是一一对应关系，这一对对象又称做<code>Map</code>中的一个<code>Entry(项)</code>。<code>Entry</code>将键值对的对应关系封装成了对象。即键值对对象，这样我们在遍历<code>Map</code>集合时，就可以从每一个键值对（<code>Entry</code>）对象中获取对应的键与对应的值。</p>
+<p> 既然Entry表示了一对键和值，那么也同样提供了获取对应键和对应值得方法：</p>
+<ul>
+<li><code>public K getKey()</code>：获取Entry对象中的键。</li>
+<li><code>public V getValue()</code>：获取Entry对象中的值。</li>
+</ul>
+<p>在Map集合中也提供了获取所有Entry对象的方法：</p>
+<ul>
+<li><code>public Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet()</code>: 获取到Map集合中所有的键值对对象的集合(Set集合)。</li>
+</ul>
+<h2 id="1-6-Map集合遍历键值对方式"><a href="#1-6-Map集合遍历键值对方式" class="headerlink" title="1.6 Map集合遍历键值对方式"></a>1.6 Map集合遍历键值对方式</h2><p>键值对方式：即通过集合中每个键值对(Entry)对象，获取键值对(Entry)对象中的键与值。</p>
+<p>操作步骤与图解：</p>
+<ol>
+<li><p> 获取Map集合中，所有的键值对(Entry)对象，以Set集合形式返回。方法提示:<code>entrySet()</code>。</p>
+</li>
+<li><p> 遍历包含键值对(Entry)对象的Set集合，得到每一个键值对(Entry)对象。</p>
+</li>
+<li><p> 通过键值对(Entry)对象，获取Entry对象中的键与值。  方法提示:<code>getkey() getValue()</code>     </p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapDemo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建Map集合对象 </span></span><br><span class="line">        HashMap&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String,String&gt;();</span><br><span class="line">        <span class="comment">// 添加元素到集合 </span></span><br><span class="line">        map.put(<span class="string">&quot;胡歌&quot;</span>, <span class="string">&quot;霍建华&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;郭德纲&quot;</span>, <span class="string">&quot;于谦&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;薛之谦&quot;</span>, <span class="string">&quot;大张伟&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取 所有的 entry对象  entrySet</span></span><br><span class="line">        Set&lt;Entry&lt;String,String&gt;&gt; entrySet = map.entrySet();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍历得到每一个entry对象</span></span><br><span class="line">        <span class="keyword">for</span> (Entry&lt;String, String&gt; entry : entrySet) &#123;</span><br><span class="line">           	<span class="comment">// 解析 </span></span><br><span class="line">            String key = entry.getKey();</span><br><span class="line">            String value = entry.getValue();  </span><br><span class="line">            System.out.println(key+<span class="string">&quot;的CP是:&quot;</span>+value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>遍历图解：</p>
+<p><img src="/2021/05/10/day016-Map/Map%E9%9B%86%E5%90%88%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E4%BA%8C.bmp"></p>
+<blockquote>
+<p>tips：Map集合不能直接使用迭代器或者foreach进行遍历。但是转成Set之后就可以使用了。</p>
+</blockquote>
+<h2 id="1-7-HashMap存储自定义类型键值"><a href="#1-7-HashMap存储自定义类型键值" class="headerlink" title="1.7  HashMap存储自定义类型键值"></a>1.7  HashMap存储自定义类型键值</h2><p>练习：每位学生（姓名，年龄）都有自己的家庭住址。那么，既然有对应关系，则将学生对象和家庭住址存储到map集合中。学生作为键, 家庭住址作为值。</p>
+<blockquote>
+<p>注意，学生姓名相同并且年龄相同视为同一名学生。</p>
+</blockquote>
+<p>编写学生类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == o)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass())</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        Student student = (Student) o;</span><br><span class="line">        <span class="keyword">return</span> age == student.age &amp;&amp; Objects.equals(name, student.name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Objects.hash(name, age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写测试类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMapTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1,创建Hashmap集合对象。</span></span><br><span class="line">        Map&lt;Student,String&gt; map = <span class="keyword">new</span> HashMap&lt;Student,String&gt;();</span><br><span class="line">        <span class="comment">//2,添加元素。</span></span><br><span class="line">        map.put(newStudent(<span class="string">&quot;lisi&quot;</span>,<span class="number">28</span>), <span class="string">&quot;上海&quot;</span>);</span><br><span class="line">        map.put(newStudent(<span class="string">&quot;wangwu&quot;</span>,<span class="number">22</span>), <span class="string">&quot;北京&quot;</span>);</span><br><span class="line">        map.put(newStudent(<span class="string">&quot;zhaoliu&quot;</span>,<span class="number">24</span>), <span class="string">&quot;成都&quot;</span>);</span><br><span class="line">        map.put(newStudent(<span class="string">&quot;zhouqi&quot;</span>,<span class="number">25</span>), <span class="string">&quot;广州&quot;</span>);</span><br><span class="line">        map.put(newStudent(<span class="string">&quot;wangwu&quot;</span>,<span class="number">22</span>), <span class="string">&quot;南京&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//3,取出元素。键找值方式</span></span><br><span class="line">        Set&lt;Student&gt;keySet = map.keySet();</span><br><span class="line">        <span class="keyword">for</span>(Student key: keySet)&#123;</span><br><span class="line">            Stringvalue = map.get(key);</span><br><span class="line">            System.out.println(key.toString()+<span class="string">&quot;.....&quot;</span>+value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>当给HashMap中存放自定义对象时，如果自定义对象作为key存在，这时要保证对象唯一，必须复写对象的hashCode和equals方法(如果忘记，请回顾HashSet存放自定义对象)。</li>
+<li>如果要保证map中存放的key和取出的顺序一致，可以使用<code>java.util.LinkedHashMap</code>集合来存放。</li>
+</ul>
+<h2 id="1-8-LinkedHashMap"><a href="#1-8-LinkedHashMap" class="headerlink" title="1.8   LinkedHashMap"></a>1.8   LinkedHashMap</h2><p>我们知道HashMap保证成对元素唯一，并且查询速度很快，可是成对元素存放进去是没有顺序的，那么我们要保证有序，还要速度快怎么办呢？</p>
+<p>在HashMap下面有一个子类LinkedHashMap，它是链表和哈希表组合的一个数据存储结构。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashMapDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        LinkedHashMap&lt;String, String&gt; map = <span class="keyword">new</span> LinkedHashMap&lt;String, String&gt;();</span><br><span class="line">        map.put(<span class="string">&quot;邓超&quot;</span>, <span class="string">&quot;孙俪&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;李晨&quot;</span>, <span class="string">&quot;范冰冰&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;刘德华&quot;</span>, <span class="string">&quot;朱丽倩&quot;</span>);</span><br><span class="line">        Set&lt;Entry&lt;String, String&gt;&gt; entrySet = map.entrySet();</span><br><span class="line">        <span class="keyword">for</span> (Entry&lt;String, String&gt; entry : entrySet) &#123;</span><br><span class="line">            System.out.println(entry.getKey() + <span class="string">&quot;  &quot;</span> + entry.getValue());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">邓超  孙俪</span><br><span class="line">李晨  范冰冰</span><br><span class="line">刘德华  朱丽倩</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-9-Map集合练习"><a href="#1-9-Map集合练习" class="headerlink" title="1.9 Map集合练习"></a>1.9 Map集合练习</h2><p><strong>需求：</strong></p>
+<p>计算一个字符串中每个字符出现次数。</p>
+<p><strong>分析：</strong></p>
+<ol>
+<li> 获取一个字符串对象</li>
+<li> 创建一个Map集合，键代表字符，值代表次数。</li>
+<li> 遍历字符串得到每个字符。</li>
+<li> 判断Map中是否有该键。</li>
+<li> 如果没有，第一次出现，存储次数为1；如果有，则说明已经出现过，获取到对应的值进行++，再次存储。     </li>
+<li> 打印最终结果</li>
+</ol>
+<p><strong>代码：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapTest</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//友情提示</span></span><br><span class="line">        System.out.println(<span class="string">&quot;请录入一个字符串:&quot;</span>);</span><br><span class="line">        String line = <span class="keyword">new</span> Scanner(System.in).nextLine();</span><br><span class="line">        <span class="comment">// 定义 每个字符出现次数的方法</span></span><br><span class="line">        findChar(line);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">findChar</span><span class="params">(String line)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1:创建一个集合 存储  字符 以及其出现的次数</span></span><br><span class="line">        HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Character, Integer&gt;();</span><br><span class="line">        <span class="comment">//2:遍历字符串</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; line.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = line.charAt(i);</span><br><span class="line">            <span class="comment">//判断 该字符 是否在键集中</span></span><br><span class="line">            <span class="keyword">if</span> (!map.containsKey(c)) &#123;<span class="comment">//说明这个字符没有出现过</span></span><br><span class="line">                <span class="comment">//那就是第一次</span></span><br><span class="line">                map.put(c, <span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//先获取之前的次数</span></span><br><span class="line">                Integer count = map.get(c);</span><br><span class="line">                <span class="comment">//count++;</span></span><br><span class="line">                <span class="comment">//再次存入  更新</span></span><br><span class="line">                map.put(c, ++count);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(map);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第二章、补充知识点"><a href="#第二章、补充知识点" class="headerlink" title="第二章、补充知识点"></a>第二章、补充知识点</h1><h2 id="2-1-JDK9对集合添加的优化"><a href="#2-1-JDK9对集合添加的优化" class="headerlink" title="2.1  JDK9对集合添加的优化"></a>2.1  JDK9对集合添加的优化</h2><p>通常，我们在代码中创建一个集合（例如，List 或 Set ），并直接用一些元素填充它。 实例化集合，几个 add方法 调用，使得代码重复。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;def&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;ghi&quot;</span>);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> Java 9，添加了几种集合工厂方法,更方便创建少量元素的集合、map实例。新的List、Set、Map的静态工厂方法可以更方便地创建集合的不可变实例。</p>
+<p>例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloJDK9</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">        Set&lt;String&gt; str1=Set.of(<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>);  </span><br><span class="line">        <span class="comment">//str1.add(&quot;c&quot;);这里编译的时候不会错，但是执行的时候会报错，因为是不可变的集合  </span></span><br><span class="line">        System.out.println(str1);  </span><br><span class="line">        Map&lt;String,Integer&gt; str2=Map.of(<span class="string">&quot;a&quot;</span>,<span class="number">1</span>,<span class="string">&quot;b&quot;</span>,<span class="number">2</span>);  </span><br><span class="line">        System.out.println(str2);  </span><br><span class="line">        List&lt;String&gt; str3=List.of(<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>);  </span><br><span class="line">        System.out.println(str3);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>需要注意以下两点：</p>
+<blockquote>
+<p>1:of()方法只是Map，List，Set这三个接口的静态方法，其父类接口和子类实现并没有这类方法，比如    HashSet，ArrayList等待；</p>
+<p>2:返回的集合是不可变的；</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>培训学习</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>day15-List-Set-Collections</title>
     <url>/2021/05/09/day15-List-Set-Collections/</url>
     <content><![CDATA[<p><strong><em>今日内容：List集合、Set接口、Collections工具类</em></strong></p>

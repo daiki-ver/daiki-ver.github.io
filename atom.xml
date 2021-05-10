@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-05-09T12:43:26.755Z</updated>
+  <updated>2021-05-10T12:35:16.225Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>day016-Map</title>
+    <link href="http://example.com/2021/05/10/day016-Map/"/>
+    <id>http://example.com/2021/05/10/day016-Map/</id>
+    <published>2021-05-10T12:32:50.000Z</published>
+    <updated>2021-05-10T12:35:16.225Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;今日内容：Map集合。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    <category term="培训学习" scheme="http://example.com/categories/Java/%E5%9F%B9%E8%AE%AD%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    
+    <category term="学习" scheme="http://example.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>day15-List-Set-Collections</title>
