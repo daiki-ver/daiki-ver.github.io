@@ -1,6 +1,642 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>day21-File类-字节流-字符流</title>
+    <url>/2021/05/23/day21-File%E7%B1%BB-%E5%AD%97%E8%8A%82%E6%B5%81-%E5%AD%97%E7%AC%A6%E6%B5%81/</url>
+    <content><![CDATA[<p><strong><em>今日内容：File类、字节流、字符流</em></strong></p>
+<span id="more"></span>
+
+<h1 id="第一章、File类"><a href="#第一章、File类" class="headerlink" title="第一章、File类"></a>第一章、File类</h1><h2 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h2><p><code>java.io.File</code> 类是文件和目录路径名的抽象表示，主要用于文件和目录的创建、查找和删除等操作。</p>
+<h2 id="1-2-构造方法"><a href="#1-2-构造方法" class="headerlink" title="1.2 构造方法"></a>1.2 构造方法</h2><ul>
+<li><code>public File(String pathname) </code> ：通过将给定的<strong>路径名字符串</strong>转换为抽象路径名来创建新的 File实例。  </li>
+<li><code>public File(String parent, String child) </code> ：从<strong>父路径名字符串和子路径名字符串</strong>创建新的 File实例。</li>
+<li><code>public File(File parent, String child)</code> ：从<strong>父抽象路径名和子路径名字符串</strong>创建新的 File实例。  </li>
+</ul>
+<ul>
+<li>构造举例，代码如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径名</span></span><br><span class="line">String pathname = <span class="string">&quot;D:\\aaa.txt&quot;</span>;</span><br><span class="line">File file1 = <span class="keyword">new</span> File(pathname); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径名</span></span><br><span class="line">String pathname2 = <span class="string">&quot;D:\\aaa\\bbb.txt&quot;</span>;</span><br><span class="line">File file2 = <span class="keyword">new</span> File(pathname2); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过父路径和子路径字符串</span></span><br><span class="line"> String parent = <span class="string">&quot;d:\\aaa&quot;</span>;</span><br><span class="line"> String child = <span class="string">&quot;bbb.txt&quot;</span>;</span><br><span class="line"> File file3 = <span class="keyword">new</span> File(parent, child);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过父级File对象和子路径字符串</span></span><br><span class="line">File parentDir = <span class="keyword">new</span> File(<span class="string">&quot;d:\\aaa&quot;</span>);</span><br><span class="line">String child = <span class="string">&quot;bbb.txt&quot;</span>;</span><br><span class="line">File file4 = <span class="keyword">new</span> File(parentDir, child);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小贴士：</p>
+<ol>
+<li>一个File对象代表硬盘中实际存在的一个文件或者目录。</li>
+<li>无论该路径下是否存在文件或者目录，都不影响File对象的创建。</li>
+</ol>
+</blockquote>
+<h2 id="1-3-常用方法"><a href="#1-3-常用方法" class="headerlink" title="1.3 常用方法"></a>1.3 常用方法</h2><h3 id="获取功能的方法"><a href="#获取功能的方法" class="headerlink" title="获取功能的方法"></a>获取功能的方法</h3><ul>
+<li><p><code>public String getAbsolutePath() </code> ：返回此File的绝对路径名字符串。</p>
+</li>
+<li><p><code>public String getPath()</code> ：将此File转换为路径名字符串。 </p>
+</li>
+<li><p><code>public String getName()</code>  ：返回由此File表示的文件或目录的名称。  </p>
+</li>
+<li><p><code>public long length()</code>  ：返回由此File表示的文件的长度。 </p>
+</li>
+</ul>
+<blockquote>
+<p>API中说明：length()，表示文件的长度。但是File对象表示目录，则返回值未指定。</p>
+</blockquote>
+<h3 id="绝对路径和相对路径"><a href="#绝对路径和相对路径" class="headerlink" title="绝对路径和相对路径"></a>绝对路径和相对路径</h3><ul>
+<li><p><strong>绝对路径</strong>：从盘符开始的路径，这是一个完整的路径。</p>
+</li>
+<li><p><strong>相对路径</strong>：相对于项目目录的路径，这是一个便捷的路径，开发中经常使用。</p>
+</li>
+</ul>
+<h3 id="判断功能的方法"><a href="#判断功能的方法" class="headerlink" title="判断功能的方法"></a>判断功能的方法</h3><ul>
+<li><code>public boolean exists()</code> ：此File表示的文件或目录是否实际存在。</li>
+<li><code>public boolean isDirectory()</code> ：此File表示的是否为目录。</li>
+<li><code>public boolean isFile()</code> ：此File表示的是否为文件。</li>
+</ul>
+<h3 id="创建删除功能的方法"><a href="#创建删除功能的方法" class="headerlink" title="创建删除功能的方法"></a>创建删除功能的方法</h3><ul>
+<li><code>public boolean createNewFile()</code> ：当且仅当具有该名称的文件尚不存在时，创建一个新的空文件。 </li>
+<li><code>public boolean delete()</code> ：删除由此File表示的文件或目录。  </li>
+<li><code>public boolean mkdir()</code> ：创建由此File表示的目录。</li>
+<li><code>public boolean mkdirs()</code> ：创建由此File表示的目录，包括任何必需但不存在的父目录。</li>
+</ul>
+<blockquote>
+<p>API中说明：delete方法，如果此File表示目录，则目录必须为空才能删除。</p>
+</blockquote>
+<h2 id="1-4-目录的遍历"><a href="#1-4-目录的遍历" class="headerlink" title="1.4 目录的遍历"></a>1.4 目录的遍历</h2><ul>
+<li><code>public String[] list()</code> ：返回一个String数组，表示该File目录中的所有文件或子目录。</li>
+</ul>
+<ul>
+<li><code>public File[] listFiles()</code> ：返回一个File数组，表示该File目录中的所有的文件或子目录的File对象。  </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileFor</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File dir = <span class="keyword">new</span> File(<span class="string">&quot;d:\\java_code&quot;</span>);</span><br><span class="line">      </span><br><span class="line">      	<span class="comment">//获取当前目录下的文件以及文件夹的名称。</span></span><br><span class="line">		String[] names = dir.list();</span><br><span class="line">		<span class="keyword">for</span>(String name : names)&#123;</span><br><span class="line">			System.out.println(name);</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="comment">//获取当前目录下的文件以及文件夹对象，只要拿到了文件对象，那么就可以获取更多信息</span></span><br><span class="line">        File[] files = dir.listFiles();</span><br><span class="line">        <span class="keyword">for</span> (File file : files) &#123;</span><br><span class="line">            System.out.println(file);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小贴士：</p>
+<p>调用listFiles方法的File对象，表示的必须是实际存在的目录，否则返回null，无法进行遍历。</p>
+</blockquote>
+<h2 id="1-5-顶级父类们"><a href="#1-5-顶级父类们" class="headerlink" title="1.5 顶级父类们"></a>1.5 顶级父类们</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"><strong>输入流</strong></th>
+<th align="center">输出流</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>字节流</strong></td>
+<td align="center">字节输入流<br><strong>InputStream</strong></td>
+<td align="center">字节输出流<br><strong>OutputStream</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>字符流</strong></td>
+<td align="center">字符输入流<br><strong>Reader</strong></td>
+<td align="center">字符输出流<br><strong>Writer</strong></td>
+</tr>
+</tbody></table>
+<h1 id="第二章-字节流"><a href="#第二章-字节流" class="headerlink" title="第二章 字节流"></a>第二章 字节流</h1><h2 id="2-1-一切皆为字节"><a href="#2-1-一切皆为字节" class="headerlink" title="2.1 一切皆为字节"></a>2.1 一切皆为字节</h2><p>一切文件数据(文本、图片、视频等)在存储时，都是以二进制数字的形式保存，都一个一个的字节，那么传输时一样如此。所以，字节流可以传输任意文件数据。在操作流的时候，我们要时刻明确，无论使用什么样的流对象，底层传输的始终为二进制数据。</p>
+<h2 id="2-2-字节输出流【OutputStream】"><a href="#2-2-字节输出流【OutputStream】" class="headerlink" title="2.2 字节输出流【OutputStream】"></a>2.2 字节输出流【OutputStream】</h2><p><code>java.io.OutputStream </code>抽象类是表示字节输出流的所有类的超类，将指定的字节信息写出到目的地。它定义了字节输出流的基本共性功能方法。</p>
+<ul>
+<li><code>public void close()</code> ：关闭此输出流并释放与此流相关联的任何系统资源。  </li>
+<li><code>public void flush() </code> ：刷新此输出流并强制任何缓冲的输出字节被写出。  </li>
+<li><code>public void write(byte[] b)</code>：将 b.length字节从指定的字节数组写入此输出流。  </li>
+<li><code>public void write(byte[] b, int off, int len)</code> ：从指定的字节数组写入 len字节，从偏移量 off开始输出到此输出流。  </li>
+<li><code>public abstract void write(int b)</code> ：将指定的字节输出流。</li>
+</ul>
+<blockquote>
+<p>小贴士：</p>
+<p>close方法，当完成流的操作时，必须调用此方法，释放系统资源。</p>
+</blockquote>
+<h2 id="2-3-FileOutputStream类"><a href="#2-3-FileOutputStream类" class="headerlink" title="2.3 FileOutputStream类"></a>2.3 FileOutputStream类</h2><p><code>OutputStream</code>有很多子类，我们从最简单的一个子类开始。</p>
+<p><code>java.io.FileOutputStream </code>类是文件输出流，用于将数据写出到文件。</p>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><ul>
+<li><code>public FileOutputStream(File file)</code>：创建文件输出流以写入由指定的 File对象表示的文件。 </li>
+<li><code>public FileOutputStream(String name)</code>： 创建文件输出流以指定的名称写入文件。  </li>
+</ul>
+<p>当你创建一个流对象时，必须传入一个文件路径。该路径下，如果没有这个文件，会创建该文件。如果有这个文件，会清空这个文件的数据。</p>
+<ul>
+<li>构造举例，代码如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileOutputStreamConstructor</span> <span class="title">throws</span> <span class="title">IOException</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   	 	<span class="comment">// 使用File对象创建流对象</span></span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;a.txt&quot;</span>);</span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;b.txt&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="写出字节数据"><a href="#写出字节数据" class="headerlink" title="写出字节数据"></a>写出字节数据</h3><ol>
+<li><strong>写出字节</strong>：<code>write(int b)</code> 方法，每次可以写出一个字节数据，代码使用演示：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FOSWrite</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;fos.txt&quot;</span>);     </span><br><span class="line">      	<span class="comment">// 写出数据</span></span><br><span class="line">      	fos.write(<span class="number">97</span>); <span class="comment">// 写出第1个字节</span></span><br><span class="line">      	fos.write(<span class="number">98</span>); <span class="comment">// 写出第2个字节</span></span><br><span class="line">      	fos.write(<span class="number">99</span>); <span class="comment">// 写出第3个字节</span></span><br><span class="line">      	<span class="comment">// 关闭资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出结果：</span><br><span class="line">abc</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小贴士：</p>
+<ol>
+<li>虽然参数为int类型四个字节，但是只会保留一个字节的信息写出。</li>
+<li>流操作完毕后，必须释放系统资源，调用close方法，千万记得。</li>
+</ol>
+</blockquote>
+<ol start="2">
+<li><strong>写出字节数组</strong>：<code>write(byte[] b)</code>，每次可以写出数组中的数据，代码使用演示：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FOSWrite</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;fos.txt&quot;</span>);     </span><br><span class="line">      	<span class="comment">// 字符串转换为字节数组</span></span><br><span class="line">      	<span class="keyword">byte</span>[] b = <span class="string">&quot;我是程序员&quot;</span>.getBytes();</span><br><span class="line">      	<span class="comment">// 写出字节数组数据</span></span><br><span class="line">      	fos.write(b);</span><br><span class="line">      	<span class="comment">// 关闭资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出结果：</span><br><span class="line">我是程序员</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><strong>写出指定长度字节数组</strong>：<code>write(byte[] b, int off, int len)</code> ,每次写出从off索引开始，len个字节，代码使用演示：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FOSWrite</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;fos.txt&quot;</span>);     </span><br><span class="line">      	<span class="comment">// 字符串转换为字节数组</span></span><br><span class="line">      	<span class="keyword">byte</span>[] b = <span class="string">&quot;abcde&quot;</span>.getBytes();</span><br><span class="line">		<span class="comment">// 写出从索引2开始，2个字节。索引2是c，两个字节，也就是cd。</span></span><br><span class="line">        fos.write(b,<span class="number">2</span>,<span class="number">2</span>);</span><br><span class="line">      	<span class="comment">// 关闭资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出结果：</span><br><span class="line">cd</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据追加续写"><a href="#数据追加续写" class="headerlink" title="数据追加续写"></a>数据追加续写</h3><p>经过以上的演示，每次程序运行，创建输出流对象，都会清空目标文件中的数据。如何保留目标文件中数据，还能继续添加新数据呢？</p>
+<ul>
+<li><code>public FileOutputStream(File file, boolean append)</code>： 创建文件输出流以写入由指定的 File对象表示的文件。  </li>
+<li><code>public FileOutputStream(String name, boolean append)</code>： 创建文件输出流以指定的名称写入文件。  </li>
+</ul>
+<p>这两个构造方法，参数中都需要传入一个boolean类型的值，<code>true</code> 表示追加数据，<code>false</code> 表示清空原有数据。这样创建的输出流对象，就可以指定是否追加续写了，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FOSWrite</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;fos.txt&quot;</span>，<span class="keyword">true</span>);     </span><br><span class="line">      	<span class="comment">// 字符串转换为字节数组</span></span><br><span class="line">      	<span class="keyword">byte</span>[] b = <span class="string">&quot;abcde&quot;</span>.getBytes();</span><br><span class="line">		<span class="comment">// 写出从索引2开始，2个字节。索引2是c，两个字节，也就是cd。</span></span><br><span class="line">        fos.write(b);</span><br><span class="line">      	<span class="comment">// 关闭资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">文件操作前：cd</span><br><span class="line">文件操作后：cdabcde</span><br></pre></td></tr></table></figure>
+
+<h3 id="写出换行"><a href="#写出换行" class="headerlink" title="写出换行"></a>写出换行</h3><p>Windows系统里，换行符号是<code>\r\n</code> 。把</p>
+<p>以指定是否追加续写了，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FOSWrite</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;fos.txt&quot;</span>);  </span><br><span class="line">      	<span class="comment">// 定义字节数组</span></span><br><span class="line">      	<span class="keyword">byte</span>[] words = &#123;<span class="number">97</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">100</span>,<span class="number">101</span>&#125;;</span><br><span class="line">      	<span class="comment">// 遍历数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; words.length; i++) &#123;</span><br><span class="line">          	<span class="comment">// 写出一个字节</span></span><br><span class="line">            fos.write(words[i]);</span><br><span class="line">          	<span class="comment">// 写出一个换行, 换行符号转成数组写出</span></span><br><span class="line">            fos.write(<span class="string">&quot;\r\n&quot;</span>.getBytes());</span><br><span class="line">        &#125;</span><br><span class="line">      	<span class="comment">// 关闭资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br><span class="line">e</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>回车符<code>\r</code>和换行符<code>\n</code> ：<ul>
+<li>回车符：回到一行的开头（return）。</li>
+<li>换行符：下一行（newline）。</li>
+</ul>
+</li>
+<li>系统中的换行：<ul>
+<li>Windows系统里，每行结尾是 <code>回车+换行</code> ，即<code>\r\n</code>；</li>
+<li>Unix系统里，每行结尾只有 <code>换行</code> ，即<code>\n</code>；</li>
+<li>Mac系统里，每行结尾是 <code>回车</code> ，即<code>\r</code>。从 Mac OS X开始与Linux统一。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="2-4-字节输入流【InputStream】"><a href="#2-4-字节输入流【InputStream】" class="headerlink" title="2.4 字节输入流【InputStream】"></a>2.4 字节输入流【InputStream】</h2><p><code>java.io.InputStream </code>抽象类是表示字节输入流的所有类的超类，可以读取字节信息到内存中。它定义了字节输入流的基本共性功能方法。</p>
+<ul>
+<li><code>public void close()</code> ：关闭此输入流并释放与此流相关联的任何系统资源。    </li>
+<li><code>public abstract int read()</code>： 从输入流读取数据的下一个字节。 </li>
+<li><code>public int read(byte[] b)</code>： 从输入流中读取一些字节数，并将它们存储到字节数组 b中 。</li>
+</ul>
+<blockquote>
+<p>小贴士：</p>
+<p>close方法，当完成流的操作时，必须调用此方法，释放系统资源。</p>
+</blockquote>
+<h2 id="2-5-FileInputStream类"><a href="#2-5-FileInputStream类" class="headerlink" title="2.5 FileInputStream类"></a>2.5 FileInputStream类</h2><p><code>java.io.FileInputStream </code>类是文件输入流，从文件中读取字节。</p>
+<h3 id="构造方法-1"><a href="#构造方法-1" class="headerlink" title="构造方法"></a>构造方法</h3><ul>
+<li><code>FileInputStream(File file)</code>： 通过打开与实际文件的连接来创建一个 FileInputStream ，该文件由文件系统中的 File对象 file命名。 </li>
+<li><code>FileInputStream(String name)</code>： 通过打开与实际文件的连接来创建一个 FileInputStream ，该文件由文件系统中的路径名 name命名。  </li>
+</ul>
+<p>当你创建一个流对象时，必须传入一个文件路径。该路径下，如果没有该文件,会抛出<code>FileNotFoundException</code> 。</p>
+<ul>
+<li>构造举例，代码如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileInputStreamConstructor</span> <span class="title">throws</span> <span class="title">IOException</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   	 	<span class="comment">// 使用File对象创建流对象</span></span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;a.txt&quot;</span>);</span><br><span class="line">        FileInputStream fos = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileInputStream fos = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;b.txt&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="读取字节数据"><a href="#读取字节数据" class="headerlink" title="读取字节数据"></a>读取字节数据</h3><ol>
+<li><strong>读取字节</strong>：<code>read</code>方法，每次可以读取一个字节的数据，提升为int类型，读取到文件末尾，返回<code>-1</code>，代码使用演示：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FISRead</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">      	<span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">       	FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;read.txt&quot;</span>);</span><br><span class="line">      	<span class="comment">// 读取数据，返回一个字节</span></span><br><span class="line">        <span class="keyword">int</span> read = fis.read();</span><br><span class="line">        System.out.println((<span class="keyword">char</span>) read);</span><br><span class="line">        read = fis.read();</span><br><span class="line">        System.out.println((<span class="keyword">char</span>) read);</span><br><span class="line">        read = fis.read();</span><br><span class="line">        System.out.println((<span class="keyword">char</span>) read);</span><br><span class="line">        read = fis.read();</span><br><span class="line">        System.out.println((<span class="keyword">char</span>) read);</span><br><span class="line">        read = fis.read();</span><br><span class="line">        System.out.println((<span class="keyword">char</span>) read);</span><br><span class="line">      	<span class="comment">// 读取到末尾,返回-1</span></span><br><span class="line">       	read = fis.read();</span><br><span class="line">        System.out.println( read);</span><br><span class="line">		<span class="comment">// 关闭资源</span></span><br><span class="line">        fis.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出结果：</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br><span class="line">e</span><br><span class="line">-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>循环改进读取方式，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FISRead</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">      	<span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">       	FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;read.txt&quot;</span>);</span><br><span class="line">      	<span class="comment">// 定义变量，保存数据</span></span><br><span class="line">        <span class="keyword">int</span> b ；</span><br><span class="line">        <span class="comment">// 循环读取</span></span><br><span class="line">        <span class="keyword">while</span> ((b = fis.read())!=-<span class="number">1</span>) &#123;</span><br><span class="line">            System.out.println((<span class="keyword">char</span>)b);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 关闭资源</span></span><br><span class="line">        fis.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出结果：</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br><span class="line">e</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小贴士：</p>
+<ol>
+<li>虽然读取了一个字节，但是会自动提升为int类型。</li>
+<li>流操作完毕后，必须释放系统资源，调用close方法，千万记得。</li>
+</ol>
+</blockquote>
+<ol start="2">
+<li><strong>使用字节数组读取</strong>：<code>read(byte[] b)</code>，每次读取b的长度个字节到数组中，返回读取到的有效字节个数，读取到末尾时，返回<code>-1</code> ，代码使用演示：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FISRead</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">      	<span class="comment">// 使用文件名称创建流对象.</span></span><br><span class="line">       	FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;read.txt&quot;</span>); <span class="comment">// 文件中为abcde</span></span><br><span class="line">      	<span class="comment">// 定义变量，作为有效个数</span></span><br><span class="line">        <span class="keyword">int</span> len ；</span><br><span class="line">        <span class="comment">// 定义字节数组，作为装字节数据的容器   </span></span><br><span class="line">        <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span>];</span><br><span class="line">        <span class="comment">// 循环读取</span></span><br><span class="line">        <span class="keyword">while</span> (( len= fis.read(b))!=-<span class="number">1</span>) &#123;</span><br><span class="line">           	<span class="comment">// 每次读取后,把数组变成字符串打印</span></span><br><span class="line">            System.out.println(<span class="keyword">new</span> String(b));</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 关闭资源</span></span><br><span class="line">        fis.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">ab</span><br><span class="line">cd</span><br><span class="line">ed</span><br></pre></td></tr></table></figure>
+
+<p>错误数据<code>d</code>，是由于最后一次读取时，只读取一个字节<code>e</code>，数组中，上次读取的数据没有被完全替换，所以要通过<code>len</code> ，获取有效的字节，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FISRead</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">      	<span class="comment">// 使用文件名称创建流对象.</span></span><br><span class="line">       	FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;read.txt&quot;</span>); <span class="comment">// 文件中为abcde</span></span><br><span class="line">      	<span class="comment">// 定义变量，作为有效个数</span></span><br><span class="line">        <span class="keyword">int</span> len ；</span><br><span class="line">        <span class="comment">// 定义字节数组，作为装字节数据的容器   </span></span><br><span class="line">        <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span>];</span><br><span class="line">        <span class="comment">// 循环读取</span></span><br><span class="line">        <span class="keyword">while</span> (( len= fis.read(b))!=-<span class="number">1</span>) &#123;</span><br><span class="line">           	<span class="comment">// 每次读取后,把数组的有效字节部分，变成字符串打印</span></span><br><span class="line">            System.out.println(<span class="keyword">new</span> String(b，<span class="number">0</span>，len));<span class="comment">//  len 每次读取的有效字节个数</span></span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 关闭资源</span></span><br><span class="line">        fis.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">ab</span><br><span class="line">cd</span><br><span class="line">e</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小贴士：</p>
+<p>使用数组读取，每次读取多个字节，减少了系统间的IO操作次数，从而提高了读写的效率，建议开发中使用。</p>
+</blockquote>
+<h2 id="2-6-字节流练习：图片复制"><a href="#2-6-字节流练习：图片复制" class="headerlink" title="2.6 字节流练习：图片复制"></a>2.6 字节流练习：图片复制</h2><h3 id="复制原理图解"><a href="#复制原理图解" class="headerlink" title="复制原理图解"></a>复制原理图解</h3><p><img src="/2021/05/23/day21-File%E7%B1%BB-%E5%AD%97%E8%8A%82%E6%B5%81-%E5%AD%97%E7%AC%A6%E6%B5%81/2_copy.jpg"></p>
+<h3 id="案例实现"><a href="#案例实现" class="headerlink" title="案例实现"></a>案例实现</h3><p>复制图片文件，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Copy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 1.创建流对象</span></span><br><span class="line">        <span class="comment">// 1.1 指定数据源</span></span><br><span class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;D:\\test.jpg&quot;</span>);</span><br><span class="line">        <span class="comment">// 1.2 指定目的地</span></span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;test_copy.jpg&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2.读写数据</span></span><br><span class="line">        <span class="comment">// 2.1 定义数组</span></span><br><span class="line">        <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="comment">// 2.2 定义长度</span></span><br><span class="line">        <span class="keyword">int</span> len;</span><br><span class="line">        <span class="comment">// 2.3 循环读取</span></span><br><span class="line">        <span class="keyword">while</span> ((len = fis.read(b))!=-<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 2.4 写出数据</span></span><br><span class="line">            fos.write(b, <span class="number">0</span> , len);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3.关闭资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">        fis.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小贴士：</p>
+<p>流的关闭原则：先开后关，后开先关。</p>
+</blockquote>
+<h1 id="第三章-字符流"><a href="#第三章-字符流" class="headerlink" title="第三章 字符流"></a>第三章 字符流</h1><p>当使用字节流读取文本文件时，可能会有一个小问题。就是遇到中文字符时，可能不会显示完整的字符，那是因为一个中文字符可能占用多个字节存储。所以Java提供一些字符流类，以字符为单位读写数据，专门用于处理文本文件。</p>
+<h2 id="3-1-字符输入流【Reader】"><a href="#3-1-字符输入流【Reader】" class="headerlink" title="3.1 字符输入流【Reader】"></a>3.1 字符输入流【Reader】</h2><p><code>java.io.Reader</code>抽象类是表示用于读取字符流的所有类的超类，可以读取字符信息到内存中。它定义了字符输入流的基本共性功能方法。</p>
+<ul>
+<li><code>public void close()</code> ：关闭此流并释放与此流相关联的任何系统资源。    </li>
+<li><code>public int read()</code>： 从输入流读取一个字符。 </li>
+<li><code>public int read(char[] cbuf)</code>： 从输入流中读取一些字符，并将它们存储到字符数组 cbuf中 。</li>
+</ul>
+<h2 id="3-2-FileReader类"><a href="#3-2-FileReader类" class="headerlink" title="3.2 FileReader类"></a>3.2 FileReader类</h2><p><code>java.io.FileReader </code>类是读取字符文件的便利类。构造时使用系统默认的字符编码和默认字节缓冲区。</p>
+<blockquote>
+<p>小贴士：</p>
+<ol>
+<li><p>字符编码：字节与字符的对应规则。Windows系统的中文编码默认是GBK编码表。</p>
+<p>idea中UTF-8</p>
+</li>
+<li><p>字节缓冲区：一个字节数组，用来临时存储字节数据。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="构造方法-2"><a href="#构造方法-2" class="headerlink" title="构造方法"></a>构造方法</h3><ul>
+<li><code>FileReader(File file)</code>： 创建一个新的 FileReader ，给定要读取的File对象。   </li>
+<li><code>FileReader(String fileName)</code>： 创建一个新的 FileReader ，给定要读取的文件的名称。  </li>
+</ul>
+<p>当你创建一个流对象时，必须传入一个文件路径。类似于FileInputStream 。</p>
+<ul>
+<li>构造举例，代码如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileReaderConstructor</span> <span class="title">throws</span> <span class="title">IOException</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   	 	<span class="comment">// 使用File对象创建流对象</span></span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;a.txt&quot;</span>);</span><br><span class="line">        FileReader fr = <span class="keyword">new</span> FileReader(file);</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileReader fr = <span class="keyword">new</span> FileReader(<span class="string">&quot;b.txt&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="读取字符数据"><a href="#读取字符数据" class="headerlink" title="读取字符数据"></a>读取字符数据</h3><ol>
+<li><strong>读取字符</strong>：<code>read</code>方法，每次可以读取一个字符的数据，提升为int类型，读取到文件末尾，返回<code>-1</code>，循环读取，代码使用演示：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小贴士：虽然读取了一个字符，但是会自动提升为int类型。</p>
+</blockquote>
+<ol start="2">
+<li><strong>使用字符数组读取</strong>：<code>read(char[] cbuf)</code>，每次读取b的长度个字符到数组中，返回读取到的有效字符个数，读取到末尾时，返回<code>-1</code> ，代码使用演示：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FRRead</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">      	<span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">       	FileReader fr = <span class="keyword">new</span> FileReader(<span class="string">&quot;read.txt&quot;</span>);</span><br><span class="line">      	<span class="comment">// 定义变量，保存有效字符个数</span></span><br><span class="line">        <span class="keyword">int</span> len ；</span><br><span class="line">        <span class="comment">// 定义字符数组，作为装字符数据的容器</span></span><br><span class="line">         <span class="keyword">char</span>[] cbuf = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">2</span>];</span><br><span class="line">        <span class="comment">// 循环读取</span></span><br><span class="line">        <span class="keyword">while</span> ((len = fr.read(cbuf))!=-<span class="number">1</span>) &#123;</span><br><span class="line">            System.out.println(<span class="keyword">new</span> String(cbuf));</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">// 关闭资源</span></span><br><span class="line">        fr.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出结果：</span><br><span class="line">   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>获取有效的字符改进，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FISRead</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">      	<span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">       	FileReader fr = <span class="keyword">new</span> FileReader(<span class="string">&quot;read.txt&quot;</span>);</span><br><span class="line">      	<span class="comment">// 定义变量，保存有效字符个数</span></span><br><span class="line">        <span class="keyword">int</span> len ；</span><br><span class="line">        <span class="comment">// 定义字符数组，作为装字符数据的容器</span></span><br><span class="line">        <span class="keyword">char</span>[] cbuf = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">2</span>];</span><br><span class="line">        <span class="comment">// 循环读取</span></span><br><span class="line">        <span class="keyword">while</span> ((len = fr.read(cbuf))!=-<span class="number">1</span>) &#123;</span><br><span class="line">            System.out.println(<span class="keyword">new</span> String(cbuf,<span class="number">0</span>,len));</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="comment">// 关闭资源</span></span><br><span class="line">        fr.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">	<span class="comment">// 元数据保持一致</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-字符输出流【Writer】"><a href="#3-3-字符输出流【Writer】" class="headerlink" title="3.3 字符输出流【Writer】"></a>3.3 字符输出流【Writer】</h2><p><code>java.io.Writer </code>抽象类是表示用于写出字符流的所有类的超类，将指定的字符信息写出到目的地。它定义了字节输出流的基本共性功能方法。</p>
+<ul>
+<li><code>void write(int c)</code> 写入单个字符。</li>
+<li><code>void write(char[] cbuf) </code>写入字符数组。 </li>
+<li><code>abstract  void write(char[] cbuf, int off, int len) </code>写入字符数组的某一部分,off数组的开始索引,len写的字符个数。 </li>
+<li><code>void write(String str) </code>写入字符串。 </li>
+<li><code>void write(String str, int off, int len)</code> 写入字符串的某一部分,off字符串的开始索引,len写的字符个数。</li>
+<li><code>void flush() </code>刷新该流的缓冲。  </li>
+<li><code>void close()</code> 关闭此流，但要先刷新它。 </li>
+</ul>
+<h2 id="3-4-FileWriter类"><a href="#3-4-FileWriter类" class="headerlink" title="3.4 FileWriter类"></a>3.4 FileWriter类</h2><p><code>java.io.FileWriter </code>类是写出字符到文件的便利类。构造时使用系统默认的字符编码和默认字节缓冲区。</p>
+<h3 id="构造方法-3"><a href="#构造方法-3" class="headerlink" title="构造方法"></a>构造方法</h3><ul>
+<li><code>FileWriter(File file)</code>： 创建一个新的 FileWriter，给定要读取的File对象。   </li>
+<li><code>FileWriter(String fileName)</code>： 创建一个新的 FileWriter，给定要读取的文件的名称。  </li>
+</ul>
+<p>当你创建一个流对象时，必须传入一个文件路径，类似于FileOutputStream。</p>
+<ul>
+<li>构造举例，代码如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileWriterConstructor</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">   	 	<span class="comment">// 使用File对象创建流对象</span></span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;a.txt&quot;</span>);</span><br><span class="line">        FileWriter fw = <span class="keyword">new</span> FileWriter(file);</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">&quot;b.txt&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="基本写出数据"><a href="#基本写出数据" class="headerlink" title="基本写出数据"></a>基本写出数据</h3><p><strong>写出字符</strong>：<code>write(int b)</code> 方法，每次可以写出一个字符数据，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FWWrite</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">&quot;fw.txt&quot;</span>);     </span><br><span class="line">      	<span class="comment">// 写出数据</span></span><br><span class="line">      	fw.write(<span class="number">97</span>); <span class="comment">// 写出第1个字符</span></span><br><span class="line">      	fw.write(<span class="string">&#x27;b&#x27;</span>); <span class="comment">// 写出第2个字符</span></span><br><span class="line">      	fw.write(<span class="string">&#x27;C&#x27;</span>); <span class="comment">// 写出第3个字符</span></span><br><span class="line">      	fw.write(<span class="number">30000</span>); <span class="comment">// 写出第4个字符，中文编码表中30000对应一个汉字。</span></span><br><span class="line">      </span><br><span class="line">      	<span class="comment">/*</span></span><br><span class="line"><span class="comment">        【注意】关闭资源时,与FileOutputStream不同。</span></span><br><span class="line"><span class="comment">      	 如果不关闭,数据只是保存到缓冲区，并未保存到文件。</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="comment">// fw.close();</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出结果：</span><br><span class="line">abC田</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小贴士：</p>
+<ol>
+<li>虽然参数为int类型四个字节，但是只会保留一个字符的信息写出。</li>
+<li>未调用close方法，数据只是保存到了缓冲区，并未写出到文件中。</li>
+</ol>
+</blockquote>
+<h3 id="关闭和刷新"><a href="#关闭和刷新" class="headerlink" title="关闭和刷新"></a>关闭和刷新</h3><p>因为内置缓冲区的原因，如果不关闭输出流，无法写出字符到文件中。但是关闭的流对象，是无法继续写出数据的。如果我们既想写出数据，又想继续使用流，就需要<code>flush</code> 方法了。</p>
+<ul>
+<li><code>flush</code> ：刷新缓冲区，流对象可以继续使用。</li>
+<li><code>close </code>:先刷新缓冲区，然后通知系统释放资源。流对象不可以再被使用了。</li>
+</ul>
+<p>代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FWWrite</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">&quot;fw.txt&quot;</span>);</span><br><span class="line">        <span class="comment">// 写出数据，通过flush</span></span><br><span class="line">        fw.write(<span class="string">&#x27;刷&#x27;</span>); <span class="comment">// 写出第1个字符</span></span><br><span class="line">        fw.flush();</span><br><span class="line">        fw.write(<span class="string">&#x27;新&#x27;</span>); <span class="comment">// 继续写出第2个字符，写出成功</span></span><br><span class="line">        fw.flush();</span><br><span class="line">      </span><br><span class="line">      	<span class="comment">// 写出数据，通过close</span></span><br><span class="line">        fw.write(<span class="string">&#x27;关&#x27;</span>); <span class="comment">// 写出第1个字符</span></span><br><span class="line">        fw.close();</span><br><span class="line">        fw.write(<span class="string">&#x27;闭&#x27;</span>); <span class="comment">// 继续写出第2个字符,【报错】java.io.IOException: Stream closed</span></span><br><span class="line">        fw.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小贴士：即便是flush方法写出了数据，操作的最后还是要调用close方法，释放系统资源。</p>
+</blockquote>
+<h3 id="写出其他数据"><a href="#写出其他数据" class="headerlink" title="写出其他数据"></a>写出其他数据</h3><ol>
+<li><strong>写出字符数组</strong> ：<code>write(char[] cbuf)</code> 和 <code>write(char[] cbuf, int off, int len)</code> ，每次可以写出字符数组中的数据，用法类似FileOutputStream，代码使用演示：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FWWrite</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">&quot;fw.txt&quot;</span>);     </span><br><span class="line">      	<span class="comment">// 字符串转换为字节数组</span></span><br><span class="line">      	<span class="keyword">char</span>[] chars = <span class="string">&quot;我是程序员&quot;</span>.toCharArray();</span><br><span class="line">      </span><br><span class="line">      	<span class="comment">// 写出字符数组</span></span><br><span class="line">      	fw.write(chars); <span class="comment">// 我是程序员</span></span><br><span class="line">        </span><br><span class="line">		<span class="comment">// 写出从索引2开始，2个字节。索引2是&#x27;程&#x27;，两个字节，也就是&#x27;程序&#x27;。</span></span><br><span class="line">        fw.write(b,<span class="number">2</span>,<span class="number">2</span>); <span class="comment">// 程序</span></span><br><span class="line">      </span><br><span class="line">      	<span class="comment">// 关闭资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>写出字符串</strong>：<code>write(String str)</code> 和 <code>write(String str, int off, int len)</code> ，每次可以写出字符串中的数据，更为方便，代码使用演示：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FWWrite</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象</span></span><br><span class="line">        FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">&quot;fw.txt&quot;</span>);     </span><br><span class="line">      	<span class="comment">// 字符串</span></span><br><span class="line">      	String msg = <span class="string">&quot;我是程序员&quot;</span>;</span><br><span class="line">      </span><br><span class="line">      	<span class="comment">// 写出字符数组</span></span><br><span class="line">      	fw.write(msg); <span class="comment">//我是程序员</span></span><br><span class="line">      </span><br><span class="line">		<span class="comment">// 写出从索引2开始，2个字节。索引2是&#x27;程&#x27;，两个字节，也就是&#x27;程序&#x27;。</span></span><br><span class="line">        fw.write(msg,<span class="number">2</span>,<span class="number">2</span>);	<span class="comment">// 程序</span></span><br><span class="line">      	</span><br><span class="line">        <span class="comment">// 关闭资源</span></span><br><span class="line">        fos.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><strong>续写和换行</strong>：操作类似于FileOutputStream。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FWWrite</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 使用文件名称创建流对象，可以续写数据</span></span><br><span class="line">        FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">&quot;fw.txt&quot;</span>，<span class="keyword">true</span>);     </span><br><span class="line">      	<span class="comment">// 写出字符串</span></span><br><span class="line">        fw.write(<span class="string">&quot;我是&quot;</span>);</span><br><span class="line">      	<span class="comment">// 写出换行</span></span><br><span class="line">      	fw.write(<span class="string">&quot;\r\n&quot;</span>);</span><br><span class="line">      	<span class="comment">// 写出字符串</span></span><br><span class="line">  		fw.write(<span class="string">&quot;程序员&quot;</span>);</span><br><span class="line">      	<span class="comment">// 关闭资源</span></span><br><span class="line">        fw.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出结果:</span><br><span class="line">我是</span><br><span class="line">程序员</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小贴士：字符流，只能操作文本文件，不能操作图片，视频等非文本文件。</p>
+<p>当我们单纯读或者写文本文件时  使用字符流 其他情况使用字节流</p>
+</blockquote>
+<h1 id="第四章-IO异常的处理"><a href="#第四章-IO异常的处理" class="headerlink" title="第四章 IO异常的处理"></a>第四章 IO异常的处理</h1><h3 id="JDK7前处理"><a href="#JDK7前处理" class="headerlink" title="JDK7前处理"></a>JDK7前处理</h3><p>之前的入门练习，我们一直把异常抛出，而实际开发中并不能这样处理，建议使用<code>try...catch...finally</code> 代码块，处理异常部分，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HandleException1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      	<span class="comment">// 声明变量</span></span><br><span class="line">        FileWriter fw = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//创建流对象</span></span><br><span class="line">            fw = <span class="keyword">new</span> FileWriter(<span class="string">&quot;fw.txt&quot;</span>);</span><br><span class="line">            <span class="comment">// 写出数据</span></span><br><span class="line">            fw.write(<span class="string">&quot;我是程序员&quot;</span>); <span class="comment">//我是程序员</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (fw != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    fw.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JDK7的处理-扩展知识点了解内容"><a href="#JDK7的处理-扩展知识点了解内容" class="headerlink" title="JDK7的处理(扩展知识点了解内容)"></a>JDK7的处理(扩展知识点了解内容)</h3><p>还可以使用JDK7优化后的<code>try-with-resource</code> 语句，该语句确保了每个资源在语句结束时关闭。所谓的资源（resource）是指在程序完成后，必须关闭的对象。</p>
+<p>格式：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> (创建流对象语句，如果多个,使用<span class="string">&#x27;;&#x27;</span>隔开) &#123;</span><br><span class="line">	<span class="comment">// 读写数据</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HandleException2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      	<span class="comment">// 创建流对象</span></span><br><span class="line">        <span class="keyword">try</span> ( FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">&quot;fw.txt&quot;</span>); ) &#123;</span><br><span class="line">            <span class="comment">// 写出数据</span></span><br><span class="line">            fw.write(<span class="string">&quot;我是程序员&quot;</span>); <span class="comment">//我是程序员</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JDK9的改进-扩展知识点了解内容"><a href="#JDK9的改进-扩展知识点了解内容" class="headerlink" title="JDK9的改进(扩展知识点了解内容)"></a>JDK9的改进(扩展知识点了解内容)</h3><p>JDK9中<code>try-with-resource</code> 的改进，对于<strong>引入对象</strong>的方式，支持的更加简洁。被引入的对象，同样可以自动关闭，无需手动close，我们来了解一下格式。</p>
+<p>改进前格式：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 被final修饰的对象</span></span><br><span class="line"><span class="keyword">final</span> Resource resource1 = <span class="keyword">new</span> Resource(<span class="string">&quot;resource1&quot;</span>);</span><br><span class="line"><span class="comment">// 普通对象</span></span><br><span class="line">Resource resource2 = <span class="keyword">new</span> Resource(<span class="string">&quot;resource2&quot;</span>);</span><br><span class="line"><span class="comment">// 引入方式：创建新的变量保存</span></span><br><span class="line"><span class="keyword">try</span> (Resource r1 = resource1;</span><br><span class="line">     Resource r2 = resource2) &#123;</span><br><span class="line">     <span class="comment">// 使用对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改进后格式：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 被final修饰的对象</span></span><br><span class="line"><span class="keyword">final</span> Resource resource1 = <span class="keyword">new</span> Resource(<span class="string">&quot;resource1&quot;</span>);</span><br><span class="line"><span class="comment">// 普通对象</span></span><br><span class="line">Resource resource2 = <span class="keyword">new</span> Resource(<span class="string">&quot;resource2&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入方式：直接引入</span></span><br><span class="line"><span class="keyword">try</span> (resource1; resource2) &#123;</span><br><span class="line">     <span class="comment">// 使用对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改进后，代码使用演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TryDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       	<span class="comment">// 创建流对象</span></span><br><span class="line">        <span class="keyword">final</span>  FileReader fr  = <span class="keyword">new</span> FileReader(<span class="string">&quot;in.txt&quot;</span>);</span><br><span class="line">        FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">&quot;out.txt&quot;</span>);</span><br><span class="line">       	<span class="comment">// 引入到try中</span></span><br><span class="line">        <span class="keyword">try</span> (fr; fw) &#123;</span><br><span class="line">          	<span class="comment">// 定义变量</span></span><br><span class="line">            <span class="keyword">int</span> b;</span><br><span class="line">          	<span class="comment">// 读取数据</span></span><br><span class="line">          	<span class="keyword">while</span> ((b = fr.read())!=-<span class="number">1</span>) &#123;</span><br><span class="line">            	<span class="comment">// 写出数据</span></span><br><span class="line">            	fw.write(b);</span><br><span class="line">          	&#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第五章-属性集"><a href="#第五章-属性集" class="headerlink" title="第五章 属性集"></a>第五章 属性集</h1><h2 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h2><p><code>java.util.Properties </code> 继承于<code> Hashtable</code> ，来表示一个持久的属性集。它使用键值结构存储数据，每个键及其对应值都是一个字符串。该类也被许多Java类使用，比如获取系统属性时，<code>System.getProperties</code> 方法就是返回一个<code>Properties</code>对象。</p>
+<h2 id="5-2-Properties类"><a href="#5-2-Properties类" class="headerlink" title="5.2 Properties类"></a>5.2 Properties类</h2><h3 id="构造方法-4"><a href="#构造方法-4" class="headerlink" title="构造方法"></a>构造方法</h3><ul>
+<li><code>public Properties()</code> :创建一个空的属性列表。</li>
+</ul>
+<h3 id="基本的存储方法"><a href="#基本的存储方法" class="headerlink" title="基本的存储方法"></a>基本的存储方法</h3><ul>
+<li><code>public Object setProperty(String key, String value)</code> ： 保存一对属性。  </li>
+<li><code>public String getProperty(String key) </code> ：使用此属性列表中指定的键搜索属性值。</li>
+<li><code>public Set&lt;String&gt; stringPropertyNames() </code> ：所有键的名称的集合。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">// 创建属性集对象</span></span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        <span class="comment">// 添加键值对元素</span></span><br><span class="line">        properties.setProperty(<span class="string">&quot;filename&quot;</span>, <span class="string">&quot;a.txt&quot;</span>);</span><br><span class="line">        properties.setProperty(<span class="string">&quot;length&quot;</span>, <span class="string">&quot;209385038&quot;</span>);</span><br><span class="line">        properties.setProperty(<span class="string">&quot;location&quot;</span>, <span class="string">&quot;D:\\a.txt&quot;</span>);</span><br><span class="line">        <span class="comment">// 打印属性集对象</span></span><br><span class="line">        System.out.println(properties);</span><br><span class="line">        <span class="comment">// 通过键,获取属性值</span></span><br><span class="line">        System.out.println(properties.getProperty(<span class="string">&quot;filename&quot;</span>));</span><br><span class="line">        System.out.println(properties.getProperty(<span class="string">&quot;length&quot;</span>));</span><br><span class="line">        System.out.println(properties.getProperty(<span class="string">&quot;location&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍历属性集,获取所有键的集合</span></span><br><span class="line">        Set&lt;String&gt; strings = properties.stringPropertyNames();</span><br><span class="line">        <span class="comment">// 打印键值对</span></span><br><span class="line">        <span class="keyword">for</span> (String key : strings ) &#123;</span><br><span class="line">          	System.out.println(key+<span class="string">&quot; -- &quot;</span>+properties.getProperty(key));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出结果：</span><br><span class="line">&#123;filename=a.txt, length=<span class="number">209385038</span>, location=D:\a.txt&#125;</span><br><span class="line">a.txt</span><br><span class="line"><span class="number">209385038</span></span><br><span class="line">D:\a.txt</span><br><span class="line">filename -- a.txt</span><br><span class="line">length -- <span class="number">209385038</span></span><br><span class="line">location -- D:\a.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="与流相关的方法"><a href="#与流相关的方法" class="headerlink" title="与流相关的方法"></a>与流相关的方法</h3><ul>
+<li><code>public void load(InputStream inStream)</code>： 从字节输入流中读取键值对。 </li>
+</ul>
+<p>参数中使用了字节输入流，通过流对象，可以关联到某文件上，这样就能够加载文本中的数据了。文本数据格式:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">filename&#x3D;a.txt</span><br><span class="line">length&#x3D;209385038</span><br><span class="line">location&#x3D;D:\a.txt</span><br></pre></td></tr></table></figure>
+
+<p>加载代码演示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProDemo2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">// 创建属性集对象</span></span><br><span class="line">        Properties pro = <span class="keyword">new</span> Properties();</span><br><span class="line">        <span class="comment">// 加载文本中信息到属性集</span></span><br><span class="line">        pro.load(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;read.txt&quot;</span>));</span><br><span class="line">        <span class="comment">// 遍历集合并打印</span></span><br><span class="line">        Set&lt;String&gt; strings = pro.stringPropertyNames();</span><br><span class="line">        <span class="keyword">for</span> (String key : strings ) &#123;</span><br><span class="line">          	System.out.println(key+<span class="string">&quot; -- &quot;</span>+pro.getProperty(key));</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出结果：</span><br><span class="line">filename -- a.txt</span><br><span class="line">length -- <span class="number">209385038</span></span><br><span class="line">location -- D:\a.txt</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小贴士：文本中的数据，必须是键值对形式，可以使用空格、等号、冒号等符号分隔。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>培训学习</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>day20-线程通信-线程池-Lambda表达式</title>
+    <url>/2021/05/20/day20-%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1-%E7%BA%BF%E7%A8%8B%E6%B1%A0-Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<p><strong><em>今日内容：线程通信、线程池、Lambda表达式</em></strong></p>
+<span id="more"></span>
+
+<h1 id="第一章、线程通信"><a href="#第一章、线程通信" class="headerlink" title="第一章、线程通信"></a>第一章、线程通信</h1><h2 id="1-1-线程间通信"><a href="#1-1-线程间通信" class="headerlink" title="1.1 线程间通信"></a>1.1 线程间通信</h2><p><strong>概念：</strong>多个线程在处理同一个资源，但是处理的动作（线程的任务）却不相同。</p>
+<p>比如：线程A用来生成包子的，线程B用来吃包子的，包子可以理解为同一资源，线程A与线程B处理的动作，一个是生产，一个是消费，那么线程A与线程B之间就存在线程通信问题。</p>
+<p><img src="/2021/05/20/day20-%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1-%E7%BA%BF%E7%A8%8B%E6%B1%A0-Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1.bmp"></p>
+<p><strong>为什么要处理线程间通信：</strong></p>
+<p>多个线程并发执行时, 在默认情况下CPU是随机切换线程的，当我们需要多个线程来共同完成一件任务，并且我们希望他们有规律的执行, 那么多线程之间需要一些协调通信，以此来帮我们达到多线程共同操作一份数据。</p>
+<p><strong>如何保证线程间通信有效利用资源：</strong></p>
+<p>多个线程在处理同一个资源，并且任务不同时，需要线程通信来帮助解决线程之间对同一个变量的使用或操作。 就是多个线程在操作同一份数据时， 避免对同一共享变量的争夺。也就是我们需要通过一定的手段使各个线程能有效的利用资源。而这种手段即—— <strong>等待唤醒机制。</strong></p>
+<h2 id="1-2-等待唤醒机制"><a href="#1-2-等待唤醒机制" class="headerlink" title="1.2 等待唤醒机制"></a>1.2 等待唤醒机制</h2><p><strong>什么是等待唤醒机制</strong></p>
+<p>这是多个线程间的一种<strong>协作</strong>机制。谈到线程我们经常想到的是线程间的<strong>竞争（race）</strong>，比如去争夺锁，但这并不是故事的全部，线程间也会有协作机制。就好比在公司里你和你的同事们，你们可能存在在晋升时的竞争，但更多时候你们更多是一起合作以完成某些任务。</p>
+<p>就是在一个线程进行了规定操作后，就进入等待状态（**wait()<strong>）， 等待其他线程执行完他们的指定代码过后 再将其唤醒（</strong>notify()**）;在有多个线程进行等待时， 如果需要，可以使用 notifyAll()来唤醒所有的等待线程。</p>
+<p>wait/notify 就是线程间的一种协作机制。</p>
+<p><strong>等待唤醒中的方法</strong></p>
+<p>等待唤醒机制就是用于解决线程间通信的问题的，使用到的3个方法的含义如下：</p>
+<ol>
+<li>wait：线程不再活动，不再参与调度，进入 wait set 中，因此不会浪费 CPU 资源，也不会去竞争锁了，这时的线程状态即是 WAITING。它还要等着别的线程执行一个<strong>特别的动作</strong>，也即是“<strong>通知（notify）</strong>”在这个对象上等待的线程从wait set 中释放出来，重新进入到调度队列（ready queue）中</li>
+<li>notify：则选取所通知对象的 wait set 中的一个线程释放；例如，餐馆有空位置后，等候就餐最久的顾客最先入座。 </li>
+<li>notifyAll：则释放所通知对象的 wait set 上的全部线程。</li>
+</ol>
+<blockquote>
+<p>注意：</p>
+<p>哪怕只通知了一个等待的线程，被通知线程也不能立即恢复执行，因为它当初中断的地方是在同步块内，而此刻它已经不持有锁，所以她需要再次尝试去获取锁（很可能面临其它线程的竞争），成功后才能在当初调用 wait 方法之后的地方恢复执行。</p>
+<p>总结如下：</p>
+<ul>
+<li>如果能获取锁，线程就从 WAITING 状态变成 RUNNABLE 状态；</li>
+<li>否则，从 wait set 出来，又进入 entry set，线程就从 WAITING 状态又变成 BLOCKED 状态</li>
+</ul>
+</blockquote>
+<p><strong>调用wait和notify方法需要注意的细节</strong></p>
+<ol>
+<li>wait方法与notify方法必须要由同一个锁对象调用。因为：对应的锁对象可以通过notify唤醒使用同一个锁对象调用的wait方法后的线程。</li>
+<li>wait方法与notify方法是属于Object类的方法的。因为：锁对象可以是任意对象，而任意对象的所属类都是继承了Object类的。</li>
+<li>wait方法与notify方法必须要在同步代码块或者是同步函数中使用。因为：必须要通过锁对象调用这2个方法。 </li>
+</ol>
+<h2 id="1-3-生产者与消费者问题"><a href="#1-3-生产者与消费者问题" class="headerlink" title="1.3 生产者与消费者问题"></a>1.3 生产者与消费者问题</h2><p>等待唤醒机制其实就是经典的“生产者与消费者”的问题。</p>
+<p>就拿生产包子消费包子来说等待唤醒机制如何有效利用资源：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">包子铺线程生产包子，吃货线程消费包子。当包子没有时（包子状态为<span class="keyword">false</span>），吃货线程等待，包子铺线程生产包子（即包子状态为<span class="keyword">true</span>），并通知吃货线程（解除吃货的等待状态）,因为已经有包子了，那么包子铺线程进入等待状态。接下来，吃货线程能否进一步执行则取决于锁的获取情况。如果吃货获取到锁，那么就执行吃包子动作，包子吃完（包子状态为<span class="keyword">false</span>），并通知包子铺线程（解除包子铺的等待状态）,吃货线程进入等待。包子铺线程能否进一步执行则取决于锁的获取情况。</span><br></pre></td></tr></table></figure>
+
+<p><strong>代码演示：</strong></p>
+<p>包子资源类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaoZi</span> </span>&#123;</span><br><span class="line">     String  pier ;</span><br><span class="line">     String  xianer ;</span><br><span class="line">     <span class="keyword">boolean</span>  flag = <span class="keyword">false</span> ;<span class="comment">//包子资源 是否存在  包子资源状态</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>吃货线程类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChiHuo</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> BaoZi bz;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ChiHuo</span><span class="params">(String name,BaoZi bz)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name);</span><br><span class="line">        <span class="keyword">this</span>.bz = bz;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (bz)&#123;</span><br><span class="line">                <span class="keyword">if</span>(bz.flag == <span class="keyword">false</span>)&#123;<span class="comment">//没包子</span></span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        bz.wait();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(<span class="string">&quot;吃货正在吃&quot;</span>+bz.pier+bz.xianer+<span class="string">&quot;包子&quot;</span>);</span><br><span class="line">                bz.flag = <span class="keyword">false</span>;</span><br><span class="line">                bz.notify();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>包子铺线程类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaoZiPu</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> BaoZi bz;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BaoZiPu</span><span class="params">(String name,BaoZi bz)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name);</span><br><span class="line">        <span class="keyword">this</span>.bz = bz;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//造包子</span></span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="comment">//同步</span></span><br><span class="line">            <span class="keyword">synchronized</span> (bz)&#123;</span><br><span class="line">                <span class="keyword">if</span>(bz.flag == <span class="keyword">true</span>)&#123;<span class="comment">//包子资源  存在</span></span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">                        bz.wait();</span><br><span class="line"></span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 没有包子  造包子</span></span><br><span class="line">                System.out.println(<span class="string">&quot;包子铺开始做包子&quot;</span>);</span><br><span class="line">                <span class="keyword">if</span>(count%<span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="comment">// 冰皮  五仁</span></span><br><span class="line">                    bz.pier = <span class="string">&quot;冰皮&quot;</span>;</span><br><span class="line">                    bz.xianer = <span class="string">&quot;五仁&quot;</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="comment">// 薄皮  牛肉大葱</span></span><br><span class="line">                    bz.pier = <span class="string">&quot;薄皮&quot;</span>;</span><br><span class="line">                    bz.xianer = <span class="string">&quot;牛肉大葱&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                count++;</span><br><span class="line"></span><br><span class="line">                bz.flag=<span class="keyword">true</span>;</span><br><span class="line">                System.out.println(<span class="string">&quot;包子造好了：&quot;</span>+bz.pier+bz.xianer);</span><br><span class="line">                System.out.println(<span class="string">&quot;吃货来吃吧&quot;</span>);</span><br><span class="line">                <span class="comment">//唤醒等待线程 （吃货）</span></span><br><span class="line">                bz.notify();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//等待唤醒案例</span></span><br><span class="line">        BaoZi bz = <span class="keyword">new</span> BaoZi();</span><br><span class="line"></span><br><span class="line">        ChiHuo ch = <span class="keyword">new</span> ChiHuo(<span class="string">&quot;吃货&quot;</span>,bz);</span><br><span class="line">        BaoZiPu bzp = <span class="keyword">new</span> BaoZiPu(<span class="string">&quot;包子铺&quot;</span>,bz);</span><br><span class="line"></span><br><span class="line">        ch.start();</span><br><span class="line">        bzp.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行效果：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">包子铺开始做包子</span><br><span class="line">包子造好了：冰皮五仁</span><br><span class="line">吃货来吃吧</span><br><span class="line">吃货正在吃冰皮五仁包子</span><br><span class="line">包子铺开始做包子</span><br><span class="line">包子造好了：薄皮牛肉大葱</span><br><span class="line">吃货来吃吧</span><br><span class="line">吃货正在吃薄皮牛肉大葱包子</span><br><span class="line">包子铺开始做包子</span><br><span class="line">包子造好了：冰皮五仁</span><br><span class="line">吃货来吃吧</span><br><span class="line">吃货正在吃冰皮五仁包子</span><br></pre></td></tr></table></figure>
+
+<h1 id="第二章、线程池"><a href="#第二章、线程池" class="headerlink" title="第二章、线程池"></a>第二章、线程池</h1><h2 id="2-1-线程池思想概述"><a href="#2-1-线程池思想概述" class="headerlink" title="2.1 线程池思想概述"></a>2.1 线程池思想概述</h2><p>我们使用线程的时候就去创建一个线程，这样实现起来非常简便，但是就会有一个问题：</p>
+<p>如果并发的线程数量很多，并且每个线程都是执行一个时间很短的任务就结束了，这样频繁创建线程就会大大降低系统的效率，因为频繁创建线程和销毁线程需要时间。</p>
+<p>那么有没有一种办法使得线程可以复用，就是执行完一个任务，并不被销毁，而是可以继续执行其他的任务？</p>
+<p>在Java中可以通过线程池来达到这样的效果。今天我们就来详细讲解一下Java的线程池。</p>
+<h2 id="2-2-线程池概念"><a href="#2-2-线程池概念" class="headerlink" title="2.2 线程池概念"></a>2.2 线程池概念</h2><ul>
+<li><strong>线程池：</strong>其实就是一个容纳多个线程的容器，其中的线程可以反复使用，省去了频繁创建线程对象的操作，无需反复创建线程而消耗过多资源。</li>
+</ul>
+<p>由于线程池中有很多操作都是与优化资源相关的，我们在这里就不多赘述。我们通过一张图来了解线程池的工作原理：</p>
+<p><img src="/2021/05/20/day20-%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1-%E7%BA%BF%E7%A8%8B%E6%B1%A0-Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86.bmp"></p>
+<p>合理利用线程池能够带来三个好处：</p>
+<ol>
+<li>降低资源消耗。减少了创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务。</li>
+<li>提高响应速度。当任务到达时，任务可以不需要的等到线程创建就能立即执行。</li>
+<li>提高线程的可管理性。可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为消耗过多的内存，而把服务器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机)。</li>
+</ol>
+<h2 id="2-3-线程池的使用"><a href="#2-3-线程池的使用" class="headerlink" title="2.3 线程池的使用"></a>2.3 线程池的使用</h2><p>Java里面线程池的顶级接口是<code>java.util.concurrent.Executor</code>，但是严格意义上讲<code>Executor</code>并不是一个线程池，而只是一个执行线程的工具。真正的线程池接口是<code>java.util.concurrent.ExecutorService</code>。</p>
+<p>要配置一个线程池是比较复杂的，尤其是对于线程池的原理不是很清楚的情况下，很有可能配置的线程池不是较优的，因此在<code>java.util.concurrent.Executors</code>线程工厂类里面提供了一些静态工厂，生成一些常用的线程池。官方建议使用Executors工程类来创建线程池对象。</p>
+<p>Executors类中有个创建线程池的方法如下：</p>
+<ul>
+<li><code>public static ExecutorService newFixedThreadPool(int nThreads)</code>：返回线程池对象。(创建的是有界线程池,也就是池中的线程个数可以指定最大数量)</li>
+</ul>
+<p>获取到了一个线程池ExecutorService 对象，那么怎么使用呢，在这里定义了一个使用线程池对象的方法如下：</p>
+<ul>
+<li><p><code>public Future&lt;?&gt; submit(Runnable task)</code>:获取线程池中的某一个线程对象，并执行</p>
+<blockquote>
+<p>Future接口：用来记录线程任务执行完毕后产生的结果。线程池创建与使用。</p>
+</blockquote>
+</li>
+</ul>
+<p>使用线程池中线程对象的步骤：</p>
+<ol>
+<li>创建线程池对象。</li>
+<li>创建Runnable接口子类对象。(task)</li>
+<li>提交Runnable接口子类对象。(take task)</li>
+<li>关闭线程池(一般不做)。</li>
+</ol>
+<p>Runnable实现类代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我要一个教练&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;教练来了： &quot;</span> + Thread.currentThread().getName());</span><br><span class="line">        System.out.println(<span class="string">&quot;教我游泳,交完后，教练回到了游泳池&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>线程池测试类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建线程池对象</span></span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">2</span>);<span class="comment">//包含2个线程对象</span></span><br><span class="line">        <span class="comment">// 创建Runnable实例对象</span></span><br><span class="line">        MyRunnable r = <span class="keyword">new</span> MyRunnable();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//自己创建线程对象的方式</span></span><br><span class="line">        <span class="comment">// Thread t = new Thread(r);</span></span><br><span class="line">        <span class="comment">// t.start(); ---&gt; 调用MyRunnable中的run()</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 从线程池中获取线程对象,然后调用MyRunnable中的run()</span></span><br><span class="line">        service.submit(r);</span><br><span class="line">        <span class="comment">// 再获取个线程对象，调用MyRunnable中的run()</span></span><br><span class="line">        service.submit(r);</span><br><span class="line">        service.submit(r);</span><br><span class="line">        <span class="comment">// 注意：submit方法调用结束后，程序并不终止，是因为线程池控制了线程的关闭。</span></span><br><span class="line">        <span class="comment">// 将使用完的线程又归还到了线程池中</span></span><br><span class="line">        <span class="comment">// 关闭线程池</span></span><br><span class="line">        <span class="comment">//service.shutdown();</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第三章、Lambda表达式"><a href="#第三章、Lambda表达式" class="headerlink" title="第三章、Lambda表达式"></a>第三章、Lambda表达式</h1><h2 id="3-1-函数式编程思想概述"><a href="#3-1-函数式编程思想概述" class="headerlink" title="3.1 函数式编程思想概述"></a>3.1 函数式编程思想概述</h2><p>在数学中，<strong>函数</strong>就是有输入量、输出量的一套计算方案，也就是“拿什么东西做什么事情”。相对而言，面向对象过分强调“必须通过对象的形式来做事情”，而函数式思想则尽量忽略面向对象的复杂语法——<strong>强调做什么，而不是以什么形式做</strong>。</p>
+<p>面向对象的思想:</p>
+<p>​    做一件事情,找一个能解决这个事情的对象,调用对象的方法,完成事情.</p>
+<p>函数式编程思想:</p>
+<p>​    只要能获取到结果,谁去做的,怎么做的都不重要,重视的是结果,不重视过程</p>
+<h2 id="3-2-冗余的Runnable代码"><a href="#3-2-冗余的Runnable代码" class="headerlink" title="3.2 冗余的Runnable代码"></a>3.2 冗余的Runnable代码</h2><h3 id="传统写法"><a href="#传统写法" class="headerlink" title="传统写法"></a>传统写法</h3><p>当需要启动一个线程去完成任务时，通常会通过<code>java.lang.Runnable</code>接口来定义任务内容，并使用<code>java.lang.Thread</code>类来启动该线程。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01Runnable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    	<span class="comment">// 匿名内部类</span></span><br><span class="line">		Runnable task = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123; <span class="comment">// 覆盖重写抽象方法</span></span><br><span class="line">				System.out.println(<span class="string">&quot;多线程任务执行！&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="keyword">new</span> Thread(task).start(); <span class="comment">// 启动线程</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本着“一切皆对象”的思想，这种做法是无可厚非的：首先创建一个<code>Runnable</code>接口的匿名内部类对象来指定任务内容，再将其交给一个线程来启动。</p>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><p>对于<code>Runnable</code>的匿名内部类用法，可以分析出几点内容：</p>
+<ul>
+<li><code>Thread</code>类需要<code>Runnable</code>接口作为参数，其中的抽象<code>run</code>方法是用来指定线程任务内容的核心；</li>
+<li>为了指定<code>run</code>的方法体，<strong>不得不</strong>需要<code>Runnable</code>接口的实现类；</li>
+<li>为了省去定义一个<code>RunnableImpl</code>实现类的麻烦，<strong>不得不</strong>使用匿名内部类；</li>
+<li>必须覆盖重写抽象<code>run</code>方法，所以方法名称、方法参数、方法返回值<strong>不得不</strong>再写一遍，且不能写错；</li>
+<li>而实际上，<strong>似乎只有方法体才是关键所在</strong>。</li>
+</ul>
+<h2 id="3-3-编程思想转换"><a href="#3-3-编程思想转换" class="headerlink" title="3.3 编程思想转换"></a>3.3 编程思想转换</h2><h3 id="做什么，而不是怎么做"><a href="#做什么，而不是怎么做" class="headerlink" title="做什么，而不是怎么做"></a>做什么，而不是怎么做</h3><p>我们真的希望创建一个匿名内部类对象吗？不。我们只是为了做这件事情而<strong>不得不</strong>创建一个对象。我们真正希望做的事情是：将<code>run</code>方法体内的代码传递给<code>Thread</code>类知晓。</p>
+<p><strong>传递一段代码</strong>——这才是我们真正的目的。而创建对象只是受限于面向对象语法而不得不采取的一种手段方式。那，有没有更加简单的办法？如果我们将关注点从“怎么做”回归到“做什么”的本质上，就会发现只要能够更好地达到目的，过程与形式其实并不重要。</p>
+<h3 id="生活举例"><a href="#生活举例" class="headerlink" title="生活举例"></a>生活举例</h3><p>当我们需要从北京到上海时，可以选择高铁、汽车、骑行或是徒步。我们的真正目的是到达上海，而如何才能到达上海的形式并不重要，所以我们一直在探索有没有比高铁更好的方式——搭乘飞机。</p>
+<p>而现在这种飞机（甚至是飞船）已经诞生：2014年3月Oracle所发布的Java 8（JDK 1.8）中，加入了<strong>Lambda表达式</strong>的重量级新特性，为我们打开了新世界的大门。</p>
+<h2 id="3-4-体验Lambda的更优写法"><a href="#3-4-体验Lambda的更优写法" class="headerlink" title="3.4 体验Lambda的更优写法"></a>3.4 体验Lambda的更优写法</h2><p>借助Java 8的全新语法，上述<code>Runnable</code>接口的匿名内部类写法可以通过更简单的Lambda表达式达到等效：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo02LambdaRunnable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">new</span> Thread(() -&gt;    System.out.println(<span class="string">&quot;多线程任务执行！&quot;</span>)   ).start(); <span class="comment">// 启动线程</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码和刚才的执行效果是完全一样的，可以在1.8或更高的编译级别下通过。从代码的语义中可以看出：我们启动了一个线程，而线程任务的内容以一种更加简洁的形式被指定。</p>
+<p>不再有“不得不创建接口对象”的束缚，不再有“抽象方法覆盖重写”的负担，就是这么简单！</p>
+<h2 id="3-5-回顾匿名内部类"><a href="#3-5-回顾匿名内部类" class="headerlink" title="3.5 回顾匿名内部类"></a>3.5 回顾匿名内部类</h2><p>Lambda是怎样击败面向对象的？在上例中，核心代码其实只是如下所示的内容：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">() -&gt; System.out.println(<span class="string">&quot;多线程任务执行！&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>为了理解Lambda的语义，我们需要从传统的代码起步。</p>
+<h3 id="使用实现类"><a href="#使用实现类" class="headerlink" title="使用实现类"></a>使用实现类</h3><p>要启动一个线程，需要创建一个<code>Thread</code>类的对象并调用<code>start</code>方法。而为了指定线程执行的内容，需要调用<code>Thread</code>类的构造方法：</p>
+<ul>
+<li><code>public Thread(Runnable target)</code></li>
+</ul>
+<p>为了获取<code>Runnable</code>接口的实现对象，可以为该接口定义一个实现类<code>RunnableImpl</code>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableImpl</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;多线程任务执行！&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后创建该实现类的对象作为<code>Thread</code>类的构造参数：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03ThreadInitParam</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Runnable task = <span class="keyword">new</span> RunnableImpl();</span><br><span class="line">		<span class="keyword">new</span> Thread(task).start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用匿名内部类"><a href="#使用匿名内部类" class="headerlink" title="使用匿名内部类"></a>使用匿名内部类</h3><p>这个<code>RunnableImpl</code>类只是为了实现<code>Runnable</code>接口而存在的，而且仅被使用了唯一一次，所以使用匿名内部类的语法即可省去该类的单独定义，即匿名内部类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04ThreadNameless</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;多线程任务执行！&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;).start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="匿名内部类的好处与弊端"><a href="#匿名内部类的好处与弊端" class="headerlink" title="匿名内部类的好处与弊端"></a>匿名内部类的好处与弊端</h3><p>一方面，匿名内部类可以帮我们<strong>省去实现类的定义</strong>；另一方面，匿名内部类的语法——<strong>确实太复杂了！</strong></p>
+<h3 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h3><p>仔细分析该代码中的语义，<code>Runnable</code>接口只有一个<code>run</code>方法的定义：</p>
+<ul>
+<li><code>public abstract void run();</code></li>
+</ul>
+<p>即制定了一种做事情的方案（其实就是一个函数）：</p>
+<ul>
+<li><strong>无参数</strong>：不需要任何条件即可执行该方案。</li>
+<li><strong>无返回值</strong>：该方案不产生任何结果。</li>
+<li><strong>代码块</strong>（方法体）：该方案的具体执行步骤。</li>
+</ul>
+<p>同样的语义体现在<code>Lambda</code>语法中，要更加简单：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">() -&gt; System.out.println(<span class="string">&quot;多线程任务执行！&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>前面的一对小括号即<code>run</code>方法的参数（无），代表不需要任何条件；</li>
+<li>中间的一个箭头代表将前面的参数传递给后面的代码；</li>
+<li>后面的输出语句即业务逻辑代码。</li>
+</ul>
+<h2 id="3-6-Lambda标准格式"><a href="#3-6-Lambda标准格式" class="headerlink" title="3.6 Lambda标准格式"></a>3.6 Lambda标准格式</h2><p>Lambda省去面向对象的条条框框，格式由<strong>3个部分</strong>组成：</p>
+<ul>
+<li>一些参数</li>
+<li>一个箭头</li>
+<li>一段代码</li>
+</ul>
+<p>Lambda表达式的<strong>标准格式</strong>为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(参数类型 参数名称) -&gt; &#123; 代码语句 &#125;</span><br></pre></td></tr></table></figure>
+
+<p>格式说明：</p>
+<ul>
+<li>小括号内的语法与传统方法参数列表一致：无参数则留空；多个参数则用逗号分隔。</li>
+<li><code>-&gt;</code>是新引入的语法格式，代表指向动作。</li>
+<li>大括号内的语法与传统方法体要求基本一致。</li>
+</ul>
+<h2 id="3-7-练习：使用Lambda标准格式（无参无返回）"><a href="#3-7-练习：使用Lambda标准格式（无参无返回）" class="headerlink" title="3.7 练习：使用Lambda标准格式（无参无返回）"></a>3.7 练习：使用Lambda标准格式（无参无返回）</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个厨子<code>Cook</code>接口，内含唯一的抽象方法<code>makeFood</code>，且无参数、无返回值。如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Cook</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">makeFood</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在下面的代码中，请使用Lambda的<strong>标准格式</strong>调用<code>invokeCook</code>方法，打印输出“吃饭啦！”字样：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo05InvokeCook</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO 请在此使用Lambda【标准格式】调用invokeCook方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">invokeCook</span><span class="params">(Cook cook)</span> </span>&#123;</span><br><span class="line">        cook.makeFood();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    invokeCook(() -&gt; &#123;</span><br><span class="line">      	System.out.println(<span class="string">&quot;吃饭啦！&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>备注：小括号代表<code>Cook</code>接口<code>makeFood</code>抽象方法的参数为空，大括号代表<code>makeFood</code>的方法体。</p>
+</blockquote>
+<h2 id="3-8-Lambda的参数和返回值"><a href="#3-8-Lambda的参数和返回值" class="headerlink" title="3.8 Lambda的参数和返回值"></a>3.8 Lambda的参数和返回值</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">需求:</span><br><span class="line">    使用数组存储多个Person对象</span><br><span class="line">    对数组中的Person对象使用Arrays的sort方法通过年龄进行升序排序</span><br></pre></td></tr></table></figure>
+
+<p>下面举例演示<code>java.util.Comparator&lt;T&gt;</code>接口的使用场景代码，其中的抽象方法定义为：</p>
+<ul>
+<li><code>public abstract int compare(T o1, T o2);</code></li>
+</ul>
+<p>当需要对一个对象数组进行排序时，<code>Arrays.sort</code>方法需要一个<code>Comparator</code>接口实例来指定排序的规则。假设有一个<code>Person</code>类，含有<code>String name</code>和<code>int age</code>两个成员变量：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123; </span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 省略构造器、toString方法与Getter Setter </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="传统写法-1"><a href="#传统写法-1" class="headerlink" title="传统写法"></a>传统写法</h3><p>如果使用传统的代码对<code>Person[]</code>数组进行排序，写法如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo06Comparator</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      	<span class="comment">// 本来年龄乱序的对象数组</span></span><br><span class="line">        Person[] array = &#123;</span><br><span class="line">        	<span class="keyword">new</span> Person(<span class="string">&quot;古力娜扎&quot;</span>, <span class="number">19</span>),</span><br><span class="line">        	<span class="keyword">new</span> Person(<span class="string">&quot;迪丽热巴&quot;</span>, <span class="number">18</span>),</span><br><span class="line">       		<span class="keyword">new</span> Person(<span class="string">&quot;马尔扎哈&quot;</span>, <span class="number">20</span>) &#125;;</span><br><span class="line"></span><br><span class="line">      	<span class="comment">// 匿名内部类</span></span><br><span class="line">        Comparator&lt;Person&gt; comp = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> o1.getAge() - o2.getAge();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        Arrays.sort(array, comp); <span class="comment">// 第二个参数为排序规则，即Comparator接口实例</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Person person : array) &#123;</span><br><span class="line">            System.out.println(person);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种做法在面向对象的思想中，似乎也是“理所当然”的。其中<code>Comparator</code>接口的实例（使用了匿名内部类）代表了“按照年龄从小到大”的排序规则。</p>
+<h3 id="代码分析-1"><a href="#代码分析-1" class="headerlink" title="代码分析"></a>代码分析</h3><p>下面我们来搞清楚上述代码真正要做什么事情。</p>
+<ul>
+<li>为了排序，<code>Arrays.sort</code>方法需要排序规则，即<code>Comparator</code>接口的实例，抽象方法<code>compare</code>是关键；</li>
+<li>为了指定<code>compare</code>的方法体，<strong>不得不</strong>需要<code>Comparator</code>接口的实现类；</li>
+<li>为了省去定义一个<code>ComparatorImpl</code>实现类的麻烦，<strong>不得不</strong>使用匿名内部类；</li>
+<li>必须覆盖重写抽象<code>compare</code>方法，所以方法名称、方法参数、方法返回值<strong>不得不</strong>再写一遍，且不能写错；</li>
+<li>实际上，<strong>只有参数和方法体才是关键</strong>。</li>
+</ul>
+<h3 id="Lambda写法"><a href="#Lambda写法" class="headerlink" title="Lambda写法"></a>Lambda写法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo07ComparatorLambda</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person[] array = &#123;</span><br><span class="line">          	<span class="keyword">new</span> Person(<span class="string">&quot;古力娜扎&quot;</span>, <span class="number">19</span>),</span><br><span class="line">          	<span class="keyword">new</span> Person(<span class="string">&quot;迪丽热巴&quot;</span>, <span class="number">18</span>),</span><br><span class="line">          	<span class="keyword">new</span> Person(<span class="string">&quot;马尔扎哈&quot;</span>, <span class="number">20</span>) &#125;;</span><br><span class="line"></span><br><span class="line">        Arrays.sort(array, (Person a, Person b) -&gt; &#123;</span><br><span class="line">          	<span class="keyword">return</span> a.getAge() - b.getAge();</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Person person : array) &#123;</span><br><span class="line">            System.out.println(person);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-9-练习：使用Lambda标准格式（有参有返回）"><a href="#3-9-练习：使用Lambda标准格式（有参有返回）" class="headerlink" title="3.9 练习：使用Lambda标准格式（有参有返回）"></a>3.9 练习：使用Lambda标准格式（有参有返回）</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>给定一个计算器<code>Calculator</code>接口，内含抽象方法<code>calc</code>可以将两个int数字相加得到和值：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Calculator</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在下面的代码中，请使用Lambda的<strong>标准格式</strong>调用<code>invokeCalc</code>方法，完成120和130的相加计算：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo08InvokeCalc</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO 请在此使用Lambda【标准格式】调用invokeCalc方法来计算120+130的结果ß</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">invokeCalc</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, Calculator calculator)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = calculator.calc(a, b);</span><br><span class="line">        System.out.println(<span class="string">&quot;结果是：&quot;</span> + result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    invokeCalc(<span class="number">120</span>, <span class="number">130</span>, (<span class="keyword">int</span> a, <span class="keyword">int</span> b) -&gt; &#123;</span><br><span class="line">      	<span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>备注：小括号代表<code>Calculator</code>接口<code>calc</code>抽象方法的参数，大括号代表<code>calc</code>的方法体。</p>
+</blockquote>
+<h2 id="3-10-Lambda省略格式"><a href="#3-10-Lambda省略格式" class="headerlink" title="3.10 Lambda省略格式"></a>3.10 Lambda省略格式</h2><h3 id="可推导即可省略"><a href="#可推导即可省略" class="headerlink" title="可推导即可省略"></a>可推导即可省略</h3><p>Lambda强调的是“做什么”而不是“怎么做”，所以凡是可以根据上下文推导得知的信息，都可以省略。例如上例还可以使用Lambda的省略写法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  	invokeCalc(<span class="number">120</span>, <span class="number">130</span>, (a, b) -&gt; a + b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="省略规则"><a href="#省略规则" class="headerlink" title="省略规则"></a>省略规则</h3><p>在Lambda标准格式的基础上，使用省略写法的规则为：</p>
+<ol>
+<li>小括号内参数的类型可以省略；</li>
+<li>如果小括号内<strong>有且仅有一个参</strong>，则小括号可以省略；</li>
+<li>如果大括号内<strong>有且仅有一个语句</strong>，则无论是否有返回值，都可以省略大括号、return关键字及语句分号。</li>
+</ol>
+<blockquote>
+<p>备注：掌握这些省略规则后，请对应地回顾本章开头的多线程案例。</p>
+</blockquote>
+<h2 id="3-11-练习：使用Lambda省略格式"><a href="#3-11-练习：使用Lambda省略格式" class="headerlink" title="3.11 练习：使用Lambda省略格式"></a>3.11 练习：使用Lambda省略格式</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>仍然使用前文含有唯一<code>makeFood</code>抽象方法的厨子<code>Cook</code>接口，在下面的代码中，请使用Lambda的<strong>省略格式</strong>调用<code>invokeCook</code>方法，打印输出“吃饭啦！”字样：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo09InvokeCook</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO 请在此使用Lambda【省略格式】调用invokeCook方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">invokeCook</span><span class="params">(Cook cook)</span> </span>&#123;</span><br><span class="line">        cook.makeFood();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="解答-2"><a href="#解答-2" class="headerlink" title="解答"></a>解答</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  	invokeCook(() -&gt; System.out.println(<span class="string">&quot;吃饭啦！&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-12-Lambda的使用前提"><a href="#3-12-Lambda的使用前提" class="headerlink" title="3.12 Lambda的使用前提"></a>3.12 Lambda的使用前提</h2><p>Lambda的语法非常简洁，完全没有面向对象复杂的束缚。但是使用时有几个问题需要特别注意：</p>
+<ol>
+<li>使用Lambda必须具有接口，且要求<strong>接口中有且仅有一个抽象方法</strong>。<br>无论是JDK内置的<code>Runnable</code>、<code>Comparator</code>接口还是自定义的接口，只有当接口中的抽象方法存在且唯一时，才可以使用Lambda。</li>
+<li>使用Lambda必须具有<strong>上下文推断</strong>。<br>也就是方法的参数或局部变量类型必须为Lambda对应的接口类型，才能使用Lambda作为该接口的实例。</li>
+</ol>
+<blockquote>
+<p>备注：有且仅有一个抽象方法的接口，称为“<strong>函数式接口</strong>”。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>培训学习</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>day19-线程-线程安全</title>
     <url>/2021/05/18/day19-%E7%BA%BF%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/</url>
     <content><![CDATA[<span id="more"></span>
