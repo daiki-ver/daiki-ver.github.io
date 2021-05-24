@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-05-23T12:34:33.352Z</updated>
+  <updated>2021-05-24T11:15:52.312Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>day22-缓冲流-转换流-序列化</title>
+    <link href="http://example.com/2021/05/24/day22-%E7%BC%93%E5%86%B2%E6%B5%81-%E8%BD%AC%E6%8D%A2%E6%B5%81-%E5%BA%8F%E5%88%97%E5%8C%96/"/>
+    <id>http://example.com/2021/05/24/day22-%E7%BC%93%E5%86%B2%E6%B5%81-%E8%BD%AC%E6%8D%A2%E6%B5%81-%E5%BA%8F%E5%88%97%E5%8C%96/</id>
+    <published>2021-05-24T10:56:18.000Z</published>
+    <updated>2021-05-24T11:15:52.312Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;今日内容：缓冲流、转换流、序列化、打印流。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
+    
+    <category term="培训学习" scheme="http://example.com/categories/Java/%E5%9F%B9%E8%AE%AD%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    
+    <category term="学习" scheme="http://example.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>day21-File类-字节流-字符流</title>
@@ -439,29 +462,6 @@
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;今日学习内容：循环语句、方法进阶、数组&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="http://example.com/categories/Java/"/>
-    
-    <category term="培训学习" scheme="http://example.com/categories/Java/%E5%9F%B9%E8%AE%AD%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="Java" scheme="http://example.com/tags/Java/"/>
-    
-    <category term="学习" scheme="http://example.com/tags/%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>day02-类型转换-运算符-码表-方法-流程结构</title>
-    <link href="http://example.com/2021/04/08/day02-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-%E8%BF%90%E7%AE%97%E7%AC%A6-%E7%A0%81%E8%A1%A8-%E6%96%B9%E6%B3%95-%E6%B5%81%E7%A8%8B%E7%BB%93%E6%9E%84/"/>
-    <id>http://example.com/2021/04/08/day02-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-%E8%BF%90%E7%AE%97%E7%AC%A6-%E7%A0%81%E8%A1%A8-%E6%96%B9%E6%B3%95-%E6%B5%81%E7%A8%8B%E7%BB%93%E6%9E%84/</id>
-    <published>2021-04-08T14:46:44.000Z</published>
-    <updated>2021-04-11T06:46:03.315Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;今日学习内容：数据类型转换、算数运算符、比较运算符、逻辑运算符、三元运算符、码表、方法的定义及调用、流程控制结构。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</summary>
     
     
     
