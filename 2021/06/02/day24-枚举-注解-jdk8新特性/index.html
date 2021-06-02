@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    day24-枚举-注解-jdk8新特性 |
+    
+    Daiki&#39;s Blog</title>
+  
+  <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Daiki's Blog" type="application/atom+xml">
+</head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-day24-枚举-注解-jdk8新特性" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h1 class="article-title" itemprop="name">
+  day24-枚举-注解-jdk8新特性
+</h1>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2021/06/02/day24-%E6%9E%9A%E4%B8%BE-%E6%B3%A8%E8%A7%A3-jdk8%E6%96%B0%E7%89%B9%E6%80%A7/" class="article-date">
+  <time datetime="2021-06-02T07:51:02.000Z" itemprop="datePublished">2021-06-02</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/Java/">Java</a> / <a class="article-category-link" href="/categories/Java/%E5%9F%B9%E8%AE%AD%E5%AD%A6%E4%B9%A0/">培训学习</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+      <p><strong><em>今日内容：枚举，注解，jdk8新特性</em></strong></p>
+<span id="more"></span>
+
+<h1 id="1-注解"><a href="#1-注解" class="headerlink" title="1.  注解"></a>1.  注解</h1><h2 id="1-1-注解概述"><a href="#1-1-注解概述" class="headerlink" title="1.1  注解概述"></a>1.1  注解概述</h2><p>  从 JDK 5.0 开始, Java 增加了对元数据(MetaData) 的支持, 也就是Annotation(注解)</p>
+<ul>
+<li>Annotation 其实就是代码里的特殊标记, 这些标记可以在编译, 类加载, 运行时被读</li>
+</ul>
+<p>取, 并执行相应的处理。通过使用 Annotation, 程序员可以在不改变原有逻辑的情况下, 在</p>
+<p>源文件中嵌入一些补充信息。代码分析工具、开发工具和部署工具可以通过这些补充信息进行</p>
+<p>验证或者进行部署。</p>
+<ul>
+<li>Annotation 可以像修饰符一样使用, 可用于修饰包，类, 构造器, 方法, 成员变量,局部变量，</li>
+</ul>
+<p> 形式参数。</p>
+<p>在JavaSE中，注解的使用目的比较简单，例如标记过时的功能，忽略警告等。在JavaEE中</p>
+<p>注解占据了更重要的角色，例如使用注解来配置应用程序的切面或访问路径，代替JavaEE旧版中所遗留的繁冗代码和XML配置等。</p>
+<p>  未来的开发模式都是基于注解的，Spring2.5以上都是基于注解的，springMvc也是基于注解的。注解是一种趋势，一定程度上可以说：<strong>框架 = 注解+反射+设计模式。</strong></p>
+<h2 id="1-2-常见注解示例"><a href="#1-2-常见注解示例" class="headerlink" title="1.2  常见注解示例"></a>1.2  常见注解示例</h2><p>使用Annotation时需要在它前面添加@符号，并把该 Annotation 当成一个修饰符使用。用于修饰它支持的程序元素。</p>
+<p><strong>示例一：生成文档相关的注解</strong></p>
+<p>在Java源文件中支持使用注解来生成对应的API文档，这些注解都要写在文档注释中。例如：</p>
+<p>@author： 标明开发该类模块的作者，多个作者之间使用,分割</p>
+<p>@version 标明该类模块的版本</p>
+<p>@since 从哪个版本开始增加的</p>
+<p>@param 对方法中某参数的说明，如果没有参数就不能写</p>
+<p>@return 对方法返回值的说明，如果方法的返回值类型是void就不能写</p>
+<p><strong>示例二：JDK内置的三个注解</strong></p>
+<p> JDK内置了3个注解，它们都在编译时进行格式检查</p>
+<ul>
+<li><p>@Override: 限定重写父类或接口中的方法, 该注解只能修饰方法</p>
+</li>
+<li><p>@Deprecated: 用于修饰已经过时的方法，通常是因为存在更好的选择</p>
+</li>
+<li><p>@SuppressWarnings: 抑制编译器警告</p>
+</li>
+</ul>
+<p>除此之外，注解还有代替配置文件的功能，后面学web开发时再研究</p>
+<h2 id="1-3-JDK中的元注解"><a href="#1-3-JDK中的元注解" class="headerlink" title="1.3  JDK中的元注解"></a>1.3  JDK中的元注解</h2><p>元注解就是修饰注解的注解，任何自定义的注解都是基于元注解的。</p>
+<p>JDK5.0提供了4个标准的meta-annotation类型，分别是：</p>
+<ul>
+<li><p>Retention</p>
+</li>
+<li><p>Target</p>
+</li>
+<li><p>Documented</p>
+</li>
+<li><p>Inherited</p>
+</li>
+</ul>
+<h3 id="2-3-1-Target-–重点"><a href="#2-3-1-Target-–重点" class="headerlink" title="2.3.1 @Target  –重点"></a>2.3.1 @Target  –重点</h3><p>@Target指定Annotation所修饰的元素范围：Annotation可被用来修饰package、type（类、接口、枚举、Annotation类型）、类型成员（方法、构造方法、成员变量）、局部变量等元素。在Annotation类型的声明中使用target可更加明晰其修饰的目标。</p>
+<p>　　作用：<strong>用于描述注解的使用范围（即被描述的注解可以用在什么地方）</strong></p>
+<p>　　取值(ElementType)有：</p>
+<p>　　　　1.CONSTRUCTOR:用于描述构造方法</p>
+<p>　　　　2.FIELD:用于描述属性</p>
+<p>　　　　3.LOCAL_VARIABLE:用于描述局部变量</p>
+<p>　　　　4.METHOD:用于描述方法</p>
+<p>　　　　5.PACKAGE:用于描述包</p>
+<p>　　　　6.PARAMETER:用于描述参数</p>
+<p>　　　　7.TYPE:用于描述类、接口(包括注解类型) 或enum声明</p>
+<h3 id="2-3-2-Retention-–重点"><a href="#2-3-2-Retention-–重点" class="headerlink" title="2.3.2 @Retention –重点"></a>2.3.2 @Retention –重点</h3><p>@Retention定义了该Annotation被保留的时间长短：某些Annotation仅出现在源代码中，而被编译器丢弃；而另一些却被编译在class文件中；编译在class文件中的Annotation可能会被虚拟机忽略，使用这个元注解可以限制 Annotation的“生命周期”。</p>
+<p>　　作用：表示需要在什么级别保存该注解信息，用于描述注解的生命周期（即：被描述的注解在什么范围内有效）</p>
+<p>　　取值（RetentionPoicy）有：</p>
+<p>　　　　1.SOURCE:在源文件中有效（即源文件保留），编译器直接丢弃这种策略的注解</p>
+<p>　　　　2.CLASS:在class文件中有效（即class保留），当运行Java 程序时, JVM </p>
+<p>不会保留注解。 这是默认值</p>
+<p>　　　　3.RUNTIME:在运行时有效（即运行时保留），当运行 Java 程序时, JVM 会</p>
+<p>保留注解。程序可以通过反射获取该注解</p>
+<h3 id="2-3-3-Documented–了解"><a href="#2-3-3-Documented–了解" class="headerlink" title="2.3.3 @Documented–了解"></a>2.3.3 @Documented–了解</h3><p> 用于指定被该元 Annotation 修饰的 Annotation 将被javadoc 工具提取到文档中。默认情况下，javadoc是不包括注解的。</p>
+<h3 id="2-3-4-Inherited–了解"><a href="#2-3-4-Inherited–了解" class="headerlink" title="2.3.4 @Inherited–了解"></a>2.3.4 @Inherited–了解</h3><p> 被它修饰的 Annotation 将具有继承性。如果某个类使用了被@Inherited修饰的 Annotation, 则其子类将自动具有该注解。</p>
+<h2 id="1-4-自定义注解"><a href="#1-4-自定义注解" class="headerlink" title="1.4  自定义注解"></a>1.4  自定义注解</h2><p>IDEA中创建自定义的注解，是New–&gt;Java Class –&gt;选择Annotation.如下所示：</p>
+<p>​                               </p>
+<p>生成的注解类前面使用@interface关键字，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public @interface MyAnnotation1&#123;</span><br><span class="line">&#125;</span><br><span class="line">自定义注解有如下特点：</span><br></pre></td></tr></table></figure>
+
+<p>1). 自定义注解自动继承了java.lang.annotation.Annotation接口</p>
+<p>2). Annotation 的成员变量在 Annotation 定义中以无参数方法的形式来声明。其</p>
+<p>方法名和返回值定义了该成员的名字和类型。我们称为配置参数。类型只能</p>
+<p>是八种基本数据类型、String类型、Class类型、enum类型、Annotation类型</p>
+<p>3).可以在定义 Annotation 的成员变量时使用 default 关键字为其指定初始值</p>
+<p>4). 如果只有一个参数成员，建议使用参数名为value</p>
+<p>5). 如果定义的注解含有配置参数，那么使用该注解时必须指定参数值，除非它有默认</p>
+<p>值。格式是“参数名 = 参数值”，如果只有一个参数成员，且名称为value，可以省略</p>
+<p>“value=”。有多个参数成员时，则不能省略”value=”</p>
+<ol start="6">
+<li>如果注解的成员变量(配置参数)的值是数组，在使用注解时只给该参数传一个值，那么{}可省略</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Target(value &#x3D;&#123;ElementType.TYPE&#125; )等价于@Target(value &#x3D;ElementType.TYPE)</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例：自定义注解MyAnnotation1</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE, ElementType.METHOD,ElementType.CONSTRUCTOR&#125;)</span></span><br><span class="line"><span class="meta">@Retention(value = RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> FirstAnnotation &#123;</span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">age</span><span class="params">()</span> <span class="keyword">default</span> 18</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>使用注解</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FirstAnnotation(name = &quot;张三&quot;)</span></span><br><span class="line"><span class="meta">@SecondAnnotation(&quot;李四&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@FirstAnnotation(name = &quot;Mike&quot;,age=26)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">study</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;老师学习&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;老师吃饭&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@FirstAnnotation(name=&quot;Jack&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="title">Student</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-5-使用反射读取注解"><a href="#1-5-使用反射读取注解" class="headerlink" title="1.5 使用反射读取注解"></a>1.5 使用反射读取注解</h2><p>当把注解用在某个程序元素上后，通常需要使用反射来读取注解。JDK的API中提供了如下方法获取注解：</p>
+<p>[Annotation](mk:@MSITStore:D:\resources\openSource\JDK_api 1.8_google.CHM::/java/lang/annotation/Annotation.html)[] getAnnotations() :返回存在于此元素上的注解</p>
+<p>[Annotation](mk:@MSITStore:D:\resources\openSource\JDK_api 1.8_google.CHM::/java/lang/annotation/Annotation.html)[] getDeclaredAnnotations() :获取直接存在于此元素上的注解</p>
+<p>[Annotation](mk:@MSITStore:D:\resources\openSource\JDK_api 1.8_google.CHM::/java/lang/annotation/Annotation.html)  getDeclaredAnnotation(Class annotationClass): 如果指定类型的注解直接存在，则返回此注解，否则返回null</p>
+<p>boolean isAnnotationPresent(Class annotationClass): 如果此元素上存在指定类型的注解，则返回true，否则返回false</p>
+<h1 id="2-枚举"><a href="#2-枚举" class="headerlink" title="2.  枚举"></a>2.  枚举</h1><h2 id="2-1概述"><a href="#2-1概述" class="headerlink" title="2.1概述"></a>2.1概述</h2><p>枚举（enum）类型是JDK1.5新增的特性。当类的对象只有有限个而且是确定的，我们称它为枚举类。例如：</p>
+<p> 星期： Monday(星期一)、 ……、 Sunday(星期天)</p>
+<ul>
+<li><p>性别： Man(男)、 Woman(女)</p>
+</li>
+<li><p>季节： Spring(春节)……Winter(冬天)</p>
+</li>
+<li><p>支付方式： Cash（现金）、 WeChatPay（微信）、 Alipay(支付宝)、 BankCard(银</p>
+</li>
+</ul>
+<p>行卡)、 CreditCard(信用卡)</p>
+<ul>
+<li>订单状态： Nonpayment（未付款）、 Paid（已付款） 、 Delivered（已发货）、</li>
+</ul>
+<p>Return（退货）、 Checked（已确认） Fulfilled（已配货）</p>
+<p>当需要定义一组常量时，强烈建议使用枚举类 </p>
+<h2 id="2-2枚举的简单使用"><a href="#2-2枚举的简单使用" class="headerlink" title="2.2枚举的简单使用"></a>2.2枚举的简单使用</h2><p>枚举类型的定义包括枚举声明和枚举体。格式如下：</p>
+<p>  <strong>enum</strong> 枚举名 {    枚举体（常量列表）  }  </p>
+<p>枚举体就是放置一些常量，多个常量用逗号分隔。</p>
+<p>【示例】创建枚举类型</p>
+<p>  <strong>enum</strong> Season {    *<strong>SPRING*</strong>, *<strong>SUMMER*</strong>, *<strong>AUTUMN*</strong>, *<strong>WINTER;*</strong>   }  </p>
+<p>enum的语法结构尽管和class的语法不一样，但是经过编译器编译之后产生的是一个class文件，所以枚举实质上还是类，<strong>枚举类型隐式继承自****java.lang.Enum</strong>。枚举中的每个成员其实就是枚举类型的一个实例。</p>
+<h2 id="2-3-枚举类的属性，方法"><a href="#2-3-枚举类的属性，方法" class="headerlink" title="2.3 枚举类的属性，方法"></a>2.3 枚举类的属性，方法</h2><p> 自定义的枚举类可添加私有构造器，属性，方法</p>
+<p> 枚举类的构造器只能使用 private 权限修饰符</p>
+<p>枚举类的所有实例必须在枚举类中显式列出(<strong>,</strong> 分隔 <strong>;</strong> 结尾)。列出的实例系统会<br> 自动添加 public static final 修饰，即都是常量</p>
+<p>注意：<br> Ø必须在枚举类的第一行声明枚举类对象 </p>
+<p>Ø枚举类中只有带参构造方法时，枚举类对象要传实参</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ø枚举类中的属性都应该加上final来修饰，不能再变</span><br></pre></td></tr></table></figure>
+
+<p>[示例]：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Season</span> </span>&#123;</span><br><span class="line">    <span class="comment">//带参数的构造方法，枚举成员调用构造方法，语法：成员(实参)</span></span><br><span class="line">    SPRING(<span class="string">&quot;春&quot;</span>, <span class="string">&quot;春暖花开&quot;</span>), SUMMER(<span class="string">&quot;夏&quot;</span>, <span class="string">&quot;夏日炎炎&quot;</span>),</span><br><span class="line">    AUTUMN(<span class="string">&quot;秋&quot;</span>, <span class="string">&quot;秋高气爽&quot;</span>), WINTER(<span class="string">&quot;冬&quot;</span>, <span class="string">&quot;冰天雪地&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonDesc;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Season</span><span class="params">(String seasonName, String seasonDesc)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.seasonName=seasonName;</span><br><span class="line">        <span class="keyword">this</span>.seasonDesc=seasonDesc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSeasonName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> seasonName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSeasonDesc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> seasonDesc;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从JDK 1.5 开始，可以在 switch结构使用枚举类的对象作为表达式, case 子句可以直接使用枚举值的名字, 无需在前面添加枚举类作为限定。</p>
+<p>swtich(表达式){</p>
+<p>case 常量1：</p>
+<p>  break;</p>
+<p>case 常量2：</p>
+<p>  break;</p>
+<p>…</p>
+<p>default:</p>
+<p> break;</p>
+<p>}</p>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testEnum</span><span class="params">(Season sea)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//在 switch结构使用枚举类的对象作为表达式</span></span><br><span class="line">    <span class="keyword">switch</span> (sea) &#123;</span><br><span class="line">        <span class="keyword">case</span> SPRING:</span><br><span class="line">            System.out.println(<span class="string">&quot;序号：&quot;</span> + sea.ordinal() + <span class="string">&quot;,&quot;</span> + sea.getSeasonDesc());</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> SUMMER:</span><br><span class="line">            System.out.println(<span class="string">&quot;序号：&quot;</span> + sea.ordinal() + <span class="string">&quot;,&quot;</span> + sea.getSeasonDesc());</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> AUTUMN:</span><br><span class="line">            System.out.println(<span class="string">&quot;序号：&quot;</span> + sea.ordinal() + <span class="string">&quot;,&quot;</span> + sea.getSeasonDesc());</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            System.out.println(<span class="string">&quot;序号：&quot;</span> + sea.ordinal() + <span class="string">&quot;,&quot;</span> + sea.getSeasonDesc());</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-Enum类的主要方法"><a href="#2-4-Enum类的主要方法" class="headerlink" title="2.4 Enum类的主要方法"></a>2.4 Enum类的主要方法</h2><p>Ø **values()**方法：返回枚举类型的对象数组。该方法可以很方便地遍历所有的<br> 枚举值。<br> Ø **valueOf(String str)**：可以把一个字符串转为对应的枚举类对象。要求字符<br> 串必须是枚举类对象的“名字”。如不是，会有运行时异常：IllegalArgumentException。<br> Ø **toString()**：返回当前枚举类对象常量的名称 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Ø <span class="title">ordinal</span><span class="params">()</span>：返回当前枚举常量的次序<span class="params">(从<span class="number">0</span>开始)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    testEnum(Season.AUTUMN);</span><br><span class="line"></span><br><span class="line">    Season[] values = Season.values();</span><br><span class="line">    <span class="comment">//遍历所有枚举</span></span><br><span class="line">    <span class="keyword">for</span> (Season s : values) &#123;</span><br><span class="line">        System.out.println(s.getSeasonDesc()+<span class="string">&quot;,&quot;</span>+s.getSeasonName());</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;*********************&quot;</span>);</span><br><span class="line">    Season winter = Season.valueOf(<span class="string">&quot;WINTER&quot;</span>);</span><br><span class="line">    System.out.println(winter.getSeasonDesc()+<span class="string">&quot;,&quot;</span>+winter.getSeasonName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-Java8新特性"><a href="#3-Java8新特性" class="headerlink" title="3 Java8新特性"></a>3 Java8新特性</h1><p>Java 8 (又称为 jdk 1.8) 是 Java 语言开发的一个主要版本。</p>
+<p>Java 8 是oracle公司于2014年3月发布，可以看成是自Java 5 以来最具革命性的版本。 Java 8为Java语言、编译器、类库、开发工具与JVM带来了大量新特性。</p>
+<p>Java8的新特性如下：</p>
+<p>u 速度更快</p>
+<p>u 代码更少(增加了新的语法：Lambda 表达式)</p>
+<p>u 强大的Stream API</p>
+<h2 id="3-1-Lambda表达式"><a href="#3-1-Lambda表达式" class="headerlink" title="3.1 Lambda表达式"></a>3.1 Lambda表达式</h2><h3 id="Lambda简介"><a href="#Lambda简介" class="headerlink" title="Lambda简介"></a>Lambda简介</h3><p><strong>为什么使用 Lambda</strong> <strong>表达式？</strong></p>
+<p>Lambda 是一个匿名函数，我们可以把 Lambda 表达式理解为一段可以传递的代码（将代码像数据一样进行传递）。使用它可以写出更简洁、更灵活的代码。作为一种更紧凑的代码风格，使Java的语言表达能力得到了提升。</p>
+<p><strong>从匿名类到 Lambda</strong> <strong>的转换举例1</strong></p>
+<p><strong>从匿名类到 Lambda</strong> <strong>的转换举例2</strong></p>
+<h3 id="Lambda表达式语法"><a href="#Lambda表达式语法" class="headerlink" title="Lambda表达式语法"></a>Lambda表达式语法</h3><p>Lambda 表达式：在Java 8 语言中引入的一种新的语法元素和操作符。这个操作符为 “**-&gt;**” ， 该操作符被称为 Lambda 操作符或箭头操作符。它将 Lambda 分为两个部分：</p>
+<p>左侧：指定了Lambda 表达式需要的参数列表</p>
+<p>右侧：指定了Lambda体，是抽象方法的实现逻辑，也即 Lambda 表达式要执行的功能。 </p>
+<h3 id="类型推断"><a href="#类型推断" class="headerlink" title="类型推断"></a>类型推断</h3><p>上述 Lambda 表达式中的参数类型都是由编译器推断得出的。Lambda 表达式中无需指定类型，程序依然可以编译，这是因为javac 根据程序的上下文，在后台推断出了参数的类型。Lambda 表达式的类型依赖于上下文环境，是由编译器推断出来的。这就是所谓的“类型推断”。</p>
+<h2 id="3-2-函数式接口"><a href="#3-2-函数式接口" class="headerlink" title="3.2 函数式接口"></a>3.2 函数式接口</h2><h3 id="什么是函数式-Functional-接口"><a href="#什么是函数式-Functional-接口" class="headerlink" title="什么是函数式(Functional)接口"></a>什么是函数式(Functional)接口</h3><p>只包含一个抽象方法的接口，称为函数式接口。</p>
+<p>你可以通过 Lambda表达式来创建该接口的对象。（若 Lambda 表达式抛出一个受检异常(即：非运行时异常)，那么该异常需要在目标接口的抽象方法上进行声明）。</p>
+<p>我们可以在一个接口上使用 @FunctionalInterface注解，这样做可以检查它是否是一个函数式接口。同时 javadoc 也会包含一条声明，说明这个接口是一个函数式接口。</p>
+<p>在java.util.function包下定义了java8 的丰富的函数式接口</p>
+<h3 id="如何理解函数式接口"><a href="#如何理解函数式接口" class="headerlink" title="如何理解函数式接口"></a>如何理解函数式接口</h3><p>Java从诞生日起就是一直倡导“一切皆对象”，在java里面面向对象(OOP)编程是一切。但是随着python、scala等语言的兴起和新技术的挑战，java不得不做出调整以便支持更加广泛的技术要求，也即java不但可以支持OOP还可以支持OOF（面向函数编程）</p>
+<p>在函数式编程语言当中，函数被当做一等公民对待。在将函数作为一等公民的编程语言中，Lambda表达式的类型是函数。但是在Java8中有所不同，Java8中Lambda表达式是对象，而不是函数，它们必须依附于一类特别的对象类型——函数式接口。</p>
+<p>简单的说，在Java8中，Lambda表达式就是一个函数式接口的实例。这就是Lambda表达式和函数式接口的关系。也就是说，只要一个对象是函数式接口的实例，那么该对象就可以用Lambda表达式来表示。</p>
+<p>所以以前用匿名内部类表示的现在都可以用Lambda表达式来写。</p>
+<h3 id="Java内置四大函数式接口"><a href="#Java内置四大函数式接口" class="headerlink" title="Java内置四大函数式接口"></a>Java内置四大函数式接口</h3><h3 id="自定义函数式接口"><a href="#自定义函数式接口" class="headerlink" title="自定义函数式接口"></a>自定义函数式接口</h3><p> 在接口上使用@FunctionalInterface标记一个函数式接口</p>
+<p> 函数式接口可作为方法的参数来传递，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**public** String toUpperString***(\***MyFunc***&lt;\***String***&gt;\*** func,String str***)&#123; \***   **return** func.getValue***(\***str***)\***;  ***&#125;\***</span><br></pre></td></tr></table></figure>
+
+<p>调用方法时，要给MyFunc传递Lambda表达式(test表示当前类的对象)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String newStr &#x3D; test.toUpperString***(\******(\***str***)\*** -&gt; str.toUpperCase***()\***, **&quot;abcdef&quot;*****)\***; System.***out\***.println***(\***newStr***)\***;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-强大的Stream-API"><a href="#3-3-强大的Stream-API" class="headerlink" title="3.3 强大的Stream API"></a>3.3 强大的Stream API</h2><h3 id="Stream-API说明"><a href="#Stream-API说明" class="headerlink" title="Stream API说明"></a>Stream API说明</h3><p>Java8中有两大最为重要的改变。第一个是 Lambda 表达式；另外一个则是Stream API。</p>
+<p>Stream API ( java.util.stream) 把真正的函数式编程风格引入到Java中。这是目前为止对Java类库最好的补充，因为Stream API可以极大提高Java程序员的生产力，让程序员写出高效率、干净、简洁的代码。</p>
+<p>Stream 是 Java8 中处理集合的关键抽象概念，它可以指定你希望对集合进行的操作，可以执行非常复杂的查找、过滤和映射数据等操作。使用Stream API 对集合数据进行操作，就类似于使用SQL 执行的数据库查询。简言之，Stream API 提供了一种高效且易于使用的处理数据的方式。</p>
+<h3 id="为什么要使用Stream-API"><a href="#为什么要使用Stream-API" class="headerlink" title="为什么要使用Stream API"></a>为什么要使用Stream API</h3><p>实际开发中，项目中大多数数据源都来自于Mysql，Oracle等数据库。但现在数据源可以更多了，有MongoDB，Redis等，而这些NoSQL的数据就需要java层面去处理。</p>
+<p>Stream 和 Collection 集合的区别： Collection 是一种静态的内存数据结构，而 Stream 是有关计算的。 前者是主要面向内存，存储在内存中，后者主要是面向 CPU，通过 CPU 实现计算。</p>
+<p>在Java8以前，对集合的操作需要写出处理的过程，如在集合中筛选出满足条件的数据，需要一一遍历集合中的每个元素，再把每个元素逐一判断是否满足条件，最后将满足条件的元素保存返回。而Stream 对集合筛选的操作提供了一种更为便捷的操作，只需将实现函数接口的筛选条件作为参数传递进来，Stream会自行操作并将合适的元素同样以stream 的方式返回，最后进行接收即可。</p>
+<h3 id="什么是Stream"><a href="#什么是Stream" class="headerlink" title="什么是Stream"></a>什么是Stream</h3><p>Stream是数据渠道，用于操作数据源（集合、数组等）所生成的元素序列。“集合讲的是数据，Stream讲的是计算！”</p>
+<p><strong>Stream****的特点如下：</strong></p>
+<p>①Stream不是集合，自己不会存储元素。</p>
+<p>②Stream不会改变源对象。相反，它们会返回一个持有结果的新Stream。</p>
+<p>③Stream操作是延迟执行的。这意味着它们会等到需要结果的时候才执行。</p>
+<h3 id="Stream操作的三个步骤"><a href="#Stream操作的三个步骤" class="headerlink" title="Stream操作的三个步骤"></a>Stream操作的三个步骤</h3><h3 id="创建Stream"><a href="#创建Stream" class="headerlink" title="创建Stream"></a>创建Stream</h3><p><strong>创建</strong> <strong>Stream****方式一：通过集合</strong></p>
+<p>Java8 中的 Collection 接口被扩展，提供了两个获取流的方法：</p>
+<p><strong>default Stream<E> stream() :</E></strong> 返回一个顺序流</p>
+<p><strong>default Stream<E> parallelStream() :</E></strong> 返回一个并行流</p>
+<p><strong>创建</strong> <strong>Stream****方式二：通过数组</strong></p>
+<p>Java8 中的 Arrays 的静态方法 stream() 可以获取数组流：</p>
+<p><strong>static <T> Stream<T> stream(T[] array):</T></T></strong> 返回一个流</p>
+<p>重载形式，能够处理对应基本类型的数组：</p>
+<p>public static IntStream stream(int[] array)</p>
+<p>public static LongStream stream(long[] array)</p>
+<p>public static DoubleStream stream(double[] array)</p>
+<p><strong>创建</strong> <strong>Stream<strong><strong>方式三：通过</strong></strong>Stream<strong><strong>的</strong></strong>of()</strong></p>
+<p>可以调用Stream类静态方法 of(), 通过显示值创建一个流。它可以接收任意数量的参数。</p>
+<p><strong>public static<T> Stream<T> of(T… values) :</T></T></strong> 返回一个流</p>
+<h3 id="Stream的中间操作"><a href="#Stream的中间操作" class="headerlink" title="Stream的中间操作"></a>Stream的中间操作</h3><p>多个中间操作可以连接起来形成一个流水线，除非流水线上触发终止操作，否则<strong>中间操作不会执行任何的处理</strong>！而在终止操作时一次性全部处理，称为“<strong>惰性求值</strong>”。</p>
+<p>需求1：创建员工类Employee, 创建一个员工集合，查出工资&gt;6500的员工信息</p>
+<p>需求2：去掉重复的员工信息</p>
+<p>需求1：将一组小写单词都转换为大写</p>
+<p>需求2：获取工资大于7000的所有员工的工资</p>
+<p>需求1：将一组整数10, 21, -7, 3, 19, 14进行自然排序</p>
+<p>需求2：按员工的工资升序排列，显示所有员工信息</p>
+<p>需求3：按员工的工资升序排列，显示所有员工信息，工资相同的，再按年龄排序</p>
+<h3 id="Stream-的终止操作"><a href="#Stream-的终止操作" class="headerlink" title="Stream 的终止操作"></a>Stream 的终止操作</h3><p>终端操作会从流的流水线生成结果。其结果可以是任何不是流的值，例如：List、Integer，甚至是void 。</p>
+<p>流进行了终止操作后，不能再次使用。</p>
+<p>**1-**<strong>匹配与查找</strong></p>
+<p>需求1：检查是否所有员工工资都大于等于5500</p>
+<p>需求2: 是否存在工资大于10000的员工</p>
+<p>需求3: 查出工资大于6500的员工的数量</p>
+<p>需求4：查出员工的最高工资</p>
+<p>需求5：返回最低工资的员工</p>
+<p>需求6：返回所有工资大于6000的员工</p>
+<p><strong>扩展：</strong>当某个方法参数是Lambda表达式(函数式接口的实例)，且只有一条执行语句时，可以简写成类名:: 方法名的形式。 </p>
+<p><strong>示例1- Employee:: getSalary</strong>等价于<strong>e-&gt;e.getSalary()</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">示例2-Integer::compare等价于(sa1, sa2) -&gt; Integer.compare(sa1, sa2)</span><br><span class="line">示例3-System.out::println等价于e-&gt;System.out.println(e)</span><br><span class="line">以上简写形式，大家多练习自然就掌握了，不会简写也没关系</span><br></pre></td></tr></table></figure>
+
+<p>**2-**<strong>收集</strong></p>
+<p>Collector 接口中方法的实现决定了如何对流执行收集的操作(如收集到List、Set、Map)。</p>
+<p>另外， Collectors 实用类提供了很多静态方法，可以方便地创建常见收集器实例，具体方法与实例如下表：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/06/02/day24-%E6%9E%9A%E4%B8%BE-%E6%B3%A8%E8%A7%A3-jdk8%E6%96%B0%E7%89%B9%E6%80%A7/" data-id="ckpf6j6eb0000r8tigjx79bsi" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  
+  <a href="/2021/05/27/day23-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title">day23-网络编程</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>Daiki&#39;s Blog &copy; 2021</li>
+      
+        <li>京ICP备17054916号-2</li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="Daiki&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">Home</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">Archives</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/gallery">Gallery</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">Categories</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">Tag</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">About</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/copybtn.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>
